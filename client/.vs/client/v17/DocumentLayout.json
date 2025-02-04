@@ -23,14 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
+              "Title": "Form1.cs [Conception]",
               "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\client\\client\\Form1.cs",
               "RelativeDocumentMoniker": "client\\Form1.cs",
-              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\client\\client\\Form1.cs [Design]",
-              "RelativeToolTip": "client\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\client\\client\\Form1.cs [Conception]",
+              "RelativeToolTip": "client\\Form1.cs [Conception]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T07:57:38.207Z",
-              "EditorCaption": " [Design]"
+              "EditorCaption": " [Conception]"
             }
           ]
         }

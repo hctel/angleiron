@@ -2,3 +2,6 @@
 /client/.vs/client/CopilotIndices
 /client/.vs
 .DS_Store
+/client/client
+/server/.vs/server/CopilotIndices
+/server/server/obj
