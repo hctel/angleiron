@@ -1,7 +1,6 @@
-/client/client/obj/Debug
-/client/.vs/client/CopilotIndices
+/client/client/obj/
 /client/.vs
 .DS_Store
-/client/client
-/server/.vs/server/CopilotIndices
+/client/
+/server/.vs/
 /server/server/obj
