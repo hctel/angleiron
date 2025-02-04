@@ -1,9 +1,6 @@
 
-/.vs/angleiron/CopilotIndices
 /clientapp/obj
-/.vs/angleiron/FileContentIndex
 /merchandapp/obj
 /serverapp/obj
-/.vs
+.vs/
 angleiron.sln
-.vs/angleiron/v17/.suo
