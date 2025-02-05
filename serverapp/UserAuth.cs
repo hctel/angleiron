@@ -5,8 +5,8 @@ namespace backend
 {
 	public class UserAuth
 	{
-		private DatabaseConnector database;
-        public UserAuth(DatabaseConnector database)
+		private UserDB database;
+        public UserAuth(UserDB database)
 		{
 			this.database = database;
         }
@@ -14,8 +14,8 @@ namespace backend
 		public Session authUser(string email, string password)
 		{
 			Console.WriteLine(String.Format("User auth challenge: {0}, password {1}", email, password));
-            MySqlDataReader result = database.read(String.Format("SELECT * FROM Cliens WHERE Email='{0}';", email));
-			if(result.Read())
+            MySqlDataReader result = database.getUserFromEmail(email);
+            if (result.Read())
 			{
 				if (password.Equals(result.GetString("password")))
 				{
@@ -28,10 +28,10 @@ namespace backend
 
 		public void createUser(string name, string address, string email, string password)
         {
-            if(database.read(String.Format("SELECT * FROM Cliens WHERE Email='{0}';", email)).HasRows) throw new Exception("User already exists");
+            if(database.getUserFromEmail(email).HasRows) throw new Exception("User already exists");
 			else
 			{
-				database.execute(String.Format("INSERT INTO Clients (Nom, Adresse, Email, password) VALUES ('{0}', '{1}', '{2}', '{3}');", name, address, email, password));
+				database.addUser(name, address, email, password);
             }
         }
     }
