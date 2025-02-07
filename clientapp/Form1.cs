@@ -15,9 +15,9 @@ namespace clientapp
         public Window()
         {
             InitializeComponent();
-            this.Size = new Size(1600, 900);
-            this.MinimumSize = new Size(1600, 900);
-            this.MaximumSize = new Size(1600, 900);
+            this.Size = new Size(1280, 720);
+            this.MinimumSize = new Size(1280, 720);
+            this.MaximumSize = new Size(1280, 720);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
