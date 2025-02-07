@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace clientapp
 {
-    public partial class Form1 : Form
+    public partial class Window : Form
     {
-        public Form1()
+        public Window()
         {
             InitializeComponent();
+            this.Size = new Size(1600, 900);
+            this.MinimumSize = new Size(1600, 900);
+            this.MaximumSize = new Size(1600, 900);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.MaximizeBox = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)

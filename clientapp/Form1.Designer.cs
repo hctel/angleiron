@@ -1,6 +1,6 @@
 ﻿namespace clientapp
 {
-    partial class Form1
+    partial class Window
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,13 +55,22 @@
             this.label1.Text = "AngleIron";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Form1
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel2.Location = new System.Drawing.Point(-12, 154);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1600, 540);
+            this.panel2.TabIndex = 1;
+            // 
+            // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1574, 829);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "Window";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -73,6 +83,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
