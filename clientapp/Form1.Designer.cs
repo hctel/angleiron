@@ -31,6 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.SaveForLaterButton = new System.Windows.Forms.Button();
+            this.OrderButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(22, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(637, 117);
+            this.label1.Size = new System.Drawing.Size(478, 88);
             this.label1.TabIndex = 0;
             this.label1.Text = "ANGLEIRON";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -66,11 +68,36 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // SaveForLaterButton
+            // 
+            this.SaveForLaterButton.AccessibleName = "SaveForLater";
+            this.SaveForLaterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveForLaterButton.Location = new System.Drawing.Point(1078, 717);
+            this.SaveForLaterButton.Name = "SaveForLaterButton";
+            this.SaveForLaterButton.Size = new System.Drawing.Size(243, 91);
+            this.SaveForLaterButton.TabIndex = 2;
+            this.SaveForLaterButton.Text = "Save for later";
+            this.SaveForLaterButton.UseVisualStyleBackColor = true;
+            this.SaveForLaterButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // OrderButton
+            // 
+            this.OrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderButton.Location = new System.Drawing.Point(1327, 717);
+            this.OrderButton.Name = "OrderButton";
+            this.OrderButton.Size = new System.Drawing.Size(235, 91);
+            this.OrderButton.TabIndex = 3;
+            this.OrderButton.Text = "Order";
+            this.OrderButton.UseVisualStyleBackColor = true;
+            this.OrderButton.Click += new System.EventHandler(this.OrderButton_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1574, 829);
+            this.Controls.Add(this.OrderButton);
+            this.Controls.Add(this.SaveForLaterButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Window";
@@ -87,6 +114,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button SaveForLaterButton;
+        private System.Windows.Forms.Button OrderButton;
     }
 }
 

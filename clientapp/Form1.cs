@@ -25,7 +25,19 @@ namespace clientapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.SaveForLaterButton.BackColor = Color.FromArgb(94, 176, 87);
+            this.SaveForLaterButton.ForeColor = Color.White;
+            this.SaveForLaterButton.FlatStyle = FlatStyle.Flat;
+            this.SaveForLaterButton.FlatAppearance.BorderSize = 0;
+            this.SaveForLaterButton.Size = new Size(200, 50);
+            this.SaveForLaterButton.Location = new Point(this.Width - 375, this.Height - 125);
 
+            this.OrderButton.BackColor = Color.FromArgb(243, 187, 78);
+            this.OrderButton.ForeColor = Color.White;
+            this.OrderButton.FlatStyle = FlatStyle.Flat;
+            this.OrderButton.FlatAppearance.BorderSize = 0;
+            this.OrderButton.Size = new Size(100, 50);
+            this.OrderButton.Location = new Point(this.Width - 150, this.Height - 125);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -44,6 +56,15 @@ namespace clientapp
             this.panel2.Size = new Size(this.Width, 120);
             this.panel2.Location = new Point(0, this.Height - 160);
             this.panel2.BackColor = Color.FromArgb(0, 168, 232);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void OrderButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
