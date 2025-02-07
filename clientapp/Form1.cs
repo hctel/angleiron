@@ -58,6 +58,13 @@ namespace clientapp
             this.panel2.BackColor = Color.FromArgb(0, 168, 232);
         }
 
+        private void lockerPanel_Paint(object sender, PaintEventArgs e)
+        {
+            this.lockersPanel.Size = new Size(200, 200);
+            this.lockersPanel.Location = new Point(50, 50);
+            this.lockersPanel.BackColor = Color.FromArgb(236, 236, 235);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
         }

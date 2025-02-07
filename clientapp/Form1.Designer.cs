@@ -33,6 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.SaveForLaterButton = new System.Windows.Forms.Button();
             this.OrderButton = new System.Windows.Forms.Button();
+            this.lockersPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,11 +92,20 @@
             this.OrderButton.UseVisualStyleBackColor = true;
             this.OrderButton.Click += new System.EventHandler(this.OrderButton_Click);
             // 
+            // lockersPanel
+            // 
+            this.lockersPanel.Location = new System.Drawing.Point(82, 235);
+            this.lockersPanel.Name = "lockersPanel";
+            this.lockersPanel.Size = new System.Drawing.Size(203, 217);
+            this.lockersPanel.TabIndex = 4;
+            this.lockersPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lockerPanel_Paint);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1574, 829);
+            this.ClientSize = new System.Drawing.Size(1879, 1007);
+            this.Controls.Add(this.lockersPanel);
             this.Controls.Add(this.OrderButton);
             this.Controls.Add(this.SaveForLaterButton);
             this.Controls.Add(this.panel2);
@@ -116,6 +126,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button SaveForLaterButton;
         private System.Windows.Forms.Button OrderButton;
+        private System.Windows.Forms.Panel lockersPanel;
     }
 }
 
