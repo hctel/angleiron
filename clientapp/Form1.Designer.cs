@@ -36,32 +36,35 @@
             // 
             // panel1
             // 
+            this.panel1.AccessibleName = "header";
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, -10);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1573, 166);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("SansSerif", 28.125F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(11, 40);
+            this.label1.Location = new System.Drawing.Point(22, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(369, 85);
+            this.label1.Size = new System.Drawing.Size(637, 117);
             this.label1.TabIndex = 0;
-            this.label1.Text = "AngleIron";
+            this.label1.Text = "ANGLEIRON";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel2.Location = new System.Drawing.Point(-12, 154);
+            this.panel2.BackColor = System.Drawing.SystemColors.MenuText;
+            this.panel2.Location = new System.Drawing.Point(1, 717);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1600, 540);
+            this.panel2.Size = new System.Drawing.Size(200, 100);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // Window
             // 
