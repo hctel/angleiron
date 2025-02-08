@@ -37,6 +37,7 @@
             this.SummaryPanel = new System.Windows.Forms.Panel();
             this.LockersLabel = new System.Windows.Forms.Label();
             this.SummaryLabel = new System.Windows.Forms.Label();
+            this.ColorGroup = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,11 +134,22 @@
             this.SummaryLabel.Text = "Summary";
             this.SummaryLabel.Click += new System.EventHandler(this.SummaryLabel_Click);
             // 
+            // ColorGroup
+            // 
+            this.ColorGroup.Location = new System.Drawing.Point(54, 832);
+            this.ColorGroup.Name = "ColorGroup";
+            this.ColorGroup.Size = new System.Drawing.Size(200, 100);
+            this.ColorGroup.TabIndex = 7;
+            this.ColorGroup.TabStop = false;
+            this.ColorGroup.Text = "Colors";
+            this.ColorGroup.Enter += new System.EventHandler(this.ColorGroup_Enter);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1879, 1007);
+            this.Controls.Add(this.ColorGroup);
             this.Controls.Add(this.SummaryLabel);
             this.Controls.Add(this.LockersLabel);
             this.Controls.Add(this.SummaryPanel);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.Panel SummaryPanel;
         private System.Windows.Forms.Label LockersLabel;
         private System.Windows.Forms.Label SummaryLabel;
+        private System.Windows.Forms.GroupBox ColorGroup;
     }
 }
 

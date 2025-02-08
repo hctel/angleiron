@@ -45,6 +45,35 @@ namespace clientapp
 
             this.SummaryLabel.BackColor = Color.FromArgb(200, 200, 200);
             this.SummaryLabel.Location = new Point(this.Width - 230, 90);
+
+            //To be optimized
+            Button choiceOneButton = new Button();
+            choiceOneButton.Text = "Choice 1";
+            choiceOneButton.Size = new Size(50, 50);
+            choiceOneButton.Location = new Point(0, 0);
+            Button choiceTwoButton = new Button();
+            choiceTwoButton.Text = "Choice 2";
+            choiceTwoButton.Size = new Size(50, 50);
+            choiceTwoButton.Location = new Point(50, 0);
+            Button choiceThreeButton = new Button();
+            choiceThreeButton.Text = "Choice 3";
+            choiceThreeButton.Size = new Size(50, 50);
+            choiceThreeButton.Location = new Point(100, 0);
+            Button choiceFourButton = new Button();
+            choiceFourButton.Text = "Choice 4";
+            choiceFourButton.Size = new Size(50, 50);
+            choiceFourButton.Location = new Point(150, 0);
+
+            ColorGroup.Controls.Add(choiceOneButton);
+            ColorGroup.Controls.Add(choiceTwoButton);
+            ColorGroup.Controls.Add(choiceThreeButton);
+            ColorGroup.Controls.Add(choiceFourButton);
+            ColorGroup.Size = new Size(200, 50);
+
+            ColorGroup.Location = new Point(50, this.Height - 225);
+            ColorGroup.BackColor = Color.FromArgb(200, 200, 200);
+
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -93,6 +122,11 @@ namespace clientapp
         }
 
         private void SummaryLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ColorGroup_Enter(object sender, EventArgs e)
         {
 
         }
