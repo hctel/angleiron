@@ -62,8 +62,7 @@ namespace clientapp
         {
             this.lockersPanel.Size = new Size(300, 490);
             this.lockersPanel.Location = new Point(0, 70);
-            //this.lockersPanel.BackColor = Color.FromArgb(236, 236, 235);
-            this.lockersPanel.BackColor = Color.FromArgb(255, 69, 0);
+            this.lockersPanel.BackColor = Color.FromArgb(200, 200, 200);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,7 +77,7 @@ namespace clientapp
         private void SummaryPanel_Paint(object sender, PaintEventArgs e)
         {
             this.SummaryPanel.Size = new Size(300, 490);
-            this.SummaryPanel.BackColor = Color.FromArgb(0, 128, 0);
+            this.SummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             this.SummaryPanel.Location = new Point(this.Width-300, 70);
         }
     }
