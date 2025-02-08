@@ -35,6 +35,8 @@
             this.OrderButton = new System.Windows.Forms.Button();
             this.lockersPanel = new System.Windows.Forms.Panel();
             this.SummaryPanel = new System.Windows.Forms.Panel();
+            this.LockersLabel = new System.Windows.Forms.Label();
+            this.SummaryLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,11 +111,35 @@
             this.SummaryPanel.TabIndex = 5;
             this.SummaryPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.SummaryPanel_Paint);
             // 
+            // LockersLabel
+            // 
+            this.LockersLabel.AutoSize = true;
+            this.LockersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LockersLabel.Location = new System.Drawing.Point(406, 296);
+            this.LockersLabel.Name = "LockersLabel";
+            this.LockersLabel.Size = new System.Drawing.Size(245, 67);
+            this.LockersLabel.TabIndex = 0;
+            this.LockersLabel.Text = "Lockers";
+            this.LockersLabel.Click += new System.EventHandler(this.LockersLabel_Click);
+            // 
+            // SummaryLabel
+            // 
+            this.SummaryLabel.AutoSize = true;
+            this.SummaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SummaryLabel.Location = new System.Drawing.Point(985, 330);
+            this.SummaryLabel.Name = "SummaryLabel";
+            this.SummaryLabel.Size = new System.Drawing.Size(385, 89);
+            this.SummaryLabel.TabIndex = 6;
+            this.SummaryLabel.Text = "Summary";
+            this.SummaryLabel.Click += new System.EventHandler(this.SummaryLabel_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1879, 1007);
+            this.Controls.Add(this.SummaryLabel);
+            this.Controls.Add(this.LockersLabel);
             this.Controls.Add(this.SummaryPanel);
             this.Controls.Add(this.lockersPanel);
             this.Controls.Add(this.OrderButton);
@@ -126,6 +152,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -138,6 +165,8 @@
         private System.Windows.Forms.Button OrderButton;
         private System.Windows.Forms.Panel lockersPanel;
         private System.Windows.Forms.Panel SummaryPanel;
+        private System.Windows.Forms.Label LockersLabel;
+        private System.Windows.Forms.Label SummaryLabel;
     }
 }
 

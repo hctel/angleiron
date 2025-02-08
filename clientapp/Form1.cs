@@ -38,6 +38,13 @@ namespace clientapp
             this.OrderButton.FlatAppearance.BorderSize = 0;
             this.OrderButton.Size = new Size(100, 50);
             this.OrderButton.Location = new Point(this.Width - 150, this.Height - 125);
+
+
+            this.LockersLabel.BackColor = Color.FromArgb(200, 200, 200);
+            this.LockersLabel.Location = new Point(90, 90);
+
+            this.SummaryLabel.BackColor = Color.FromArgb(200, 200, 200);
+            this.SummaryLabel.Location = new Point(this.Width - 230, 90);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -79,6 +86,15 @@ namespace clientapp
             this.SummaryPanel.Size = new Size(300, 490);
             this.SummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             this.SummaryPanel.Location = new Point(this.Width-300, 70);
+        }
+
+        private void LockersLabel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void SummaryLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
