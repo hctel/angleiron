@@ -48,21 +48,25 @@ namespace clientapp
 
             //To be optimized
             Button choiceOneButton = new Button();
-            choiceOneButton.Text = "Choice 1";
             choiceOneButton.Size = new Size(50, 50);
             choiceOneButton.Location = new Point(0, 0);
+            choiceOneButton.FlatStyle = FlatStyle.Flat;
+            choiceOneButton.FlatAppearance.BorderSize = 0;
             Button choiceTwoButton = new Button();
-            choiceTwoButton.Text = "Choice 2";
             choiceTwoButton.Size = new Size(50, 50);
             choiceTwoButton.Location = new Point(50, 0);
+            choiceTwoButton.FlatStyle = FlatStyle.Flat;
+            choiceTwoButton.FlatAppearance.BorderSize = 0;
             Button choiceThreeButton = new Button();
-            choiceThreeButton.Text = "Choice 3";
             choiceThreeButton.Size = new Size(50, 50);
             choiceThreeButton.Location = new Point(100, 0);
+            choiceThreeButton.FlatStyle = FlatStyle.Flat;
+            choiceThreeButton.FlatAppearance.BorderSize = 0;
             Button choiceFourButton = new Button();
-            choiceFourButton.Text = "Choice 4";
             choiceFourButton.Size = new Size(50, 50);
             choiceFourButton.Location = new Point(150, 0);
+            choiceFourButton.FlatStyle = FlatStyle.Flat;
+            choiceFourButton.FlatAppearance.BorderSize = 0;
 
             ColorGroup.Controls.Add(choiceOneButton);
             ColorGroup.Controls.Add(choiceTwoButton);
@@ -72,7 +76,13 @@ namespace clientapp
 
             ColorGroup.Location = new Point(50, this.Height - 225);
             ColorGroup.BackColor = Color.FromArgb(200, 200, 200);
+            ColorGroup.FlatStyle = FlatStyle.Flat;
 
+
+            choiceOneButton.BackColor = Color.FromArgb(187, 153, 112);
+            choiceTwoButton.BackColor = Color.FromArgb(88, 76, 69);
+            choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
+            choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
         }
 
