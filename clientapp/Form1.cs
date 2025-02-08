@@ -43,6 +43,9 @@ namespace clientapp
             this.LockersLabel.BackColor = Color.FromArgb(200, 200, 200);
             this.LockersLabel.Location = new Point(90, 90);
 
+            this.ColorLabel.BackColor = Color.FromArgb(200, 200, 200);
+            this.ColorLabel.Location = new Point(115, this.Height - 255);
+
             this.SummaryLabel.BackColor = Color.FromArgb(200, 200, 200);
             this.SummaryLabel.Location = new Point(this.Width - 230, 90);
 
@@ -77,7 +80,6 @@ namespace clientapp
             ColorGroup.Location = new Point(50, this.Height - 225);
             ColorGroup.BackColor = Color.FromArgb(200, 200, 200);
             ColorGroup.FlatStyle = FlatStyle.Flat;
-
 
             choiceOneButton.BackColor = Color.FromArgb(187, 153, 112);
             choiceTwoButton.BackColor = Color.FromArgb(88, 76, 69);
@@ -137,6 +139,11 @@ namespace clientapp
         }
 
         private void ColorGroup_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ColorLabel_Click(object sender, EventArgs e)
         {
 
         }

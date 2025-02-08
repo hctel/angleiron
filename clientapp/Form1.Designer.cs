@@ -38,6 +38,7 @@
             this.LockersLabel = new System.Windows.Forms.Label();
             this.SummaryLabel = new System.Windows.Forms.Label();
             this.ColorGroup = new System.Windows.Forms.GroupBox();
+            this.ColorLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,11 +145,23 @@
             this.ColorGroup.Text = "Colors";
             this.ColorGroup.Enter += new System.EventHandler(this.ColorGroup_Enter);
             // 
+            // ColorLabel
+            // 
+            this.ColorLabel.AutoSize = true;
+            this.ColorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColorLabel.Location = new System.Drawing.Point(228, 783);
+            this.ColorLabel.Name = "ColorLabel";
+            this.ColorLabel.Size = new System.Drawing.Size(204, 68);
+            this.ColorLabel.TabIndex = 0;
+            this.ColorLabel.Text = "Colors";
+            this.ColorLabel.Click += new System.EventHandler(this.ColorLabel_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1879, 1007);
+            this.Controls.Add(this.ColorLabel);
             this.Controls.Add(this.ColorGroup);
             this.Controls.Add(this.SummaryLabel);
             this.Controls.Add(this.LockersLabel);
@@ -180,6 +193,7 @@
         private System.Windows.Forms.Label LockersLabel;
         private System.Windows.Forms.Label SummaryLabel;
         private System.Windows.Forms.GroupBox ColorGroup;
+        private System.Windows.Forms.Label ColorLabel;
     }
 }
 
