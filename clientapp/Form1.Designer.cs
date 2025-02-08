@@ -99,7 +99,7 @@
             // 
             // lockersPanel
             // 
-            this.lockersPanel.Location = new System.Drawing.Point(82, 235);
+            this.lockersPanel.Location = new System.Drawing.Point(620, 692);
             this.lockersPanel.Name = "lockersPanel";
             this.lockersPanel.Size = new System.Drawing.Size(203, 217);
             this.lockersPanel.TabIndex = 4;
