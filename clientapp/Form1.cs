@@ -74,5 +74,12 @@ namespace clientapp
         {
 
         }
+
+        private void SummaryPanel_Paint(object sender, PaintEventArgs e)
+        {
+            this.SummaryPanel.Size = new Size(300, 490);
+            this.SummaryPanel.BackColor = Color.FromArgb(0, 128, 0);
+            this.SummaryPanel.Location = new Point(this.Width-300, 70);
+        }
     }
 }
