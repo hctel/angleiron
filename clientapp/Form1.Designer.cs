@@ -39,6 +39,7 @@
             this.SummaryLabel = new System.Windows.Forms.Label();
             this.ColorGroup = new System.Windows.Forms.GroupBox();
             this.ColorLabel = new System.Windows.Forms.Label();
+            this.ContainerPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,7 +131,7 @@
             this.SummaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SummaryLabel.Location = new System.Drawing.Point(985, 330);
             this.SummaryLabel.Name = "SummaryLabel";
-            this.SummaryLabel.Size = new System.Drawing.Size(385, 89);
+            this.SummaryLabel.Size = new System.Drawing.Size(289, 67);
             this.SummaryLabel.TabIndex = 6;
             this.SummaryLabel.Text = "Summary";
             this.SummaryLabel.Click += new System.EventHandler(this.SummaryLabel_Click);
@@ -151,16 +152,25 @@
             this.ColorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ColorLabel.Location = new System.Drawing.Point(228, 783);
             this.ColorLabel.Name = "ColorLabel";
-            this.ColorLabel.Size = new System.Drawing.Size(204, 68);
+            this.ColorLabel.Size = new System.Drawing.Size(153, 51);
             this.ColorLabel.TabIndex = 0;
             this.ColorLabel.Text = "Colors";
             this.ColorLabel.Click += new System.EventHandler(this.ColorLabel_Click);
+            // 
+            // ContainerPanel
+            // 
+            this.ContainerPanel.Location = new System.Drawing.Point(1300, 455);
+            this.ContainerPanel.Name = "ContainerPanel";
+            this.ContainerPanel.Size = new System.Drawing.Size(200, 100);
+            this.ContainerPanel.TabIndex = 8;
+            this.ContainerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ContainerPanel_Paint);
             // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1879, 1007);
+            this.Controls.Add(this.ContainerPanel);
             this.Controls.Add(this.ColorLabel);
             this.Controls.Add(this.ColorGroup);
             this.Controls.Add(this.SummaryLabel);
@@ -194,6 +204,7 @@
         private System.Windows.Forms.Label SummaryLabel;
         private System.Windows.Forms.GroupBox ColorGroup;
         private System.Windows.Forms.Label ColorLabel;
+        private System.Windows.Forms.Panel ContainerPanel;
     }
 }
 
