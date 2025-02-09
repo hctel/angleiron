@@ -91,7 +91,24 @@ namespace clientapp
             lockerScroll.Size = new Size(20, 320);
             lockerScroll.Location = new Point(0, 0);
             ContainerPanel.Controls.Add(lockerScroll);
-           
+
+            //Adding a list of lockers to the container panel
+            Panel contentPanel = new Panel();
+            contentPanel.Size = new Size(260, 300);
+            contentPanel.Location = new Point(30, 10);
+            contentPanel.AutoScroll = true;
+            ContainerPanel.Controls.Add(contentPanel);
+            contentPanel.BackColor = Color.FromArgb(0, 200, 0);
+
+            Button addButton = new Button();
+            addButton.Size = new Size(80, 30);
+            addButton.Text = "Add";
+            addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
+            addButton.FlatStyle = FlatStyle.Flat;
+            addButton.FlatAppearance.BorderSize = 0;
+            addButton.BackColor = Color.FromArgb(255, 243, 20);
+            addButton.ForeColor = Color.White;
+            contentPanel.Controls.Add(addButton);
 
         }
 
@@ -158,7 +175,7 @@ namespace clientapp
         {
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
-            this.ContainerPanel.BackColor = Color.FromArgb(200, 0, 0);
+            this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
         }
     }
 }
