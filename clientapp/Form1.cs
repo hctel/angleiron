@@ -93,23 +93,36 @@ namespace clientapp
             ContainerPanel.Controls.Add(lockerScroll);
 
             //Adding a list of lockers to the container panel
-            Panel contentPanel = new Panel();
-            contentPanel.Size = new Size(260, 300);
-            contentPanel.Location = new Point(30, 10);
-            contentPanel.AutoScroll = true;
-            ContainerPanel.Controls.Add(contentPanel);
-            contentPanel.BackColor = Color.FromArgb(0, 200, 0);
+            for (int i=0; i < 10; i++)
+            {
+                Panel contentPanel = new Panel();
+                contentPanel.Size = new Size(260, 300);
+                contentPanel.Location = new Point(30, 10 + i * 310);
+                contentPanel.AutoScroll = true;
+                contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
-            Button addButton = new Button();
-            addButton.Size = new Size(80, 30);
-            addButton.Text = "Add";
-            addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
-            addButton.FlatStyle = FlatStyle.Flat;
-            addButton.FlatAppearance.BorderSize = 0;
-            addButton.BackColor = Color.FromArgb(255, 243, 20);
-            addButton.ForeColor = Color.White;
-            contentPanel.Controls.Add(addButton);
+                Button addButton = new Button();
+                addButton.Size = new Size(80, 30);
+                addButton.Text = "Add";
+                addButton.TextAlign = ContentAlignment.MiddleCenter;
+                addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
+                addButton.FlatStyle = FlatStyle.Flat;
+                addButton.FlatAppearance.BorderSize = 0;
+                addButton.BackColor = Color.FromArgb(0, 0, 0);
+                addButton.ForeColor = Color.White;
+                contentPanel.Controls.Add(addButton);
 
+                Label infoLabel = new Label();
+                infoLabel.Size = new Size(200, 30);
+                infoLabel.Text = "69 x 69 cm ";
+                contentPanel.Controls.Add(infoLabel);
+                infoLabel.Location = new Point(15, contentPanel.Height - 45);
+                infoLabel.Font = new Font("Sans Serif", 16);
+
+
+                ContainerPanel.Controls.Add(contentPanel);
+            }
+           
         }
 
         private void label1_Click(object sender, EventArgs e)

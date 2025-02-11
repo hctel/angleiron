@@ -13,15 +13,22 @@ namespace backend
 		private Thread thread;
 		private bool cancelled = false;
 
-        public Network(int port)
+		private int port;
+		private Func<string[], string> rcvFunc;
+
+		public Network(int port, Func<string[], string> rcvFunc)
 		{
+			this.port = port;
+			this.rcvFunc = rcvFunc;
+
 			if (port < 1) throw new ArgumentOutOfRangeException("Port must be greater than 1");
             endPoint = new IPEndPoint(IPAddress.Any, port);
             listener = new TcpListener(endPoint);
 			listener.Start();
             thread = new Thread(async () =>
 			{
-				for(; ; )
+                Console.WriteLine("Network thread started");
+                for (; ; )
 				{
 					if(cancelled) break;
                     using TcpClient handler = await listener.AcceptTcpClientAsync();
@@ -33,8 +40,11 @@ namespace backend
 					byte[] dataIn = new byte[handler.ReceiveBufferSize];
 					int length = stream.Read(dataIn, 0, dataIn.Length);
 					string message = Encoding.ASCII.GetString(dataIn, 0, length);
+					string[] data = message.Split('&');
 
-
+					string msgOut = rcvFunc(data);
+                    var bytesOut = Encoding.UTF8.GetBytes(msgOut);
+                    await stream.WriteAsync(bytesOut);
                 }
 			});
 			thread.Start();
@@ -45,6 +55,7 @@ namespace backend
             cancelled = true;
 			thread.Join();
 			listener.Stop();
+			Console.WriteLine("Network thread stopped");
         }
 	}
 }
