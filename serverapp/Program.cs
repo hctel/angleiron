@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using backend;
 using System;
+
 string version = "0.0.1";
 int port = 6210;
 
@@ -29,6 +30,18 @@ networkManager.kill();
 
 string networkReceiveFunction(string[] data)
 {
+    /*
+     * AUTHENTICATION:
+     * 
+     * Command: AUTH
+     * Structure: AUTH&email&password
+     * 
+     * Responses:
+     *  Sucessful: AUTHOK&sessionID&clientID&remoteIP
+     *  Incorrect password: AUTHFAIL&NOPASSWD
+     *  User not fount: AUTHFAIL&NOUSER
+     */
+
     if (data[0].Equals("AUTH"))
     {
         try
