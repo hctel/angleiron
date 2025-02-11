@@ -86,19 +86,11 @@ namespace clientapp
             choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
-            //Adding scroolbar to ContainerPanel
-            VScrollBar lockerScroll = new VScrollBar();
-            lockerScroll.Size = new Size(20, 320);
-            lockerScroll.Location = new Point(0, 0);
-            ContainerPanel.Controls.Add(lockerScroll);
-
-            //Adding a list of lockers to the container panel
-            for (int i=0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
                 contentPanel.Location = new Point(30, 10 + i * 310);
-                contentPanel.AutoScroll = true;
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
@@ -114,15 +106,14 @@ namespace clientapp
 
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
-                infoLabel.Text = "69 x 69 cm ";
+                infoLabel.Text = "69 x 69 cm " + i;
                 contentPanel.Controls.Add(infoLabel);
                 infoLabel.Location = new Point(15, contentPanel.Height - 45);
                 infoLabel.Font = new Font("Sans Serif", 16);
 
-
                 ContainerPanel.Controls.Add(contentPanel);
             }
-           
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -189,6 +180,7 @@ namespace clientapp
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
+            this.ContainerPanel.AutoScroll = true; 
         }
     }
 }
