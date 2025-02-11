@@ -50,5 +50,15 @@ namespace merchandapp
                 this.inStock = instock;
             }*/
         }
+
+        private void dataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void commandeBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
