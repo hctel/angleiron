@@ -13,5 +13,10 @@ namespace backend
             UserId = userid;
             RemoteIp = remoteIp;
         }
+
+        public override string ToString()
+        {
+            return $"{SessionId}&{UserId}&{RemoteIp}";
+        }
     }
 }
