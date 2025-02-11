@@ -111,29 +111,36 @@ namespace clientapp
             addButton.ForeColor = Color.White;
             contentPanel.Controls.Add(addButton);
 
-            for (int i = 0; i < 10; i++)
-            {
-                Panel lockerPanel = new Panel();
-                lockerPanel.Size = new Size(240, 50);
-                lockerPanel.Location = new Point(10, 10 + i * 60);
-                lockerPanel.BackColor = Color.FromArgb(200, 200, 200);
-                contentPanel.Controls.Add(lockerPanel);
+            Label infoLabel = new Label();
+            infoLabel.Size = new Size(200, 30);
+            infoLabel.Text = "69 x 69 cm";
+            contentPanel.Controls.Add(infoLabel);
+            infoLabel.Location = new Point(15, contentPanel.Height - 45);
+            infoLabel.Font = new Font("Sans Serif", 16);
 
-                Label lockerLabel = new Label();
-                lockerLabel.Size = new Size(200, 50);
-                lockerLabel.Location = new Point(10, 0);
-                lockerLabel.Text = "Locker " + i;
-                lockerLabel.TextAlign = ContentAlignment.MiddleCenter;
-                lockerPanel.Controls.Add(lockerLabel);
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Panel lockerPanel = new Panel();
+            //    lockerPanel.Size = new Size(240, 50);
+            //    lockerPanel.Location = new Point(10, 10 + i * 60);
+            //    lockerPanel.BackColor = Color.FromArgb(200, 200, 200);
+            //    contentPanel.Controls.Add(lockerPanel);
 
-                Button removeButton = new Button();
-                removeButton.Size = new Size(30, 30);
-                removeButton.Location = new Point(210, 10);
-                removeButton.FlatStyle = FlatStyle.Flat;
-                removeButton.FlatAppearance.BorderSize = 0;
-                removeButton.BackColor = Color.FromArgb(255, 0, 0);
-                lockerPanel.Controls.Add(removeButton);
-            }
+            //    Label lockerLabel = new Label();
+            //    lockerLabel.Size = new Size(200, 50);
+            //    lockerLabel.Location = new Point(10, 0);
+            //    lockerLabel.Text = "Locker " + i;
+            //    lockerLabel.TextAlign = ContentAlignment.MiddleCenter;
+            //    lockerPanel.Controls.Add(lockerLabel);
+
+            //    Button removeButton = new Button();
+            //    removeButton.Size = new Size(30, 30);
+            //    removeButton.Location = new Point(210, 10);
+            //    removeButton.FlatStyle = FlatStyle.Flat;
+            //    removeButton.FlatAppearance.BorderSize = 0;
+            //    removeButton.BackColor = Color.FromArgb(255, 0, 0);
+            //    lockerPanel.Controls.Add(removeButton);
+            //}
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -21,7 +21,8 @@ namespace backend
 			listener.Start();
             thread = new Thread(async () =>
 			{
-				for(; ; )
+                Console.WriteLine("Network thread started");
+                for (; ; )
 				{
 					if(cancelled) break;
                     using TcpClient handler = await listener.AcceptTcpClientAsync();
@@ -34,7 +35,9 @@ namespace backend
 					int length = stream.Read(dataIn, 0, dataIn.Length);
 					string message = Encoding.ASCII.GetString(dataIn, 0, length);
 
-
+                    string msgOut = "";
+                    var bytesOut = Encoding.UTF8.GetBytes(msgOut);
+                    await stream.WriteAsync(bytesOut);
                 }
 			});
 			thread.Start();
@@ -45,6 +48,7 @@ namespace backend
             cancelled = true;
 			thread.Join();
 			listener.Stop();
+			Console.WriteLine("Network thread stopped");
         }
 	}
 }
