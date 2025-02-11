@@ -90,7 +90,7 @@ namespace clientapp
             {
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
-                contentPanel.Location = new Point(30, 10 + i * 310);
+                contentPanel.Location = new Point(12, 10 + i * 310);
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
@@ -180,7 +180,8 @@ namespace clientapp
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
-            this.ContainerPanel.AutoScroll = true; 
+            this.ContainerPanel.AutoScroll = true;
+
         }
     }
 }
