@@ -1,4 +1,10 @@
-﻿using System
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace clientapp
 {
@@ -29,35 +35,38 @@ namespace clientapp
         {
             this.serverIp = serverIp;
             this.port = port;
-            ipEndPoint = new IPEndPoint(serverIp, port);
+            ipEndPoint = new IPEndPoint(Dns.GetHostEntry(serverIp).AddressList[0], port);
             client = new TcpClient();
         }
 
-        public Item[] getItems()
+        public List<Item> getItems()
         {
-            string[] list = get("SHOWTYPES");
-            if (list[0].Equals("TYPELIST"))
+            List<Item> itemList = new List<Item>();
+            List<string> list = get("SHOWTYPES");
+            if (list[1].Equals("TYPELIST"))
             {
-                Item[] itemList;
-                string[] items = list[1].split(';');
-                for(string i : items)
+                
+                string[] items = list[1].Split(';');
+                foreach(string i in items)
                 {
-                    Item item = new Item(i.split('/')[0], i.split('/')[1]);
-                    itemList.Append(item);
+                    Item item = new Item(i.Split('/')[0], i.Split('/')[1]);
+                    itemList.Add(item);
                 }
-                return itemList;
             }
+            return itemList;
         }
 
-        private string[] get(string request)
+        private List<string> get(string request)
         {
-            await client.ConnectAsync(ipEndPoint);
-            await using NetworkStream stream = client.GetStream();
-            await stream.WriteAsync(request);
-            var buffer = new byte[1_024];
-            int received = await stream.ReadAsync(buffer);
+            client.ConnectAsync(Dns.GetHostAddresses(serverIp), port);
+            NetworkStream stream = client.GetStream();
+            byte[] bytesOut = Encoding.UTF8.GetBytes(request);
+            stream.Write(bytesOut, 0, bytesOut.Length);
+            byte[] dataIn = new byte[client.ReceiveBufferSize];
+            int length = stream.Read(dataIn, 0, dataIn.Length);
+            string message = Encoding.ASCII.GetString(dataIn, 0, length);
 
-            return Encoding.UTF8.GetString(buffer, 0, received).split('&');
+            return message.Split('&').ToList();
         }
         
     }

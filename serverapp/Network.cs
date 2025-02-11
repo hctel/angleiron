@@ -34,17 +34,14 @@ namespace backend
                     using TcpClient handler = await listener.AcceptTcpClientAsync();
 					await using NetworkStream stream = handler.GetStream();
 
-					StreamReader reader = new StreamReader(stream);
-					StreamWriter writer = new StreamWriter(stream);
-
 					byte[] dataIn = new byte[handler.ReceiveBufferSize];
 					int length = stream.Read(dataIn, 0, dataIn.Length);
-					string message = Encoding.ASCII.GetString(dataIn, 0, length);
+					string message = Encoding.UTF8.GetString(dataIn, 0, length);
 					string[] data = message.Split('&');
 
 					string msgOut = rcvFunc(data);
                     var bytesOut = Encoding.UTF8.GetBytes(msgOut);
-                    await stream.WriteAsync(bytesOut);
+                    stream.Write(bytesOut);
                 }
 			});
 			thread.Start();
