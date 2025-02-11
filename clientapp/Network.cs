@@ -9,7 +9,6 @@ using System.Text;
 
 namespace clientapp
 {
-    //wtf
     public class Item
     {
         public string name { get; }
