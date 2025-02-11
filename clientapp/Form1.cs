@@ -15,8 +15,6 @@ namespace clientapp
     {
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
-        Articles.Add(1);
-        A
         public Window()
         {
             InitializeComponent();
