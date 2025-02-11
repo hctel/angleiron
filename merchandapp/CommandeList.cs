@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace merchandapp
 {
-    internal class CommandeList
-    {
-        List<Commande> commandes;
-    }
+    //internal class CommandeList
+    //{
+    //    public  List<Commande> commandes;
+        
+
+    //}
 
     internal class Commande
     {
-        int id;
-        string name;
-        string status;
-        string date;
-        bool inStock;
+        public int id;
+        public string name;
+        public string status;
+        public string date;
+        public bool inStock;
 
 
         public Commande(int id, string name, string status, string date, bool instock)

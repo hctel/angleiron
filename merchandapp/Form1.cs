@@ -31,5 +31,24 @@ namespace merchandapp
         {
 
         }
+
+        class Commande2
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public string status { get; set; }
+            public string date { get; set; }
+            public bool inStock { get; set; }
+
+
+            /*public Commande(int id, string name, string status, string date, bool instock)
+            {
+                this.id = id;
+                this.name = name;
+                this.status = status;
+                this.date = date;
+                this.inStock = instock;
+            }*/
+        }
     }
 }
