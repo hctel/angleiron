@@ -14,9 +14,13 @@ namespace merchandapp
         [STAThread]
         static void Main()
         {
+            Commande commande1 = new Commande(849, "Victor", "Waiting", "11/02/2025", true);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
+    
 }

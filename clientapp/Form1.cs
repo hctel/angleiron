@@ -86,61 +86,34 @@ namespace clientapp
             choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
-            //Adding scroolbar to ContainerPanel
-            VScrollBar lockerScroll = new VScrollBar();
-            lockerScroll.Size = new Size(20, 320);
-            lockerScroll.Location = new Point(0, 0);
-            ContainerPanel.Controls.Add(lockerScroll);
+            for (int i = 0; i < 10; i++)
+            {
+                Panel contentPanel = new Panel();
+                contentPanel.Size = new Size(260, 300);
+                contentPanel.Location = new Point(30, 10 + i * 310);
+                contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
-            //Adding a list of lockers to the container panel
-            Panel contentPanel = new Panel();
-            contentPanel.Size = new Size(260, 300);
-            contentPanel.Location = new Point(30, 10);
-            contentPanel.AutoScroll = true;
-            ContainerPanel.Controls.Add(contentPanel);
-            contentPanel.BackColor = Color.FromArgb(0, 200, 0);
+                Button addButton = new Button();
+                addButton.Size = new Size(80, 30);
+                addButton.Text = "Add";
+                addButton.TextAlign = ContentAlignment.MiddleCenter;
+                addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
+                addButton.FlatStyle = FlatStyle.Flat;
+                addButton.FlatAppearance.BorderSize = 0;
+                addButton.BackColor = Color.FromArgb(0, 0, 0);
+                addButton.ForeColor = Color.White;
+                contentPanel.Controls.Add(addButton);
 
-            Button addButton = new Button();
-            addButton.Size = new Size(80, 30);
-            addButton.Text = "Add";
-            addButton.TextAlign = ContentAlignment.MiddleCenter;
-            addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
-            addButton.FlatStyle = FlatStyle.Flat;
-            addButton.FlatAppearance.BorderSize = 0;
-            addButton.BackColor = Color.FromArgb(0, 0, 0);
-            addButton.ForeColor = Color.White;
-            contentPanel.Controls.Add(addButton);
+                Label infoLabel = new Label();
+                infoLabel.Size = new Size(200, 30);
+                infoLabel.Text = "69 x 69 cm " + i;
+                contentPanel.Controls.Add(infoLabel);
+                infoLabel.Location = new Point(15, contentPanel.Height - 45);
+                infoLabel.Font = new Font("Sans Serif", 16);
 
-            Label infoLabel = new Label();
-            infoLabel.Size = new Size(200, 30);
-            infoLabel.Text = "69 x 69 cm";
-            contentPanel.Controls.Add(infoLabel);
-            infoLabel.Location = new Point(15, contentPanel.Height - 45);
-            infoLabel.Font = new Font("Sans Serif", 16);
+                ContainerPanel.Controls.Add(contentPanel);
+            }
 
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    Panel lockerPanel = new Panel();
-            //    lockerPanel.Size = new Size(240, 50);
-            //    lockerPanel.Location = new Point(10, 10 + i * 60);
-            //    lockerPanel.BackColor = Color.FromArgb(200, 200, 200);
-            //    contentPanel.Controls.Add(lockerPanel);
-
-            //    Label lockerLabel = new Label();
-            //    lockerLabel.Size = new Size(200, 50);
-            //    lockerLabel.Location = new Point(10, 0);
-            //    lockerLabel.Text = "Locker " + i;
-            //    lockerLabel.TextAlign = ContentAlignment.MiddleCenter;
-            //    lockerPanel.Controls.Add(lockerLabel);
-
-            //    Button removeButton = new Button();
-            //    removeButton.Size = new Size(30, 30);
-            //    removeButton.Location = new Point(210, 10);
-            //    removeButton.FlatStyle = FlatStyle.Flat;
-            //    removeButton.FlatAppearance.BorderSize = 0;
-            //    removeButton.BackColor = Color.FromArgb(255, 0, 0);
-            //    lockerPanel.Controls.Add(removeButton);
-            //}
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -207,6 +180,7 @@ namespace clientapp
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
+            this.ContainerPanel.AutoScroll = true; 
         }
     }
 }
