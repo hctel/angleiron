@@ -86,22 +86,11 @@ namespace clientapp
             choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
-<<<<<<< Updated upstream
-=======
-            //Adding scroolbar to ContainerPanel
-            //VScrollBar lockerScroll = new VScrollBar();
-            //lockerScroll.Size = new Size(20, 320);
-            //lockerScroll.Location = new Point(0, 0);
-            //ContainerPanel.Controls.Add(lockerScroll);
-
-            //Adding a list of lockers to the container panel
-
->>>>>>> Stashed changes
             for (int i = 0; i < 10; i++)
             {
                 Panel contentPanel = new Panel();
-                contentPanel.Size = new Size(250, 300);
-                contentPanel.Location = new Point(30, 10 + i * 310);
+                contentPanel.Size = new Size(260, 300);
+                contentPanel.Location = new Point(12, 10 + i * 310);
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
@@ -191,12 +180,8 @@ namespace clientapp
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
-<<<<<<< Updated upstream
-            this.ContainerPanel.AutoScroll = true; 
-=======
             this.ContainerPanel.AutoScroll = true;
-            this.ContainerPanel.SetAutoScrollMargin(20,20);
->>>>>>> Stashed changes
+
         }
     }
 }

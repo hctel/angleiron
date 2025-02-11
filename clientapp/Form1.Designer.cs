@@ -50,7 +50,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Font = new System.Drawing.Font("Malgun Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(1, -6);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1049, 106);
             this.panel1.TabIndex = 0;
@@ -73,7 +73,7 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.MenuText;
             this.panel2.Location = new System.Drawing.Point(1, 459);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(133, 64);
             this.panel2.TabIndex = 1;
@@ -84,7 +84,7 @@
             this.SaveForLaterButton.AccessibleName = "SaveForLater";
             this.SaveForLaterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveForLaterButton.Location = new System.Drawing.Point(719, 459);
-            this.SaveForLaterButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveForLaterButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SaveForLaterButton.Name = "SaveForLaterButton";
             this.SaveForLaterButton.Size = new System.Drawing.Size(162, 58);
             this.SaveForLaterButton.TabIndex = 2;
@@ -96,7 +96,7 @@
             // 
             this.OrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrderButton.Location = new System.Drawing.Point(885, 459);
-            this.OrderButton.Margin = new System.Windows.Forms.Padding(2);
+            this.OrderButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OrderButton.Name = "OrderButton";
             this.OrderButton.Size = new System.Drawing.Size(157, 58);
             this.OrderButton.TabIndex = 3;
@@ -107,7 +107,7 @@
             // lockersPanel
             // 
             this.lockersPanel.Location = new System.Drawing.Point(413, 443);
-            this.lockersPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.lockersPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lockersPanel.Name = "lockersPanel";
             this.lockersPanel.Size = new System.Drawing.Size(135, 139);
             this.lockersPanel.TabIndex = 4;
@@ -116,7 +116,7 @@
             // SummaryPanel
             // 
             this.SummaryPanel.Location = new System.Drawing.Point(1035, 225);
-            this.SummaryPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.SummaryPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SummaryPanel.Name = "SummaryPanel";
             this.SummaryPanel.Size = new System.Drawing.Size(133, 64);
             this.SummaryPanel.TabIndex = 5;
@@ -149,9 +149,9 @@
             // ColorGroup
             // 
             this.ColorGroup.Location = new System.Drawing.Point(36, 532);
-            this.ColorGroup.Margin = new System.Windows.Forms.Padding(2);
+            this.ColorGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ColorGroup.Name = "ColorGroup";
-            this.ColorGroup.Padding = new System.Windows.Forms.Padding(2);
+            this.ColorGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ColorGroup.Size = new System.Drawing.Size(133, 64);
             this.ColorGroup.TabIndex = 7;
             this.ColorGroup.TabStop = false;
@@ -173,7 +173,7 @@
             // ContainerPanel
             // 
             this.ContainerPanel.Location = new System.Drawing.Point(867, 291);
-            this.ContainerPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.ContainerPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ContainerPanel.Name = "ContainerPanel";
             this.ContainerPanel.Size = new System.Drawing.Size(133, 64);
             this.ContainerPanel.TabIndex = 8;
@@ -195,7 +195,7 @@
             this.Controls.Add(this.SaveForLaterButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Window";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
