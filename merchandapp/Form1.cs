@@ -60,5 +60,10 @@ namespace merchandapp
         {
 
         }
+
+        private void dataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
