@@ -3,6 +3,11 @@
 /merchandapp/obj
 /serverapp/obj
 .vs/
-.vs/angleiron/v17/
+/.vs/angleiron/v17
 angleiron.sln
-/serverapp/bin
+/merchandapp/bin/Debug
+/merchandapp/bin/Release
+/serverapp/bin/Debug
+/serverapp/bin/Release
+/clientapp/bin/Debug
+/clientapp/bin/Release
