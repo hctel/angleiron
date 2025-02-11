@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace merchandapp
 {
@@ -110,7 +113,6 @@ namespace merchandapp
             // 
             // View
             // 
-            this.View.DataPropertyName = "View";
             this.View.HeaderText = "View";
             this.View.MinimumWidth = 6;
             this.View.Name = "View";
