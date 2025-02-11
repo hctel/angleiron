@@ -92,8 +92,8 @@ namespace clientapp
             lockerScroll.Location = new Point(0, 0);
             ContainerPanel.Controls.Add(lockerScroll);
 
-            //Adding a list of lockers to the container panel
-            for (int i=0; i < 10; i++)
+            List<Item> a = Program.network.getItems();
+            for (int i=0; i < 3; i++)
             {
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
@@ -114,7 +114,7 @@ namespace clientapp
 
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
-                infoLabel.Text = "69 x 69 cm ";
+                infoLabel.Text = a[0].name;
                 contentPanel.Controls.Add(infoLabel);
                 infoLabel.Location = new Point(15, contentPanel.Height - 45);
                 infoLabel.Font = new Font("Sans Serif", 16);

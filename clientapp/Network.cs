@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -43,7 +44,7 @@ namespace clientapp
         {
             List<Item> itemList = new List<Item>();
             List<string> list = get("SHOWTYPES");
-            if (list[1].Equals("TYPELIST"))
+            if (list[0].Equals("TYPELIST"))
             {
                 
                 string[] items = list[1].Split(';');
@@ -58,13 +59,14 @@ namespace clientapp
 
         private List<string> get(string request)
         {
-            client.ConnectAsync(Dns.GetHostAddresses(serverIp), port);
+            client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();
             byte[] bytesOut = Encoding.UTF8.GetBytes(request);
             stream.Write(bytesOut, 0, bytesOut.Length);
             byte[] dataIn = new byte[client.ReceiveBufferSize];
             int length = stream.Read(dataIn, 0, dataIn.Length);
             string message = Encoding.ASCII.GetString(dataIn, 0, length);
+            Debug.WriteLine($"Received from server: {message}");
 
             return message.Split('&').ToList();
         }

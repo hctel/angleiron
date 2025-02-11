@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -38,6 +39,9 @@ namespace backend
 					int length = stream.Read(dataIn, 0, dataIn.Length);
 					string message = Encoding.UTF8.GetString(dataIn, 0, length);
 					string[] data = message.Split('&');
+
+                    IPEndPoint remoteIpEndPoint = handler.Client.RemoteEndPoint as IPEndPoint;
+					Console.WriteLine($"Request from {remoteIpEndPoint.Address}: {message}");
 
 					string msgOut = rcvFunc(data);
                     var bytesOut = Encoding.UTF8.GetBytes(msgOut);
