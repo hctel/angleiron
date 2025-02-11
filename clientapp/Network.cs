@@ -14,8 +14,6 @@ namespace clientapp
         {
             this.name = name;
             this.price = double.Parse(price);
-            var ipEndPoint = new IPEndPoint(ipAddress, 13);
-            client = new();
         }
     }
 
@@ -24,10 +22,15 @@ namespace clientapp
         private string serverIp;
         private int port;
 
+        private IPEndPoint ipEndPoint;
+        private TcpClient client;
+
         public Network(string serverIp, int port)
         {
             this.serverIp = serverIp;
             this.port = port;
+            ipEndPoint = new IPEndPoint(serverIp, port);
+            client = new TcpClient();
         }
 
         public Item[] getItems()
