@@ -32,7 +32,7 @@ namespace merchandapp
 
         }
 
-        class Commande2
+        public class Commande
         {
             public int id { get; set; }
             public string name { get; set; }
@@ -57,6 +57,11 @@ namespace merchandapp
         }
 
         private void commandeBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e)
         {
 
         }

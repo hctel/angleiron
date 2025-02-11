@@ -8,12 +8,14 @@ namespace clientapp
 {
     internal static class Program
     {
+        public static Network network;
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            network = new Network("127.0.0.1", 6210);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Window());
