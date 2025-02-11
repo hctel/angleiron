@@ -32,7 +32,7 @@ namespace merchandapp
 
         }
 
-        class Commande2
+        public class Commande
         {
             public int id { get; set; }
             public string name { get; set; }
