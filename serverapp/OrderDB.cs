@@ -10,15 +10,15 @@ namespace backend
         {
         }
 
-        public MySqlDataReader getIdcomposant(int idcomposant)
+        public MySqlDataReader getIdcomposant(int idcomponent)
         {
-          return read(String.Format("SELECT * FROM Stock WHERE id_composant={0};", idcomposant));
+          return read(String.Format("SELECT * FROM Stock WHERE id_component={0};", idcomponent));
         }
 
-        public void addOrder(int idcomposant, int id_client, int déja_payé, int statut, int prix)
+        public void addOrder(int idcomponent, int id_client, int already_paid, int status, int price)
         {
-            execute(String.Format("INSERT INTO commandes (id_client, id_composant, Prix, Déja_payé, Statut) VALUES ({0}, {1}, {2}, {3}, {4});", 
-            id_client, idcomposant, prix, déja_payé,statut));
+            execute(String.Format("INSERT INTO commandes (id_client, id_componnt, Price, Already_paid, Status) VALUES ({0}, {1}, {2}, {3}, {4});", 
+            id_client, idcomponent, price, already_paid,status));
         }
     }
 }
