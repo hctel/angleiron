@@ -15,7 +15,7 @@ namespace backend
           return read(String.Format("SELECT * FROM component_type WHERE id_category={0};", idcategory));
         }
 
-        public void addOrder(int id_component, int id_category, int numbercategory)
+        public void addLink(int id_component, int id_category, int numbercategory)
         {
             execute(String.Format("INSERT INTO component_type (id_component, id_category, numberpercategory) VALUES ({0}, {1}, {2});", 
             id_component, id_category, numbercategory));
