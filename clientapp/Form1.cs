@@ -129,8 +129,7 @@ namespace clientapp
         }
         private void addButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("Add button clicked");
-            this.panel2.BackColor = Color.FromArgb(0, 255, 0);
+            Debug.WriteLine("Button clicked");
         }
 
         private void label1_Click(object sender, EventArgs e)
