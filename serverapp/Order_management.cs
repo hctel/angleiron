@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 
 namespace backend {
@@ -24,6 +25,18 @@ namespace backend {
         }
         public void add_order(int idcategory, int id_client, string already_paid, string status, int price){
             order_DB.addOrder(idcategory, id_client,already_paid, status, price);
+        }
+        public string get_status(int idorder){
+            string result;
+            MySqlDataReader row = order_DB.getIdOrder(idorder);
+            result = row.GetString("status");
+            return result;
+        }
+        public string get_already_paid(int idorder){
+            string result;
+            MySqlDataReader row = order_DB.getIdOrder(idorder);
+            result = row.GetString("Already_paid");
+            return result;
         }
     }
 
