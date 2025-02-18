@@ -15,10 +15,14 @@ namespace backend {
             MySqlDataReader resultOrder = order_DB.getIdOrder(idorder);
             int id_category = resultOrder.GetInt32("id_category");
             MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category);
-            int id_component = resultcomponent_type.GetInt32("id_component");
-            MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
-            int newQuantiyclient = resultStock.GetInt32("Quantity_client")+resultcomponent_type.GetInt32("numberpercategory");
-            stock_DB.updateINT("Quantity_client", newQuantiyclient, id_component);
+            while (resultcomponent_type.Read()) {
+                int id_component = resultcomponent_type.GetInt32("id_component");
+                MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
+                int newQuantiyclient = resultStock.GetInt32("Quantity_client")+resultcomponent_type.GetInt32("numberpercategory");
+                stock_DB.updateINT("Quantity_client", newQuantiyclient, id_component);
+                
+            }
+            
         }
     }
 

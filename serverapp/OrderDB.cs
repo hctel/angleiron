@@ -21,7 +21,7 @@ namespace backend
             id_client, idcomponent, price, already_paid,status));
         }
         public void updateINT(string name_collum, int new_value, int id){
-            execute(String.Format("UPDATE OrderS SET '{0}'={1} WHERE idorder={2}",name_collum, new_value, id));
+            execute(String.Format("UPDATE OrderS SET '{0}'={1} WHERE idorder={2};",name_collum, new_value, id));
         }
     }
 }

@@ -21,7 +21,7 @@ namespace backend
             idcomponent, quantité, quantité_client,quantité_commendé,fournisseur,prix,durée_livraison));
         }
         public void updateINT(string name_collum, int new_value, int id){
-            execute(String.Format("UPDATE Stock SET '{0}'={1} WHERE id_component={2}",name_collum, new_value, id));
+            execute(String.Format("UPDATE Stock SET '{0}'={1} WHERE id_component={2};",name_collum, new_value, id));
         }
     }
 }
