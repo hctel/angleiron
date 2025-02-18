@@ -12,7 +12,7 @@ namespace backend {
             this.database=database;
         }
         public void check(int id_composant){
-            MySqlDataReader result = database.getIdcomposant(id_composant);
+            MySqlDataReader result = database.getIdcomponent(id_composant);
             if(result.Read()){
                 int delta_stock_need=0;
                 delta_stock_need = result.GetInt32("Quantité")-result.GetInt32("Quantité_client");
