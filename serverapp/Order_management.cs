@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using Org.BouncyCastle.Asn1.Misc;
 using System;
 
 namespace backend {
@@ -38,8 +39,12 @@ namespace backend {
             result = row.GetString("Already_paid");
             return result;
         }
+        public void change_satus(string new_satus, int idorder){
+        order_DB.updateSTR("Status", new_satus, idorder);
     }
 
+    }
+    
 
 
 

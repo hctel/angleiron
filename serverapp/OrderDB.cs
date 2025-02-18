@@ -20,8 +20,8 @@ namespace backend
             execute(String.Format("INSERT INTO orders (id_client, id_category, Price, Already_paid, Status) VALUES ({0}, {1}, {2}, '{3}', '{4}');", 
             id_client, idcategory, price, already_paid,status));
         }
-        public void updateINT(string name_collum, int new_value, int id){
-            execute(String.Format("UPDATE orders SET '{0}'={1} WHERE idorder={2};",name_collum, new_value, id));
+        public void updateSTR(string name_collum, string new_value, int id){
+            execute(String.Format("UPDATE orders SET '{0}'='{1}' WHERE idorder={2};",name_collum, new_value, id));
         }
     }
 }
