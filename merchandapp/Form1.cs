@@ -12,6 +12,9 @@ namespace merchandapp
 {
     public partial class Form1 : Form
     {
+        List<Panel> listPanel = new List<Panel>();
+        int index = 1;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +22,9 @@ namespace merchandapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            listPanel.Add(panel1);
+            listPanel.Add(panel2);
+            listPanel[index].BringToFront();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -64,6 +69,18 @@ namespace merchandapp
         private void dataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            index = 0;
+            listPanel[index].BringToFront();
+            //((Button)sender).Text = index.ToString();
         }
     }
 }
