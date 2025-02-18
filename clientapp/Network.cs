@@ -63,7 +63,11 @@ namespace clientapp
             {
                 return list[1];
             }
-            return "";
+            else if(list[0].Equals("AUTHERR"))
+            {
+                return list[1];
+            }
+            else return "UNKERR";
         }
 
             private List<string> get(string request)
