@@ -15,9 +15,9 @@ namespace backend
 		private bool cancelled = false;
 
 		private int port;
-		private Func<string[], string> rcvFunc;
+		private Func<string[], string, string> rcvFunc;
 
-		public Network(int port, Func<string[], string> rcvFunc)
+		public Network(int port, Func<string[], string, string> rcvFunc)
 		{
 			this.port = port;
 			this.rcvFunc = rcvFunc;
@@ -41,9 +41,9 @@ namespace backend
 					string[] data = message.Split('&');
 
                     IPEndPoint remoteIpEndPoint = handler.Client.RemoteEndPoint as IPEndPoint;
-					Console.WriteLine($"Request from {remoteIpEndPoint.Address}: {message}");
+					Console.WriteLine($"Request from {remoteIpEndPoint.Address.ToString()}: {message}");
 
-					string msgOut = rcvFunc(data);
+					string msgOut = rcvFunc(data, remoteIpEndPoint.Address.ToString());
                     var bytesOut = Encoding.UTF8.GetBytes(msgOut);
                     stream.Write(bytesOut);
                 }
