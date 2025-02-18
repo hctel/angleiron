@@ -15,9 +15,9 @@ namespace backend
           return read(String.Format("SELECT * FROM Stock WHERE id_category={0};", idcategory));
         }
 
-        public void addOrder(int dimension, string colors_available, string options_available)
+        public void addOrder(string dimension, string colors_available, string options_available)
         {
-            execute(String.Format("INSERT INTO commandes (Dimension, Colors_available, Options_available) VALUES ({0}, '{1}', '{2}');", 
+            execute(String.Format("INSERT INTO commandes (Dimension, Colors_available, Options_available) VALUES ('{0}', '{1}', '{2}');", 
             dimension, colors_available, options_available));
         }
     }

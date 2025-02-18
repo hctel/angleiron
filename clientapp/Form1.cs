@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace clientapp
 {
     public partial class Window : Form
     {
+        private List<int> Articles = new List<int>();
+        private List<int> Basket = new List<int>();
         public Window()
         {
             InitializeComponent();
@@ -25,6 +28,10 @@ namespace clientapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Articles.Add(1);
+            Articles.Add(2);
+            Articles.Add(3);
+
             this.SaveForLaterButton.BackColor = Color.FromArgb(94, 176, 87);
             this.SaveForLaterButton.ForeColor = Color.White;
             this.SaveForLaterButton.FlatStyle = FlatStyle.Flat;
@@ -106,6 +113,8 @@ namespace clientapp
                 addButton.BackColor = Color.FromArgb(0, 0, 0);
                 addButton.ForeColor = Color.White;
                 contentPanel.Controls.Add(addButton);
+                addButton.Click += addButton_Click;
+
 
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
@@ -117,6 +126,10 @@ namespace clientapp
                 ContainerPanel.Controls.Add(contentPanel);
             }
 
+        }
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Button clicked");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -184,6 +197,15 @@ namespace clientapp
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
             this.ContainerPanel.AutoScroll = true; 
+        }
+        private void Remove(int obj)
+        {
+            Basket.Remove(obj);
+        }
+        private void Add(int obj)
+        {
+            Basket.Add(Articles[obj]);
+
         }
     }
 }
