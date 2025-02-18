@@ -10,18 +10,18 @@ namespace backend
         {
         }
 
-        public MySqlDataReader getIdOrder(int idcomponent)
+        public MySqlDataReader getIdOrder(int idorder)
         {
-          return read(String.Format("SELECT * FROM Orders WHERE idorder={0};", idcomponent));
+          return read(String.Format("SELECT * FROM orders WHERE idorder={0};", idorder));
         }
 
-        public void addOrder(int idcomponent, int id_client, int already_paid, int status, int price)
+        public void addOrder(int idcategory, int id_client, string already_paid, string status, int price)
         {
-            execute(String.Format("INSERT INTO commandes (id_client, id_category, Price, Already_paid, Status) VALUES ({0}, {1}, {2}, {3}, {4});", 
-            id_client, idcomponent, price, already_paid,status));
+            execute(String.Format("INSERT INTO orders (id_client, id_category, Price, Already_paid, Status) VALUES ({0}, {1}, {2}, '{3}', '{4}');", 
+            id_client, idcategory, price, already_paid,status));
         }
         public void updateINT(string name_collum, int new_value, int id){
-            execute(String.Format("UPDATE OrderS SET '{0}'={1} WHERE idorder={2};",name_collum, new_value, id));
+            execute(String.Format("UPDATE orders SET '{0}'={1} WHERE idorder={2};",name_collum, new_value, id));
         }
     }
 }

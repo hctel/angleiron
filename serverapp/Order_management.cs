@@ -19,10 +19,11 @@ namespace backend {
                 int id_component = resultcomponent_type.GetInt32("id_component");
                 MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
                 int newQuantiyclient = resultStock.GetInt32("Quantity_client")+resultcomponent_type.GetInt32("numberpercategory");
-                stock_DB.updateINT("Quantity_client", newQuantiyclient, id_component);
-                
-            }
-            
+                stock_DB.updateINT("Quantity_client", newQuantiyclient, id_component); 
+            } 
+        }
+        public void add_order(int idcategory, int id_client, string already_paid, string status, int price){
+            order_DB.addOrder(idcategory, id_client,already_paid, status, price);
         }
     }
 
