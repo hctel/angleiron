@@ -56,7 +56,21 @@ namespace clientapp
             return itemList;
         }
 
-        private List<string> get(string request)
+        public string authUser(string mail, string password)
+        {
+            List<string> list = get($"AUTH&{mail}&{password}");
+            if (list[0].Equals("AUTHOK"))
+            {
+                return list[1];
+            }
+            else if(list[0].Equals("AUTHERR"))
+            {
+                return list[1];
+            }
+            else return "UNKERR";
+        }
+
+            private List<string> get(string request)
         {
             client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();
