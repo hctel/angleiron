@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -112,6 +113,8 @@ namespace clientapp
                 addButton.BackColor = Color.FromArgb(0, 0, 0);
                 addButton.ForeColor = Color.White;
                 contentPanel.Controls.Add(addButton);
+                addButton.Click += addButton_Click;
+
 
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
@@ -123,6 +126,11 @@ namespace clientapp
                 ContainerPanel.Controls.Add(contentPanel);
             }
 
+        }
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Add button clicked");
+            this.panel2.BackColor = Color.FromArgb(0, 255, 0);
         }
 
         private void label1_Click(object sender, EventArgs e)
