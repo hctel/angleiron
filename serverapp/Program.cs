@@ -2,15 +2,15 @@
 using backend;
 using System;
 
-string version = "0.0.1";
-int port = 6210;
+string version = "0.0.1b";
+int port = 80;
 
 List<Session> sessions = new List<Session>();
 
 Console.WriteLine($"AngleIron server v{version}");
 Console.WriteLine("Starting server...");
 
-UserDB usersDatabase = new UserDB("localhost", "angleiron", "root", "root"); //CHANGE CREDENTIALS HERE
+UserDB usersDatabase = new UserDB("127.0.0.1", "angleiron", "root", "1234"); //CHANGE CREDENTIALS HERE
 UserAuth userAuthenticator = new UserAuth(usersDatabase);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
@@ -28,7 +28,7 @@ for (; ; )
 Console.WriteLine("Stopping server...");
 networkManager.kill();
 
-string networkReceiveFunction(string[] data)
+string networkReceiveFunction(string[] data, string ipAddress)
 {
     /*
      * Syntax error response : STXERR
@@ -62,10 +62,10 @@ string networkReceiveFunction(string[] data)
 
     if (data[0].Equals("SHOWTYPES"))
     {
-       /*
-        * -nom
-        * -prix*/
-       return "TYPELIST&small dumb model/7.00;medium dumb model/15.00;big model/69.00";
+        /*
+         * -nom
+         * -prix*/
+        return "TYPELIST&small dumb model/7.00;medium dumb model/15.00;big model/69.00";
     }
 
     else if (data[0].Equals("SHOWORDERS"))
@@ -73,20 +73,52 @@ string networkReceiveFunction(string[] data)
         return "NOTIMPL";
     }
 
-    else if (data[0].Equals("DETAILORDER")) {
+    else if (data[0].Equals("DETAILORDER"))
+    {
         return "NOTIMPL";
+    }
+
+    else if (data[0].Equals("UPDATESTATUS"))
+    {
+        if (data.Length != 3) return "STXERR";
+        else
+        {
+            int orderId = Int32.Parse(data[1]);
+            return "NOTIMPL";
+        }
+    }
+
+    else if (data[0].Equals("DELORDER"))
+    {
+        if (data.Length != 2) return "STXERR";
+        else
+        {
+            int orderId = Int32.Parse(data[1]);
+            return "NOTIMPL";
+        }
+    }
+
+    else if (data[0].Equals("BUYSTOCK")) { 
+        if(data.Length != 3) return "STXERR";
+        else
+        {
+            int componentId = Int32.Parse(data[1]);
+            int quantity = Int32.Parse(data[2]);
+            return "NOTIMPL";
+        }
     }
 
     else if (data[0].Equals("AUTH"))
     {
-        if(data.Length != 3)
+        if (data.Length != 3)
         {
             return "STXERR";
-        } else
+        }
+        else
         {
             try
             {
-                Session session = userAuthenticator.authUser(data[1], data[2]);
+                Session session = userAuthenticator.authUser(data[1], data[2], ipAddress);
                 sessions.Add(session);
                 return "AUTHOK&" + session.ToString();
             }
