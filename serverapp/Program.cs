@@ -73,7 +73,7 @@ string networkReceiveFunction(string[] data)
         return "NOTIMPL";
     }
 
-    else if (data[0].Equals("DETAILORDER") {
+    else if (data[0].Equals("DETAILORDER")) {
         return "NOTIMPL";
     }
 
