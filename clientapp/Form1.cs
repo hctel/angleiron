@@ -217,5 +217,10 @@ namespace clientapp
             Basket.Add(Articles[obj]);
 
         }
+
+        private void ImagePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
