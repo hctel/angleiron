@@ -12,12 +12,12 @@ namespace backend
 
         public MySqlDataReader getUserFromEmail(string email)
         {
-            return read(String.Format("SELECT * FROM Clients WHERE Email='{0}';", email));
+            return read(String.Format("SELECT * FROM client WHERE Email='{0}';", email));
         }
 
         public void addUser(string name, string address, string email, string password)
         {
-            execute(String.Format("INSERT INTO Clients (Name, Address, Email, password) VALUES ('{0}', '{1}', '{2}', '{3}');", name, address, email, password));
+            execute(String.Format("INSERT INTO client (Name, Address, Email, password) VALUES ('{0}', '{1}', '{2}', '{3}');", name, address, email, password));
         }
     }
 }

@@ -13,6 +13,7 @@ namespace clientapp
 {
     public partial class Window : Form
     {
+        private bool adding = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
         public Window()
@@ -94,13 +95,16 @@ namespace clientapp
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
 
-            for (int i = 0; i < 10; i++)
+            foreach(int i in Articles)
             {
+                int a = i - 1;
+                Debug.WriteLine(i);
+
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
-                contentPanel.Location = new Point(12, 10 + i * 310);
+                contentPanel.Location = new Point(12, 10 + a * 310);
                 contentPanel.Size = new Size(250, 300);
-                contentPanel.Location = new Point(30, 10 + i * 310);
+                contentPanel.Location = new Point(30, 10 + a * 310);
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
@@ -115,7 +119,7 @@ namespace clientapp
                 contentPanel.Controls.Add(addButton);
                 addButton.Click += addButton_Click;
 
-
+                
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
                 infoLabel.Text = "69 x 69 cm " + i;
@@ -124,11 +128,17 @@ namespace clientapp
                 infoLabel.Font = new Font("Sans Serif", 16);
 
                 ContainerPanel.Controls.Add(contentPanel);
+
+                if(adding)
+                {
+                    Add(i);
+                }
             }
 
         }
         private void addButton_Click(object sender, EventArgs e)
         {
+            adding = true;            
             Debug.WriteLine("Button clicked");
         }
 
@@ -205,6 +215,11 @@ namespace clientapp
         private void Add(int obj)
         {
             Basket.Add(Articles[obj]);
+
+        }
+
+        private void ImagePanel_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

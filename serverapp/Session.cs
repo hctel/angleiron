@@ -7,9 +7,9 @@ namespace backend
         public string SessionId { get; }
         public int UserId { get; }
         public string RemoteIp { get; }
-        public Session(int userid, string remoteIp)
+        public Session(string sessionid, int userid, string remoteIp)
         {
-            SessionId = Guid.NewGuid().ToString();
+            SessionId = sessionid;
             UserId = userid;
             RemoteIp = remoteIp;
         }

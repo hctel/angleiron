@@ -11,15 +11,17 @@ namespace backend
 			this.database = database;
         }
 
-		public Session authUser(string email, string password)
+		public Session authUser(string email, string password, string remoteIP)
 		{
 			Console.WriteLine(String.Format("User auth challenge: {0}, password {1}", email, password));
             MySqlDataReader result = database.getUserFromEmail(email);
             if (result.Read())
 			{
+				Console.WriteLine($"password for {email}: {result.GetString("password")}");
 				if (password.Equals(result.GetString("password")))
 				{
-					return new Session(result.GetInt32("idClient"), "0.0.0.0"); //TODO: Get real IP
+					Console.WriteLine($"{remoteIP} logged in as {result.GetString("Name")}:{email}");
+                    return new Session(result.GetString("Name"), result.GetInt32("idClient"), remoteIP);
 				} else throw new Exception("Invalid password");
 
             } else throw new KeyNotFoundException("User not found");
