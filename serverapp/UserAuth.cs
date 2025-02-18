@@ -21,7 +21,7 @@ namespace backend
 				if (password.Equals(result.GetString("password")))
 				{
 					Console.WriteLine($"{remoteIP} logged in as {result.GetString("Name")}:{email}");
-                    return new Session(result.GetInt32("idClient"), remoteIP);
+                    return new Session(result.GetString("Name"), result.GetInt32("idClient"), remoteIP);
 				} else throw new Exception("Invalid password");
 
             } else throw new KeyNotFoundException("User not found");
