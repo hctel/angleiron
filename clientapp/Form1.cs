@@ -31,6 +31,7 @@ namespace clientapp
             Articles.Add(1);
             Articles.Add(2);
             Articles.Add(3);
+
             this.SaveForLaterButton.BackColor = Color.FromArgb(94, 176, 87);
             this.SaveForLaterButton.ForeColor = Color.White;
             this.SaveForLaterButton.FlatStyle = FlatStyle.Flat;
@@ -92,11 +93,14 @@ namespace clientapp
             choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
+
             for (int i = 0; i < 10; i++)
             {
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
                 contentPanel.Location = new Point(12, 10 + i * 310);
+                contentPanel.Size = new Size(250, 300);
+                contentPanel.Location = new Point(30, 10 + i * 310);
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
@@ -109,6 +113,8 @@ namespace clientapp
                 addButton.BackColor = Color.FromArgb(0, 0, 0);
                 addButton.ForeColor = Color.White;
                 contentPanel.Controls.Add(addButton);
+                addButton.Click += addButton_Click;
+
 
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
@@ -120,6 +126,10 @@ namespace clientapp
                 ContainerPanel.Controls.Add(contentPanel);
             }
 
+        }
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Button clicked");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -186,8 +196,7 @@ namespace clientapp
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
-            this.ContainerPanel.AutoScroll = true;
-
+            this.ContainerPanel.AutoScroll = true; 
         }
         private void Remove(int obj)
         {
