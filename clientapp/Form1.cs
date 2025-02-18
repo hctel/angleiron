@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,8 +12,6 @@ namespace clientapp
 {
     public partial class Window : Form
     {
-        private List<int> Articles = new List<int>();
-        private List<int> Basket = new List<int>();
         public Window()
         {
             InitializeComponent();
@@ -28,9 +25,6 @@ namespace clientapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Articles.Add(1);
-            Articles.Add(2);
-            Articles.Add(3);
             this.SaveForLaterButton.BackColor = Color.FromArgb(94, 176, 87);
             this.SaveForLaterButton.ForeColor = Color.White;
             this.SaveForLaterButton.FlatStyle = FlatStyle.Flat;
@@ -92,11 +86,14 @@ namespace clientapp
             choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
 
+
             for (int i = 0; i < 10; i++)
             {
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
                 contentPanel.Location = new Point(12, 10 + i * 310);
+                contentPanel.Size = new Size(250, 300);
+                contentPanel.Location = new Point(30, 10 + i * 310);
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
@@ -186,17 +183,7 @@ namespace clientapp
             this.ContainerPanel.Size = new Size(300, 320);
             this.ContainerPanel.Location = new Point(0, 130);
             this.ContainerPanel.BackColor = Color.FromArgb(220, 220, 220);
-            this.ContainerPanel.AutoScroll = true;
-
-        }
-        private void Remove(int obj)
-        {
-            Basket.Remove(obj);
-        }
-        private void Add(int obj)
-        {
-            Basket.Add(Articles[obj]);
-
+            this.ContainerPanel.AutoScroll = true; 
         }
     }
 }
