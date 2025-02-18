@@ -15,6 +15,15 @@ namespace merchandapp
         List<Panel> listPanel = new List<Panel>();
         int index = 1;
 
+        //public BindingList<OrderSummary> orderSummaries = new BindingList<OrderSummary>();
+        List<OrderSummary> orderSummaries = new List<OrderSummary>()
+        {
+            new OrderSummary { orderID = 5, orderName="hello"},
+            new OrderSummary { orderID = 8, orderName="world"},
+        };
+        BindingList<OrderSummary> bindingList;
+        BindingSource source;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +34,21 @@ namespace merchandapp
             listPanel.Add(panel1);
             listPanel.Add(panel2);
             listPanel[index].BringToFront();
+
+            bindingList = new BindingList<OrderSummary>(orderSummaries);
+            source = new BindingSource(bindingList, null);
+            this.dataGridView1.DataSource = source;
+
+            //orderSummaries.Add(new OrderSummary("5", "test", "ok", "24/04", "nope"));
+            //orderSummaries.Add(new OrderSummary("4", "2test", "pas ok", "25/04", "nope"));
+
+            source.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
+            source.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
+
+            //var bindingList = new BindingList<OrderSummary>(orderSummaries);
+            //var source = new BindingSource(bindingList, null);
+            //this.dataGridView1.DataSource = source;
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

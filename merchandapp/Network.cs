@@ -11,11 +11,14 @@ namespace merchandapp
 
     public class OrderSummary
     {
-        public int orderID { get; }
-        public string orderName { get; }
-        public string orderStatus { get; }
-        public string orderDate { get; }
-        public string orderStock { get; }
+        public int orderID { get; set; }
+        public string orderName { get; set; }
+        public string orderStatus { get; set; }
+        public string orderDate { get; set; }
+        public string orderStock { get; set; }
+
+        public OrderSummary() { }
+
         public OrderSummary(string orderId, string orderName, string orderStatus, string orderDate, string orderStock) {
             this.orderID = Int32.Parse(orderId);
             this.orderName = orderName;

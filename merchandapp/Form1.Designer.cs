@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +12,8 @@ namespace merchandapp
         /// Variable nécessaire au concepteur.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        
 
         /// <summary>
         /// Nettoyage des ressources utilisées.
@@ -37,18 +40,22 @@ namespace merchandapp
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.commandeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inStockDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.View = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
+            this.commandeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.orderSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.View = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderSummaryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -57,13 +64,13 @@ namespace merchandapp
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn,
-            this.inStockDataGridViewCheckBoxColumn,
+            this.orderIDDataGridViewTextBoxColumn,
+            this.orderNameDataGridViewTextBoxColumn,
+            this.orderStatusDataGridViewTextBoxColumn,
+            this.orderDateDataGridViewTextBoxColumn,
+            this.orderStockDataGridViewTextBoxColumn,
             this.View});
-            this.dataGridView1.DataSource = this.commandeBindingSource;
+            this.dataGridView1.DataSource = this.orderSummaryBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -72,10 +79,6 @@ namespace merchandapp
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_3);
             // 
-            // commandeBindingSource
-            // 
-            this.commandeBindingSource.DataSource = typeof(merchandapp.Form1.Commande);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
@@ -83,50 +86,6 @@ namespace merchandapp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 426);
             this.panel1.TabIndex = 1;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "status";
-            this.statusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "date";
-            this.dateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // inStockDataGridViewCheckBoxColumn
-            // 
-            this.inStockDataGridViewCheckBoxColumn.DataPropertyName = "inStock";
-            this.inStockDataGridViewCheckBoxColumn.HeaderText = "inStock";
-            this.inStockDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            this.inStockDataGridViewCheckBoxColumn.Name = "inStockDataGridViewCheckBoxColumn";
-            // 
-            // View
-            // 
-            this.View.HeaderText = "View";
-            this.View.MinimumWidth = 6;
-            this.View.Name = "View";
-            this.View.Text = "View";
-            this.View.ToolTipText = "View";
-            this.View.UseColumnTextForButtonValue = true;
             // 
             // panel2
             // 
@@ -147,6 +106,58 @@ namespace merchandapp
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // commandeBindingSource1
+            // 
+            this.commandeBindingSource1.DataSource = typeof(merchandapp.Form1.Commande);
+            // 
+            // orderSummaryBindingSource
+            // 
+            this.orderSummaryBindingSource.DataSource = typeof(merchandapp.OrderSummary);
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "orderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "orderID";
+            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            // 
+            // orderNameDataGridViewTextBoxColumn
+            // 
+            this.orderNameDataGridViewTextBoxColumn.DataPropertyName = "orderName";
+            this.orderNameDataGridViewTextBoxColumn.HeaderText = "orderName";
+            this.orderNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderNameDataGridViewTextBoxColumn.Name = "orderNameDataGridViewTextBoxColumn";
+            // 
+            // orderStatusDataGridViewTextBoxColumn
+            // 
+            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "orderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "orderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            // 
+            // orderDateDataGridViewTextBoxColumn
+            // 
+            this.orderDateDataGridViewTextBoxColumn.DataPropertyName = "orderDate";
+            this.orderDateDataGridViewTextBoxColumn.HeaderText = "orderDate";
+            this.orderDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderDateDataGridViewTextBoxColumn.Name = "orderDateDataGridViewTextBoxColumn";
+            // 
+            // orderStockDataGridViewTextBoxColumn
+            // 
+            this.orderStockDataGridViewTextBoxColumn.DataPropertyName = "orderStock";
+            this.orderStockDataGridViewTextBoxColumn.HeaderText = "orderStock";
+            this.orderStockDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderStockDataGridViewTextBoxColumn.Name = "orderStockDataGridViewTextBoxColumn";
+            // 
+            // View
+            // 
+            this.View.HeaderText = "View";
+            this.View.MinimumWidth = 6;
+            this.View.Name = "View";
+            this.View.Text = "View";
+            this.View.ToolTipText = "View";
+            this.View.UseColumnTextForButtonValue = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -161,6 +172,8 @@ namespace merchandapp
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderSummaryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -175,9 +188,16 @@ namespace merchandapp
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn inStockDataGridViewCheckBoxColumn;
-        private DataGridViewButtonColumn View;
         private Panel panel2;
         private Button backButton;
+        private BindingSource commandeBindingSource1;
+        private BindingSource orderSummaryBindingSource;
+        private DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn orderNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn orderStatusDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn orderDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn orderStockDataGridViewTextBoxColumn;
+        private DataGridViewButtonColumn View;
     }
 }
 
