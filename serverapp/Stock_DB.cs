@@ -15,7 +15,7 @@ namespace backend
           return read(String.Format("SELECT * FROM Stock WHERE id_component={0};", idcomponent));
         }
 
-        public void addStock(string supplier, int idcomponent, int quantity, int quantity_client, int quantity_order, int price, int delivery_duration)
+        public void addStock(string supplier, int idcomponent, int quantity, int quantity_client, int quantity_order, double price, int delivery_duration)
         {
             execute(String.Format("INSERT INTO Stock (id_component, Quantity, Quantity_client, Quantity_order, supplier, Price, delivery_duration) VALUES ({0}, {1}, {2}, {3}, '{4}', {5}, {6});", 
             idcomponent, quantity, quantity_client,quantity_order,supplier,price,delivery_duration));

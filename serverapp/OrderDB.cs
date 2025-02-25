@@ -19,7 +19,7 @@ namespace backend
           return read(String.Format("SELECT * FROM orders ;"));
         }
 
-        public void addOrder(int idcategory, int id_client, string already_paid, string status, int price)
+        public void addOrder(int idcategory, int id_client, string already_paid, string status, double price)
         {
             execute(String.Format("INSERT INTO orders (id_client, id_category, Price, Already_paid, Status) VALUES ({0}, {1}, {2}, '{3}', '{4}');", 
             id_client, idcategory, price, already_paid,status));

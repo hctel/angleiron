@@ -49,10 +49,10 @@ namespace backend {
             MySqlDataReader row = order_DB.getOrder();
             while(row.Read()){
                 List<string> row_result = new List<string>();
-                row_result.Add(row.GetString("idorder"));
-                row_result.Add(row.GetString("id_client"));
-                row_result.Add(row.GetString("id_category"));
-                row_result.Add(row.GetString("Price"));
+                row_result.Add(row.GetInt32("idorder") + "");
+                row_result.Add(row.GetInt32("id_client") + "");
+                row_result.Add(row.GetInt32("id_component") + "");
+                row_result.Add(row.GetDouble("Price") + "");
                 row_result.Add(row.GetString("Already_paid"));
                 row_result.Add(row.GetString("Status"));
                 result.Add(row_result);
