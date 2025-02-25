@@ -53,7 +53,9 @@ namespace merchandapp
             this.orderID = Int32.Parse(orderID);
             foreach (string[] part in items)
             {
+                Debug.WriteLine(part);
                 parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
+                
             }
         }
     }
@@ -71,7 +73,7 @@ namespace merchandapp
             this.serverIp = serverIp;
             this.port = port;
             ipEndPoint = new IPEndPoint(Dns.GetHostEntry(serverIp).AddressList[0], port);
-            client = new TcpClient();
+            //client = new TcpClient();
         }
 
         public List<OrderSummary> getOrders()
@@ -108,6 +110,7 @@ namespace merchandapp
         }
         private List<string> get(string request)
         {
+            client = new TcpClient();
             client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();
             byte[] bytesOut = Encoding.UTF8.GetBytes(request);
@@ -116,6 +119,7 @@ namespace merchandapp
             int length = stream.Read(dataIn, 0, dataIn.Length);
             string message = Encoding.ASCII.GetString(dataIn, 0, length);
             Debug.WriteLine($"Received from server: {message}");
+            client.Close();
 
             return message.Split('&').ToList();
         }
