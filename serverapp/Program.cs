@@ -85,15 +85,15 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("SHOWORDERS"))
     {
-        //List<List<string>> orders = order_manager.get_orders();
-        //string response = "ORDERLIST&";
-        //foreach (List<string> order in orders)
-        //{
-        //    response += orders[0] + "/" + orders[1] + "/" + orders[2] + "/" + orders[3] + "/" + orders[4] + "/"+ orders[5] + ";";
-        //}
-        //return response;
-        return "NOTIMPL";
-    }
+        List<List<string>> orders = order_manager.get_orders();
+        string response = "ORDERLIST&";
+        foreach (List<string> order in orders)
+        {
+            response += order[0] + "/" + order[1] + "/" + order[2] + "/" + order[3] + "/" + order[4] + "/"+ order[5] + ";";
+        }
+        return response;
+        }
+        
 
     else if (data[0].Equals("DETAILORDER"))
     {
