@@ -17,14 +17,13 @@ namespace merchandapp
         int index = 1;
         Network network;
 
-        //public BindingList<OrderSummary> orderSummaries = new BindingList<OrderSummary>();
-        List<OrderSummary> orderSummaries = new List<OrderSummary>()
-        {
-            new OrderSummary { orderID = 5, orderName="hello"},
-            new OrderSummary { orderID = 8, orderName="world"},
-        };
-        BindingList<OrderSummary> bindingList;
-        BindingSource source;
+        List<OrderSummary> orderSummaries = new List<OrderSummary>();
+        BindingList<OrderSummary> orderSummariesBindingList;
+        BindingSource orderSummariesSource;
+
+        List<OrderSummary> orderParts = new List<OrderSummary>();
+        BindingList<OrderSummary> orderPartsBindingList;
+        BindingSource orderPartsSource;
 
         public Form1()
         {
@@ -33,26 +32,25 @@ namespace merchandapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Panels / Pages
             listPanel.Add(panel1);
             listPanel.Add(panel2);
             listPanel[index].BringToFront();
+
+            // Bindings
+            orderSummariesBindingList = new BindingList<OrderSummary>(orderSummaries);
+            orderSummariesSource = new BindingSource(orderSummariesBindingList, null);
+            this.OrdersDataGridView.DataSource = orderSummariesSource;
+
+            orderPartsBindingList = new BindingList<OrderSummary>(orderSummaries);
+            orderPartsSource = new BindingSource(orderPartsBindingList, null);
+            this.PartListDataGridView.DataSource = orderPartsSource;
+
+            orderSummariesSource.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
+            orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
+
             network = new Network("172.17.35.22", 80);
-            bindingList = new BindingList<OrderSummary>(orderSummaries);
-            source = new BindingSource(bindingList, null);
-            this.OrdersDataGridView.DataSource = source;
-
             Debug.WriteLine(network.getOrders().ToString());
-
-            //orderSummaries.Add(new OrderSummary("5", "test", "ok", "24/04", "nope"));
-            //orderSummaries.Add(new OrderSummary("4", "2test", "pas ok", "25/04", "nope"));
-
-            source.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
-            source.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
-
-            //var bindingList = new BindingList<OrderSummary>(orderSummaries);
-            //var source = new BindingSource(bindingList, null);
-            //this.dataGridView1.DataSource = source;
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
