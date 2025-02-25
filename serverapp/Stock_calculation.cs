@@ -27,5 +27,8 @@ namespace backend {
         public int get_to_order(){
             return to_order;
         }
+        public void updateInt(string name_collum, int new_value, int id){
+            database.updateINT(name_collum, new_value, id);
+        }
     }
 }

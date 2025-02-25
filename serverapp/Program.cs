@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using backend;
+using MySql.Data.MySqlClient;
 using System;
 using System.Diagnostics.Metrics;
 
@@ -135,7 +136,11 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int componentId = Int32.Parse(data[1]);
             int quantity = Int32.Parse(data[2]);
-            return "NOTIMPL";
+            MySqlDataReader result = stockDB.getIdcomponent(componentId);
+            result.Read();
+            int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
+            stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
+            return "stock updated";
         }
     }
 
