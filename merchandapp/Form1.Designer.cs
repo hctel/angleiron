@@ -43,22 +43,22 @@ namespace merchandapp
             this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.View = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Button_View = new System.Windows.Forms.DataGridViewButtonColumn();
             this.orderSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.commandeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.completeButton = new System.Windows.Forms.Button();
+            this.PartListDataGridView = new System.Windows.Forms.DataGridView();
             this.backButton = new System.Windows.Forms.Button();
             this.commandeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.PartListDataGridView = new System.Windows.Forms.DataGridView();
-            this.completeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderSummaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // OrdersDataGridView
@@ -72,7 +72,7 @@ namespace merchandapp
             this.orderStatusDataGridViewTextBoxColumn,
             this.orderDateDataGridViewTextBoxColumn,
             this.orderStockDataGridViewTextBoxColumn,
-            this.View});
+            this.Button_View});
             this.OrdersDataGridView.DataSource = this.orderSummaryBindingSource;
             this.OrdersDataGridView.Location = new System.Drawing.Point(0, 0);
             this.OrdersDataGridView.Name = "OrdersDataGridView";
@@ -117,14 +117,14 @@ namespace merchandapp
             this.orderStockDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.orderStockDataGridViewTextBoxColumn.Name = "orderStockDataGridViewTextBoxColumn";
             // 
-            // View
+            // Button_View
             // 
-            this.View.HeaderText = "View";
-            this.View.MinimumWidth = 6;
-            this.View.Name = "View";
-            this.View.Text = "View";
-            this.View.ToolTipText = "View";
-            this.View.UseColumnTextForButtonValue = true;
+            this.Button_View.HeaderText = "View";
+            this.Button_View.MinimumWidth = 6;
+            this.Button_View.Name = "Button_View";
+            this.Button_View.Text = "View";
+            this.Button_View.ToolTipText = "View";
+            this.Button_View.UseColumnTextForButtonValue = true;
             // 
             // orderSummaryBindingSource
             // 
@@ -149,6 +149,27 @@ namespace merchandapp
             this.panel2.TabIndex = 2;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // completeButton
+            // 
+            this.completeButton.Location = new System.Drawing.Point(698, 3);
+            this.completeButton.Name = "completeButton";
+            this.completeButton.Size = new System.Drawing.Size(75, 23);
+            this.completeButton.TabIndex = 2;
+            this.completeButton.Text = "Complete";
+            this.completeButton.UseVisualStyleBackColor = true;
+            this.completeButton.Click += new System.EventHandler(this.completeButton_Click);
+            // 
+            // PartListDataGridView
+            // 
+            this.PartListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PartListDataGridView.Location = new System.Drawing.Point(282, 85);
+            this.PartListDataGridView.Name = "PartListDataGridView";
+            this.PartListDataGridView.RowHeadersWidth = 51;
+            this.PartListDataGridView.RowTemplate.Height = 24;
+            this.PartListDataGridView.Size = new System.Drawing.Size(491, 338);
+            this.PartListDataGridView.TabIndex = 1;
+            this.PartListDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PartListDataGridView_CellContentClick);
+            // 
             // backButton
             // 
             this.backButton.Location = new System.Drawing.Point(3, 3);
@@ -162,27 +183,6 @@ namespace merchandapp
             // commandeBindingSource1
             // 
             this.commandeBindingSource1.DataSource = typeof(merchandapp.Form1.Commande);
-            // 
-            // PartListDataGridView
-            // 
-            this.PartListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartListDataGridView.Location = new System.Drawing.Point(282, 85);
-            this.PartListDataGridView.Name = "PartListDataGridView";
-            this.PartListDataGridView.RowHeadersWidth = 51;
-            this.PartListDataGridView.RowTemplate.Height = 24;
-            this.PartListDataGridView.Size = new System.Drawing.Size(491, 338);
-            this.PartListDataGridView.TabIndex = 1;
-            this.PartListDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PartListDataGridView_CellContentClick);
-            // 
-            // completeButton
-            // 
-            this.completeButton.Location = new System.Drawing.Point(698, 3);
-            this.completeButton.Name = "completeButton";
-            this.completeButton.Size = new System.Drawing.Size(75, 23);
-            this.completeButton.TabIndex = 2;
-            this.completeButton.Text = "Complete";
-            this.completeButton.UseVisualStyleBackColor = true;
-            this.completeButton.Click += new System.EventHandler(this.completeButton_Click);
             // 
             // Form1
             // 
@@ -199,8 +199,8 @@ namespace merchandapp
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -219,14 +219,14 @@ namespace merchandapp
         private Button backButton;
         private BindingSource commandeBindingSource1;
         private BindingSource orderSummaryBindingSource;
+        private Button completeButton;
+        private DataGridView PartListDataGridView;
         private DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn orderNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn orderStatusDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn orderDateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn orderStockDataGridViewTextBoxColumn;
-        private DataGridViewButtonColumn View;
-        private Button completeButton;
-        private DataGridView PartListDataGridView;
+        private DataGridViewButtonColumn Button_View;
     }
 }
 
