@@ -31,7 +31,7 @@ namespace backend {
                 stock_DB.updateINT("Quantity_client", newQuantiyclient, id_component); 
             } 
         }
-        public void add_order(int idcategory, int id_client, string already_paid, string status, int price){
+        public void add_order(int idcategory, int id_client, string already_paid, string status, double price){
             order_DB.addOrder(idcategory, id_client,already_paid, status, price);
         }
         public string get_status(int idorder){
