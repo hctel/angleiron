@@ -10,8 +10,9 @@ List<Session> sessions = new List<Session>();
 Console.WriteLine($"AngleIron server v{version}");
 Console.WriteLine("Starting server...");
 
-UserDB usersDatabase = new UserDB("127.0.0.1", "angleiron", "root", "1234"); //CHANGE CREDENTIALS HERE
-UserAuth userAuthenticator = new UserAuth(usersDatabase);
+DatabaseConnector dbcon = new DatabaseConnector("127.0.0.1", "angleiron", "root", "1234"); //CHANGE CREDENTIALS HERE
+
+UserAuth userAuthenticator = new UserAuth((UserDB) dbcon);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine("Press any key to enter");
