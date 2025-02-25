@@ -14,17 +14,18 @@ namespace backend
 		public Session authUser(string email, string password, string remoteIP)
 		{
 			Console.WriteLine(String.Format("User auth challenge: {0}, password {1}", email, password));
-            MySqlDataReader result = database.getUserFromEmail(email);
-            if (result.Read())
-			{
-				Console.WriteLine($"password for {email}: {result.GetString("password")}");
-				if (password.Equals(result.GetString("password")))
+            using(MySqlDataReader result = database.getUserFromEmail(email)){
+            	if (result.Read())
 				{
-					Console.WriteLine($"{remoteIP} logged in as {result.GetString("Name")}:{email}");
-                    return new Session(result.GetString("Name"), result.GetInt32("idClient"), remoteIP);
-				} else throw new Exception("Invalid password");
+					Console.WriteLine($"password for {email}: {result.GetString("password")}");
+					if (password.Equals(result.GetString("password")))
+					{
+						Console.WriteLine($"{remoteIP} logged in as {result.GetString("Name")}:{email}");
+                    	return new Session(result.GetString("Name"), result.GetInt32("idClient"), remoteIP);
+					} else throw new Exception("Invalid password");
 
-            } else throw new KeyNotFoundException("User not found");
+            	} else throw new KeyNotFoundException("User not found");
+			}
 
         }
 
