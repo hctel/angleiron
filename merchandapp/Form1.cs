@@ -9,10 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//#define VIEW_BUTTON_COLUMN_INDEX 
+
 namespace merchandapp
 {
     public partial class Form1 : Form
     {
+        const int VIEW_BUTTON_COLUMN_INDEX = 5;
         List<Panel> listPanel = new List<Panel>();
         int index = 1;
         Network network;
@@ -50,7 +53,7 @@ namespace merchandapp
             orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
 
             network = new Network("172.17.35.22", 80);
-            Debug.WriteLine(network.getOrders().ToString());
+            //Debug.WriteLine(network.getOrders().ToString());
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -94,7 +97,10 @@ namespace merchandapp
 
         private void dataGridView1_CellContentClick_3(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
+            {
+                listPanel[1].BringToFront();
+            }
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
