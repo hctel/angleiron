@@ -16,6 +16,12 @@ namespace clientapp
         private bool adding = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
+        private Color colorPanel = Color.Empty;
+        private Color firstColor = Color.FromArgb(187, 153, 112);
+        private Color secondColor = Color.FromArgb(88, 76, 69);
+        private Color thirdColor = Color.FromArgb(191, 180, 157);
+        private Color fourthColor = Color.FromArgb(166, 167, 171);
+
         public Window()
         {
             InitializeComponent();
@@ -89,13 +95,19 @@ namespace clientapp
             ColorGroup.BackColor = Color.FromArgb(200, 200, 200);
             ColorGroup.FlatStyle = FlatStyle.Flat;
 
-            choiceOneButton.BackColor = Color.FromArgb(187, 153, 112);
-            choiceTwoButton.BackColor = Color.FromArgb(88, 76, 69);
-            choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
-            choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
+            choiceOneButton.BackColor = firstColor;
+            choiceTwoButton.BackColor = secondColor;
+            choiceThreeButton.BackColor = thirdColor;
+            choiceFourButton.BackColor = fourthColor;
+
+            choiceOneButton.Click += (s, ev) => changeColor(firstColor);
+            choiceTwoButton.Click += (s, ev) => changeColor(secondColor);
+            choiceThreeButton.Click += (s, ev) => changeColor(thirdColor);
+            choiceFourButton.Click += (s, ev) => changeColor(fourthColor);
 
 
-            foreach(int i in Articles)
+
+            foreach (int i in Articles)
             {
                 int a = i - 1;
                 Debug.WriteLine(i);
@@ -134,6 +146,13 @@ namespace clientapp
                     Add(i);
                 }
             }
+
+        }
+
+        private void changeColor(Color newcolor)
+        {
+            colorPanel = newcolor;
+            this.Refresh();
 
         }
         private void addButton_Click(object sender, EventArgs e)
@@ -220,7 +239,9 @@ namespace clientapp
 
         private void ImagePanel_Paint(object sender, PaintEventArgs e)
         {
-
+            this.ImagePanel.Size = new Size(680, 490);
+            this.ImagePanel.Location = new Point(300, 70);
+            this.ImagePanel.BackColor = colorPanel;
         }
     }
 }
