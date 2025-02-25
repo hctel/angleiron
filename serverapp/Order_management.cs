@@ -93,8 +93,8 @@ namespace backend {
             return result;
         }
         public void change_satus(string new_satus, int idorder){
-        order_DB.updateSTR("Status", new_satus, idorder);
-    }
+            order_DB.updateSTR("Status", new_satus, idorder);
+        }
 
     }
     

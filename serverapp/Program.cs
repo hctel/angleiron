@@ -113,7 +113,8 @@ string networkReceiveFunction(string[] data, string ipAddress)
         else
         {
             int orderId = Int32.Parse(data[1]);
-            return "NOTIMPL";
+            order_manager.change_satus(data[2], orderId);
+            return "Status updated";
         }
     }
 
