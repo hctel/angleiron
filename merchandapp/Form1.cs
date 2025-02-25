@@ -24,8 +24,8 @@ namespace merchandapp
         BindingList<OrderSummary> orderSummariesBindingList;
         BindingSource orderSummariesSource;
 
-        List<OrderSummary> orderParts = new List<OrderSummary>();
-        BindingList<OrderSummary> orderPartsBindingList;
+        List<OrderPart> orderParts = new List<OrderPart>();
+        BindingList<OrderPart> orderPartsBindingList;
         BindingSource orderPartsSource;
 
         public Form1()
@@ -45,7 +45,7 @@ namespace merchandapp
             orderSummariesSource = new BindingSource(orderSummariesBindingList, null);
             this.OrdersDataGridView.DataSource = orderSummariesSource;
 
-            orderPartsBindingList = new BindingList<OrderSummary>(orderParts);
+            orderPartsBindingList = new BindingList<OrderPart>(orderParts);
             orderPartsSource = new BindingSource(orderPartsBindingList, null);
             this.PartListDataGridView.DataSource = orderPartsSource;
 
@@ -53,9 +53,7 @@ namespace merchandapp
             Debug.WriteLine(network.getOrders().ToString());
 
             foreach (OrderSummary order in network.getOrders())
-            {
-                orderSummariesSource.Add(order);
-            }
+            { orderSummariesSource.Add(order); }
 
             //orderSummariesSource.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
             //orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));

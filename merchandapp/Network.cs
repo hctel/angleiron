@@ -73,7 +73,7 @@ namespace merchandapp
             this.serverIp = serverIp;
             this.port = port;
             ipEndPoint = new IPEndPoint(Dns.GetHostEntry(serverIp).AddressList[0], port);
-            client = new TcpClient();
+            //client = new TcpClient();
         }
 
         public List<OrderSummary> getOrders()
@@ -110,6 +110,7 @@ namespace merchandapp
         }
         private List<string> get(string request)
         {
+            client = new TcpClient();
             client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();
             byte[] bytesOut = Encoding.UTF8.GetBytes(request);
@@ -118,6 +119,7 @@ namespace merchandapp
             int length = stream.Read(dataIn, 0, dataIn.Length);
             string message = Encoding.ASCII.GetString(dataIn, 0, length);
             Debug.WriteLine($"Received from server: {message}");
+            client.Close();
 
             return message.Split('&').ToList();
         }
