@@ -5,16 +5,26 @@ using System;
 string version = "0.0.1b";
 int port = 80;
 
+string hostname = "127.0.0.1";
+string dataName = "angleiron";
+string username = "root";
+string password = "1234";
+
 List<Session> sessions = new List<Session>();
 
 Console.WriteLine($"AngleIron server v{version}");
 Console.WriteLine("Starting server...");
 
-DatabaseConnector dbcon = new DatabaseConnector("127.0.0.1", "angleiron", "root", "1234"); //CHANGE CREDENTIALS HERE
+UserDB dbcon = new UserDB(hostname, dataName, username, password); //CHANGE CREDENTIALS HERE
+Order_DB orderDB = new Order_DB(hostname, dataName, username, password);
+Stock_DB stockDB = new Stock_DB(hostname, dataName, username, password);
+KitDB kitDB = new KitDB(hostname, dataName, username, password);
+MaterialDB materialDB = new MaterialDB(hostname, dataName, username, password);
+KIT_to_component kitToComponentDB = new KIT_to_component(hostname, dataName, username, password);
 
-UserAuth userAuthenticator = new UserAuth((UserDB) dbcon);
-Order_management orderManager = new Order_management((Order_DB) dbcon, (Stock_DB) dbcon, (KitDB) dbcon, (MaterialDB) dbcon, (KIT_to_component) dbcon);
-Stock_calculation stockCalculator = new Stock_calculation((Stock_DB) dbcon);
+UserAuth userAuthenticator = new UserAuth( dbcon);
+Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB);
+Stock_calculation stockCalculation = new Stock_calculation(stockDB);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine("Press any key to enter");
@@ -75,13 +85,14 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("SHOWORDERS"))
     {
-        List<List<string>> orders = orderManager.get_orders();
-        string response = "ORDERLIST&";
-        foreach (List<string> order in orders)
-        {
-            response += orders[0] + "/" + orders[1] + "/" + orders[2] + "/" + orders[3] + "/" + orders[4] + "/"+ orders[5] + ";";
-        }
-        return response;
+        //List<List<string>> orders = order_manager.get_orders();
+        //string response = "ORDERLIST&";
+        //foreach (List<string> order in orders)
+        //{
+        //    response += orders[0] + "/" + orders[1] + "/" + orders[2] + "/" + orders[3] + "/" + orders[4] + "/"+ orders[5] + ";";
+        //}
+        //return response;
+        return "NOTIMPL";
     }
 
     else if (data[0].Equals("DETAILORDER"))
