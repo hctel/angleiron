@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using backend;
 using System;
+using System.Diagnostics.Metrics;
 
 string version = "0.0.1b";
 int port = 80;
@@ -91,8 +92,8 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             response += order[0] + "/" + order[1] + "/" + order[2] + "/" + order[3] + "/" + order[4] + "/"+ order[5] + ";";
         }
-        return response;
-        }
+        return response.Remove(response.Length - 1, 1); ;
+    }
         
 
     else if (data[0].Equals("DETAILORDER"))
