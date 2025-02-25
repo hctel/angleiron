@@ -39,7 +39,7 @@ namespace merchandapp
             network = new Network("172.17.35.22", 80);
             bindingList = new BindingList<OrderSummary>(orderSummaries);
             source = new BindingSource(bindingList, null);
-            this.dataGridView1.DataSource = source;
+            this.OrdersDataGridView.DataSource = source;
 
             Debug.WriteLine(network.getOrders().ToString());
 
@@ -109,6 +109,16 @@ namespace merchandapp
             index = 0;
             listPanel[index].BringToFront();
             //((Button)sender).Text = index.ToString();
+        }
+
+        private void PartListDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void completeButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
