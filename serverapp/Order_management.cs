@@ -8,11 +8,13 @@ namespace backend {
     public class Order_management {
         private Order_DB order_DB;
         private Stock_DB stock_DB;
+        private MaterialDB materialDB;
         private KIT_to_component kIT_To_Component;
         public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component) {
             this.order_DB=order_DB;
             this.stock_DB=stock_DB;
             this.kIT_To_Component=kIT_To_Component;
+            this.materialDB=materialDB;
         }
         public void management(int idorder){
             MySqlDataReader resultOrder = order_DB.getIdOrder(idorder);
@@ -51,12 +53,35 @@ namespace backend {
                 List<string> row_result = new List<string>();
                 row_result.Add(row.GetInt32("idorder") + "");
                 row_result.Add(row.GetInt32("id_client") + "");
-                row_result.Add(row.GetInt32("id_component") + "");
+                row_result.Add(row.GetInt32("id_category") + "");
                 row_result.Add(row.GetDouble("Price") + "");
                 row_result.Add(row.GetString("Already_paid"));
                 row_result.Add(row.GetString("Status"));
                 result.Add(row_result);
             }
+            return result;
+        }
+        public List<List<string>> detail_order(int idorder){
+            List<List<string>> result = new List<List<string>>();
+            MySqlDataReader row = order_DB.getIdOrder(idorder);
+            row.Read();
+            int id_category = row.GetInt32("id_category");
+            MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category);
+            while (resultcomponent_type.Read()) {
+                List<string> row_result = new List<string>();
+                int id_component = resultcomponent_type.GetInt32("id_component");
+                row_result.Add(id_component + "");
+                MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
+                resultStock.Read();
+                row_result.Add(resultStock.GetInt32("Quantity_client") + "");
+                row_result.Add(resultStock.GetInt32("Quantity") + "");
+                MySqlDataReader material = materialDB.getIdcomponent(id_component);
+                material.Read();
+                row_result.Add(material.GetString("Description"));
+                result.Add(row_result);
+            }
+            
+            
             return result;
         }
         public void change_satus(string new_satus, int idorder){
