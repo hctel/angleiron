@@ -14,6 +14,8 @@ UserDB usersDatabase = new UserDB("127.0.0.1", "angleiron", "root", "1234"); //C
 UserAuth userAuthenticator = new UserAuth(usersDatabase);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
+Console.WriteLine("Press any key to enter");
+Console.ReadKey();
 Console.WriteLine($"Server started on port {port}");
 Console.WriteLine("Press Q to stop the server");
 
