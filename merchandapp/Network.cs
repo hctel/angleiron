@@ -53,7 +53,9 @@ namespace merchandapp
             this.orderID = Int32.Parse(orderID);
             foreach (string[] part in items)
             {
+                Debug.WriteLine(part);
                 parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
+                
             }
         }
     }
