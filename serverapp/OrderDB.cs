@@ -14,6 +14,10 @@ namespace backend
         {
           return read(String.Format("SELECT * FROM orders WHERE idorder={0};", idorder));
         }
+        public MySqlDataReader getOrder()
+        {
+          return read(String.Format("SELECT * FROM orders ;"));
+        }
 
         public void addOrder(int idcategory, int id_client, string already_paid, string status, int price)
         {

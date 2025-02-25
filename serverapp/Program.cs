@@ -13,6 +13,8 @@ Console.WriteLine("Starting server...");
 DatabaseConnector dbcon = new DatabaseConnector("127.0.0.1", "angleiron", "root", "1234"); //CHANGE CREDENTIALS HERE
 
 UserAuth userAuthenticator = new UserAuth((UserDB) dbcon);
+Order_management orderManager = new Order_management((Order_DB) dbcon, (Stock_DB) dbcon, (KitDB) dbcon, (MaterialDB) dbcon, (KIT_to_component) dbcon);
+Stock_calculation stockCalculator = new Stock_calculation((Stock_DB) dbcon);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine("Press any key to enter");
@@ -73,7 +75,13 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("SHOWORDERS"))
     {
-        return "NOTIMPL";
+        List<List<string>> orders = orderManager.get_orders();
+        string response = "ORDERLIST&";
+        foreach (List<string> order in orders)
+        {
+            response += orders[0] + "/" + orders[1] + "/" + orders[2] + "/" + orders[3] + "/" + orders[4] + "/"+ orders[5] + ";";
+        }
+        return response;
     }
 
     else if (data[0].Equals("DETAILORDER"))
