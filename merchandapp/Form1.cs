@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace merchandapp
     {
         List<Panel> listPanel = new List<Panel>();
         int index = 1;
+        Network network;
 
         //public BindingList<OrderSummary> orderSummaries = new BindingList<OrderSummary>();
         List<OrderSummary> orderSummaries = new List<OrderSummary>()
@@ -34,10 +36,12 @@ namespace merchandapp
             listPanel.Add(panel1);
             listPanel.Add(panel2);
             listPanel[index].BringToFront();
-
+            network = new Network("172.17.35.22", 80);
             bindingList = new BindingList<OrderSummary>(orderSummaries);
             source = new BindingSource(bindingList, null);
-            this.dataGridView1.DataSource = source;
+            this.OrdersDataGridView.DataSource = source;
+
+            Debug.WriteLine(network.getOrders().ToString());
 
             //orderSummaries.Add(new OrderSummary("5", "test", "ok", "24/04", "nope"));
             //orderSummaries.Add(new OrderSummary("4", "2test", "pas ok", "25/04", "nope"));
@@ -105,6 +109,16 @@ namespace merchandapp
             index = 0;
             listPanel[index].BringToFront();
             //((Button)sender).Text = index.ToString();
+        }
+
+        private void PartListDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void completeButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
