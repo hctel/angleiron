@@ -28,15 +28,33 @@ namespace merchandapp
         }
     }
 
+    public class OrderPart
+    {
+        public int id { get; }
+        public string name { get; }
+        public int quantity { get; }
+        public bool inStock { get; }
+        public OrderPart(int id, string name, int quantity, bool inStock)
+        {
+            this.id = id;
+            this.name = name;
+            this.quantity = quantity;
+            this.inStock = inStock;
+        }
+    }
+
     public class Order
     {
         public int orderID { get; }
-        public string[][] items { get; }
+        public List<OrderPart> parts { get; } = new List<OrderPart>();
 
         public Order(string orderID, string[][] items)
         {
             this.orderID = Int32.Parse(orderID);
-            this.items = items;
+            foreach (string[] part in items)
+            {
+                parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
+            }
         }
     }
 
@@ -88,7 +106,7 @@ namespace merchandapp
             }
             return null;
         }
-            private List<string> get(string request)
+        private List<string> get(string request)
         {
             client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();
