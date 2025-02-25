@@ -27,5 +27,8 @@ namespace backend
         public void updateSTR(string name_collum, string new_value, int id){
             execute(String.Format("UPDATE orders SET '{0}'='{1}' WHERE idorder={2};",name_collum, new_value, id));
         }
+        public void delete_row(int id){
+            execute(String.Format("DELETE FROM orders WHERE idorder={0};", id));
+        }
     }
 }
