@@ -51,7 +51,7 @@ namespace backend {
                 List<string> row_result = new List<string>();
                 row_result.Add(row.GetInt32("idorder") + "");
                 row_result.Add(row.GetInt32("id_client") + "");
-                row_result.Add(row.GetInt32("id_component") + "");
+                row_result.Add(row.GetInt32("id_category") + "");
                 row_result.Add(row.GetDouble("Price") + "");
                 row_result.Add(row.GetString("Already_paid"));
                 row_result.Add(row.GetString("Status"));
