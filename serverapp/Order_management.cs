@@ -79,7 +79,8 @@ namespace backend {
                 int not_in_stock = stock_calculation.get_not_in_stock();
                 if(not_in_stock>0){
                     row_result.Add("1");
-                }else{
+                }
+                else{
                     row_result.Add("0");
                 }
                 MySqlDataReader material = materialDB.getIdcomponent(id_component);
