@@ -98,7 +98,13 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("DETAILORDER"))
     {
-        //order_manager._order(Int32.Parse(data[1]));
+        List<List<string>> orderDetails = order_manager.detail_order(Int32.Parse(data[1]));
+        string response = "ORDERDETAIL&" + data[1] + "&";
+        foreach (List<string> detail in orderDetails)
+        {
+            response += detail[0] + "/" + detail[1] + "/" + detail[2] + ";";
+        }
+        return response.Remove(response.Length - 1, 1); ;
     }
 
     else if (data[0].Equals("UPDATESTATUS"))

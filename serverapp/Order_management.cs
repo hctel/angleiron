@@ -67,7 +67,12 @@ namespace backend {
             MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category);
             while (resultcomponent_type.Read()) {
                 List<string> row_result = new List<string>();
-                int id_component
+                int id_component = resultcomponent_type.GetInt32("id_component");
+                row_result.Add(id_component + "");
+                MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
+                resultStock.Read();
+                row_result.Add(resultStock.GetInt32("Quantity_client") + "");
+                row_result.Add(resultStock.GetInt32("Quantity") + "");
                 result.Add(row_result);
             }
             
