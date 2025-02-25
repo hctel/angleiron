@@ -104,10 +104,14 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                
-                network.getOrderDetails(e.RowIndex+1);
+                foreach (OrderPart item in network.getOrderDetails(e.RowIndex).parts)
+                {
+                    orderPartsSource.Add(item);
+
+                }
                 listPanel[1].BringToFront();
                 Debug.WriteLine(network.getOrderDetails(e.RowIndex));
+                
             }
         }
 
