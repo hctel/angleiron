@@ -8,13 +8,15 @@ namespace backend {
     public class Order_management {
         private Order_DB order_DB;
         private Stock_DB stock_DB;
+        private Stock_calculation stock_calculation;
         private MaterialDB materialDB;
         private KIT_to_component kIT_To_Component;
-        public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component) {
+        public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component, Stock_calculation stock_calculation){ 
             this.order_DB=order_DB;
             this.stock_DB=stock_DB;
             this.kIT_To_Component=kIT_To_Component;
             this.materialDB=materialDB;
+            this.stock_calculation=stock_calculation;
         }
         public void management(int idorder){
             MySqlDataReader resultOrder = order_DB.getIdOrder(idorder);
@@ -74,7 +76,12 @@ namespace backend {
                 MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
                 resultStock.Read();
                 row_result.Add(resultStock.GetInt32("Quantity_client") + "");
-                row_result.Add(resultStock.GetInt32("Quantity") + "");
+                int not_in_stock = stock_calculation.get_not_in_stock();
+                if(not_in_stock>0){
+                    row_result.Add("1");
+                }else{
+                    row_result.Add("0");
+                }
                 MySqlDataReader material = materialDB.getIdcomponent(id_component);
                 material.Read();
                 row_result.Add(material.GetString("Description"));

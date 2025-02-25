@@ -24,8 +24,8 @@ MaterialDB materialDB = new MaterialDB(hostname, dataName, username, password);
 KIT_to_component kitToComponentDB = new KIT_to_component(hostname, dataName, username, password);
 
 UserAuth userAuthenticator = new UserAuth( dbcon);
-Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB);
 Stock_calculation stockCalculation = new Stock_calculation(stockDB);
+Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine("Press any key to enter");
@@ -102,7 +102,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         string response = "ORDERDETAIL&" + data[1] + "&";
         foreach (List<string> detail in orderDetails)
         {
-            response += detail[0] + "/" + detail[2] + "/" + detail[1] +"/"+detail[3] + ";";
+            response += detail[0] + "/" + detail[1] + "/" + detail[2] +"/"+detail[3] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }
