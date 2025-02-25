@@ -45,15 +45,20 @@ namespace merchandapp
             orderSummariesSource = new BindingSource(orderSummariesBindingList, null);
             this.OrdersDataGridView.DataSource = orderSummariesSource;
 
-            orderPartsBindingList = new BindingList<OrderSummary>(orderSummaries);
+            orderPartsBindingList = new BindingList<OrderSummary>(orderParts);
             orderPartsSource = new BindingSource(orderPartsBindingList, null);
             this.PartListDataGridView.DataSource = orderPartsSource;
 
-            orderSummariesSource.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
-            orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
-
             network = new Network("172.17.35.22", 80);
-            //Debug.WriteLine(network.getOrders().ToString());
+            Debug.WriteLine(network.getOrders().ToString());
+
+            foreach (OrderSummary order in network.getOrders())
+            {
+                orderSummariesSource.Add(order);
+            }
+
+            //orderSummariesSource.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
+            //orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
