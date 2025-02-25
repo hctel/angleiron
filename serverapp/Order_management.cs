@@ -95,6 +95,9 @@ namespace backend {
         public void change_satus(string new_satus, int idorder){
             order_DB.updateSTR("Status", new_satus, idorder);
         }
+        public void delete_row(int idorder){
+            order_DB.delete_row(idorder);
+        }
 
     }
     
