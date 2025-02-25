@@ -37,7 +37,7 @@ namespace merchandapp
 
             bindingList = new BindingList<OrderSummary>(orderSummaries);
             source = new BindingSource(bindingList, null);
-            this.dataGridView1.DataSource = source;
+            this.OrdersDataGridView.DataSource = source;
 
             //orderSummaries.Add(new OrderSummary("5", "test", "ok", "24/04", "nope"));
             //orderSummaries.Add(new OrderSummary("4", "2test", "pas ok", "25/04", "nope"));
@@ -105,6 +105,16 @@ namespace merchandapp
             index = 0;
             listPanel[index].BringToFront();
             //((Button)sender).Text = index.ToString();
+        }
+
+        private void PartListDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void completeButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
