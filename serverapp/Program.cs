@@ -136,23 +136,25 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int componentId = Int32.Parse(data[1]);
             int quantity = Int32.Parse(data[2]);
-            MySqlDataReader result = stockDB.getIdcomponent(componentId);
-            result.Read();
-            int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
-            stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-            return "stock updated";
+            using(MySqlDataReader result = stockDB.getIdcomponent(componentId)){
+                result.Read();
+                int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
+                stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
+                return "stock updated";
+            }
         }
     }
     else if (data[0].Equals("STOCKDEDELIVERED")){
             int componentId = Int32.Parse(data[1]);
             int quantity = Int32.Parse(data[2]);
-            MySqlDataReader result = stockDB.getIdcomponent(componentId);
-            result.Read();
-            int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
-            int new_quantity = result.GetInt32("Quantity") + quantity;
-            stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-            stockCalculation.updateInt("Quantity", new_quantity, componentId);
-            return "stock updated";
+            using(MySqlDataReader result = stockDB.getIdcomponent(componentId)){
+                result.Read();
+                int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
+                int new_quantity = result.GetInt32("Quantity") + quantity;
+                stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
+                stockCalculation.updateInt("Quantity", new_quantity, componentId);
+                return "stock updated";
+            }
     }
     else if (data[0].Equals("STOCKTOORDER")){
         int componentId = Int32.Parse(data[1]);
