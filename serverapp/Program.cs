@@ -97,7 +97,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("DETAILORDER"))
     {
-        return "NOTIMPL";
+        //order_manager._order(Int32.Parse(data[1]));
     }
 
     else if (data[0].Equals("UPDATESTATUS"))

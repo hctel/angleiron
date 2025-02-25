@@ -59,6 +59,21 @@ namespace backend {
             }
             return result;
         }
+        public List<List<string>> detail_order(int idorder){
+            List<List<string>> result = new List<List<string>>();
+            MySqlDataReader row = order_DB.getIdOrder(idorder);
+            row.Read();
+            int id_category = row.GetInt32("id_category");
+            MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category);
+            while (resultcomponent_type.Read()) {
+                List<string> row_result = new List<string>();
+                int id_component
+                result.Add(row_result);
+            }
+            
+            
+            return result;
+        }
         public void change_satus(string new_satus, int idorder){
         order_DB.updateSTR("Status", new_satus, idorder);
     }
