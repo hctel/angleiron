@@ -15,11 +15,13 @@ namespace backend {
         }
         public void management(int idorder){
             MySqlDataReader resultOrder = order_DB.getIdOrder(idorder);
+            resultOrder.Read();
             int id_category = resultOrder.GetInt32("id_category");
             MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category);
             while (resultcomponent_type.Read()) {
                 int id_component = resultcomponent_type.GetInt32("id_component");
                 MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component);
+                resultStock.Read();
                 int newQuantiyclient = resultStock.GetInt32("Quantity_client")+resultcomponent_type.GetInt32("numberpercategory");
                 stock_DB.updateINT("Quantity_client", newQuantiyclient, id_component); 
             } 
@@ -30,12 +32,14 @@ namespace backend {
         public string get_status(int idorder){
             string result;
             MySqlDataReader row = order_DB.getIdOrder(idorder);
+            row.Read();
             result = row.GetString("status");
             return result;
         }
         public string get_already_paid(int idorder){
             string result;
             MySqlDataReader row = order_DB.getIdOrder(idorder);
+            row.Read();
             result = row.GetString("Already_paid");
             return result;
         }
