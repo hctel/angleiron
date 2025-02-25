@@ -102,7 +102,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         string response = "ORDERDETAIL&" + data[1] + "&";
         foreach (List<string> detail in orderDetails)
         {
-            response += detail[0] + "/" + detail[1] + "/" + detail[2] + ";";
+            response += detail[0] + "/" + detail[2] + "/" + detail[1] +"/"+detail[3] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }

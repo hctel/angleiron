@@ -24,4 +24,4 @@ Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/orderSto
 ### DETAILORDER
 Use to show the details of an order
 Example request: DETAILORDER&orderID
-Example response: ORDERDETAIL&orderID&elemnt1/quantity1/available1;elemnt2/quantity2/available2;elemnt3/quantity3/available3; (etc.)
+Example response: ORDERDETAIL&orderID&elemnt1/quantity1/available1/Description1(Name);elemnt2/quantity2/available2Description2(Name);elemnt3/quantity3/available3Description3(Name); (etc.)

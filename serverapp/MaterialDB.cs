@@ -10,7 +10,7 @@ namespace backend
         {
         }
 
-        public MySqlDataReader getIdcomposant(int idcomponent)
+        public MySqlDataReader getIdcomponent(int idcomponent)
         {
           return read(String.Format("SELECT * FROM component WHERE id_component={0};", idcomponent));
         }

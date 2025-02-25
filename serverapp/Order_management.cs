@@ -8,11 +8,13 @@ namespace backend {
     public class Order_management {
         private Order_DB order_DB;
         private Stock_DB stock_DB;
+        private MaterialDB materialDB;
         private KIT_to_component kIT_To_Component;
         public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component) {
             this.order_DB=order_DB;
             this.stock_DB=stock_DB;
             this.kIT_To_Component=kIT_To_Component;
+            this.materialDB=materialDB;
         }
         public void management(int idorder){
             MySqlDataReader resultOrder = order_DB.getIdOrder(idorder);
@@ -73,6 +75,9 @@ namespace backend {
                 resultStock.Read();
                 row_result.Add(resultStock.GetInt32("Quantity_client") + "");
                 row_result.Add(resultStock.GetInt32("Quantity") + "");
+                MySqlDataReader material = materialDB.getIdcomponent(id_component);
+                material.Read();
+                row_result.Add(material.GetString("Description"));
                 result.Add(row_result);
             }
             
