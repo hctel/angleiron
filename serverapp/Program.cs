@@ -165,12 +165,14 @@ string networkReceiveFunction(string[] data, string ipAddress)
         if(data.Length != 6) return "STXERR";
         else
         {
-            int idcategory = Int32.Parse(data[1]);
-            int idclient = Int32.Parse(data[2]);
-            string already_paid = data[3];
-            string status = data[4];
-            double price = Double.Parse(data[5]);
+            int idorder = Int32.Parse(data[1]);
+            int idcategory = Int32.Parse(data[2]);
+            int idclient = Int32.Parse(data[3]);
+            string already_paid = data[4];
+            string status = data[5];
+            double price = Double.Parse(data[6]);
             order_manager.add_order(idcategory, idclient, already_paid, status, price);
+            order_manager.management(idorder);
             return "Order added";
         }
     }
