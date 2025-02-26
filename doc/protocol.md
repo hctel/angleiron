@@ -17,6 +17,9 @@ Example:
   If sucessful: AUTHOK&sessionID&clientID&remoteIP
   If incorrect password: AUTHFAIL&NOPASSWD
   If unknown user: AUTHFAIL&NOUSER
+### NEWORDER
+Use to make an new order 
+Example request : NEWORDER&IDcategory&IDclient&Statuspayed&Status&price
 ## Merchand frontend requests
 ### SHOWORDERS
 Use to list all orders
@@ -25,3 +28,12 @@ Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/orderSto
 Use to show the details of an order
 Example request: DETAILORDER&orderID
 Example response: ORDERDETAIL&orderID&elemnt1/quantity1/inStock1/Description1(Name);elemnt2/quantity2/inStock/Description2(Name);elemnt3/quantity3/InStock3/Description3(Name); (etc.)
+### ORDERSTOCK
+Use to order new stock
+Request must give the component ID and the quantity 
+### STOCKDEDELIVERED
+Use to let known the database when knew component arrives
+Request must give the component ID and the quantity
+### STOCKTOORDER
+Use to let known the marchand what he must order
+Request must give the component ID he wants to check
