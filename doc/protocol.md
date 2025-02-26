@@ -19,7 +19,7 @@ Example:
   If unknown user: AUTHFAIL&NOUSER
 ### NEWORDER
 Use to make an new order 
-Example request : NEWORDER&IDcategory&IDclient&Statuspayed&Status&price
+Example request : NEWORDER&IDorder&IDcategory&IDclient&Statuspayed&Status&price
 ## Merchand frontend requests
 ### SHOWORDERS
 Use to list all orders
