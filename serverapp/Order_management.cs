@@ -13,13 +13,17 @@ namespace backend
         private Stock_calculation stock_calculation;
         private MaterialDB materialDB;
         private KIT_to_component kIT_To_Component;
-        public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component, Stock_calculation stock_calculation)
+        private UserDB userDB;
+        private UserAuth userAuth;
+        public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component, Stock_calculation stock_calculation, UserDB userDB, UserAuth userAuth)
         {
             this.order_DB = order_DB;
             this.stock_DB = stock_DB;
             this.kIT_To_Component = kIT_To_Component;
             this.materialDB = materialDB;
             this.stock_calculation = stock_calculation;
+            this.userDB = userDB;
+            this.userAuth = userAuth;
         }
         public void management()
         {
@@ -64,9 +68,9 @@ namespace backend
             }
         }
 
-        public void add_order(int idcategory, int id_client, string already_paid, string status, double price)
+        public void add_order(int idcategory, int id_client, string already_paid, string status, double price, string date)
         {
-            order_DB.addOrder(idcategory, id_client, already_paid, status, price);
+            order_DB.addOrder(idcategory, id_client, already_paid, status, price, date);
         }
         public string get_status(int idorder)
         {
@@ -102,13 +106,18 @@ namespace backend
                         while (row.Read())
                         {
                             List<string> row_result = new List<string>();
-
-                            row_result.Add(row.GetInt32("idorder") + "");
-                            row_result.Add(row.GetInt32("id_client") + "");
-                            row_result.Add(row.GetInt32("id_category") + "");
-                            row_result.Add(row.GetDouble("Price") + "");
-                            row_result.Add(row.GetString("Already_paid"));
+                            int id_client = row.GetInt32("id_client");
+                            using (MySqlDataReader resultUser = userDB.getUserFromId(id_client))
+                            {
+                                if(resultUser.Read()){
+                                    string name = resultUser.GetString("Name");
+                                    row_result.Add(name);
+                                }
+                            }
+                            row_result.Add(row.GetInt32("idorder") + "");;
                             row_result.Add(row.GetString("Status"));
+                            row_result.Add(row.GetString("date"));
+                            row_result.Add(row.GetString("Already_paid"));
                             result.Add(row_result);
                         }
                     }

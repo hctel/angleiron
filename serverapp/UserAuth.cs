@@ -37,5 +37,12 @@ namespace backend
 				database.addUser(name, address, email, password);
             }
         }
+		public string getUserName(int id) {
+			using(MySqlDataReader result = database.getUserFromId(id)){
+				if(result.Read()){
+					return result.GetString("Name");
+				} else throw new KeyNotFoundException("User not found");
+			}
+		}
     }
 }

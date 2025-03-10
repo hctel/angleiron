@@ -26,7 +26,7 @@ KIT_to_component kitToComponentDB = new KIT_to_component(hostname, dataName, use
 
 UserAuth userAuthenticator = new UserAuth( dbcon);
 Stock_calculation stockCalculation = new Stock_calculation(stockDB);
-Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation);
+Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation, dbcon, userAuthenticator);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine("Press any key to enter");
@@ -131,7 +131,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
         {
-            response += order[0] + "/" + order[1] + "/" + order[2] + "/" + order[3] + "/" + order[4] + "/"+ order[5] + ";";
+            response += order[1] + "/" + order[0] + "/" + order[2] + "/" + order[3] + "/" + order[4] +"/"+order[5]+";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }
@@ -203,7 +203,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         return "TOORDER&"+stockCalculation.get_to_order();
     }
     else if (data[0].Equals("NEWORDER")){
-        if(data.Length != 6) return "STXERR";
+        if(data.Length != 7) return "STXERR";
         else
         {
             int idcategory = Int32.Parse(data[1]);
@@ -211,7 +211,8 @@ string networkReceiveFunction(string[] data, string ipAddress)
             string already_paid = data[3];
             string status = data[4];
             double price = Double.Parse(data[5]);
-            order_manager.add_order(idcategory, idclient, already_paid, status, price);
+            string date = data[6];
+            order_manager.add_order(idcategory, idclient, already_paid, status, price, date);
             order_manager.management();
             return "OK";
         }

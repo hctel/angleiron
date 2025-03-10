@@ -14,6 +14,10 @@ namespace backend
         {
             return read(String.Format("SELECT * FROM client WHERE Email='{0}';", email));
         }
+        public MySqlDataReader getUserFromId(int id)
+        {
+            return read(String.Format("SELECT * FROM client WHERE id_client={0};", id));
+        }
 
         public void addUser(string name, string address, string email, string password)
         {
