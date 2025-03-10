@@ -102,13 +102,16 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                foreach (OrderPart item in network.getOrderDetails(e.RowIndex+1).parts)
+                Order order = network.getOrderDetails(e.RowIndex + 1);
+                if (order != null)
                 {
-                    orderPartsSource.Add(item);
+                    foreach (OrderPart item in order.parts)
+                    {
+                        orderPartsSource.Add(item);
+                    }
+                    listPanel[1].BringToFront();
+                    Debug.WriteLine(network.getOrderDetails(e.RowIndex+1));
                 }
-                listPanel[1].BringToFront();
-                Debug.WriteLine(network.getOrderDetails(e.RowIndex+1));
-                
             }
         }
 
