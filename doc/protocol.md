@@ -50,6 +50,6 @@ Request must give the component ID and the quantity<br>
 Use to let known the marchand what he must order<br>  
 Request must give the component ID he wants to check<br>  
 ### Update status:
-Command: UPDATESTATUS
-Structure: UPDATESTATUS&orderID&status
-reponse : status update
+Command: UPDATESTATUS<br>
+Structure: UPDATESTATUS&orderID&status<br>
+reponse : status update<br>
