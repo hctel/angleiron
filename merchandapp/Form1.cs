@@ -49,7 +49,7 @@ namespace merchandapp
             orderPartsSource = new BindingSource(orderPartsBindingList, null);
             this.PartListDataGridView.DataSource = orderPartsSource;
 
-            network = new Network("172.17.35.22", 80);
+            network = new Network("172.17.34.124", 80);
             Debug.WriteLine(network.getOrders().ToString());
 
             foreach (OrderSummary order in network.getOrders())
@@ -102,13 +102,12 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                foreach (OrderPart item in network.getOrderDetails(e.RowIndex).parts)
+                foreach (OrderPart item in network.getOrderDetails(e.RowIndex+1).parts)
                 {
                     orderPartsSource.Add(item);
-
                 }
                 listPanel[1].BringToFront();
-                Debug.WriteLine(network.getOrderDetails(e.RowIndex));
+                Debug.WriteLine(network.getOrderDetails(e.RowIndex+1));
                 
             }
         }
@@ -122,6 +121,7 @@ namespace merchandapp
         {
             index = 0;
             listPanel[index].BringToFront();
+            orderPartsSource.Clear();
             //((Button)sender).Text = index.ToString();
         }
 

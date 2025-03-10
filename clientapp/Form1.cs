@@ -139,6 +139,12 @@ namespace clientapp
                 infoLabel.Location = new Point(15, contentPanel.Height - 45);
                 infoLabel.Font = new Font("Sans Serif", 16);
 
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.Image = Image.FromFile("test.png"); // Charge l'image
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage; // Ajuste l'image à la taille du PictureBox
+                pictureBox.Size = new Size(300, 50); // Définir la taille
+                pictureBox.Location = new Point(490, 335); // Définir la position
+
                 ContainerPanel.Controls.Add(contentPanel);
 
                 if(adding)
@@ -239,6 +245,7 @@ namespace clientapp
 
         private void ImagePanel_Paint(object sender, PaintEventArgs e)
         {
+            
             this.ImagePanel.Size = new Size(680, 490);
             this.ImagePanel.Location = new Point(300, 70);
             this.ImagePanel.BackColor = colorPanel;
