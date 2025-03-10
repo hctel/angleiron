@@ -21,10 +21,11 @@ namespace backend
             this.materialDB = materialDB;
             this.stock_calculation = stock_calculation;
         }
-        public void management(int idorder)
+        public void management()
         {
+            int idorder= order_DB.getLastId();
             try
-            {
+            {   
                 using (MySqlDataReader resultOrder = order_DB.getIdOrder(idorder))
                 {
                     if (resultOrder.HasRows && resultOrder.Read())
