@@ -32,7 +32,7 @@ Example response: ORDERDETAIL&orderID&elemnt1/quantity1/inStock1/Description1(Na
 Use to order new stock
 Request must give the component ID and the quantity 
 ### STOCKDEDELIVERED
-Use to let known the database when knew component arrives
+Use to let known the database when new component arrives
 Request must give the component ID and the quantity
 ### STOCKTOORDER
 Use to let known the marchand what he must order
