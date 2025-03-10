@@ -117,7 +117,21 @@ namespace backend
                             row_result.Add(row.GetInt32("idorder") + "");;
                             row_result.Add(row.GetString("Status"));
                             row_result.Add(row.GetString("date"));
-                            row_result.Add(row.GetString("Already_paid"));
+                            int id_order = row.GetInt32("idorder");
+                            List<List<string>> detailorder = detail_order(id_order);
+                            string res = "0";
+                            foreach (List<string> detail in detailorder)
+                            {
+                                if (detail[2].Equals("1"))
+                                {
+                                    res = "1";
+                                }
+                                else
+                                {
+                                    res = "0";
+                                }
+                            }
+                            row_result.Add(res);
                             result.Add(row_result);
                         }
                     }
