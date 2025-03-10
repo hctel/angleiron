@@ -114,6 +114,9 @@ namespace merchandapp
                     }
                     listPanel[1].BringToFront();
                 }
+                }
+                }
+                }
             }
         }
 

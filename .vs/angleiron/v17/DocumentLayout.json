@@ -1,14 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\",
+  "WorkspaceRootPath": "C:\\Users\\Hugo\\source\\repos\\angleiron\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|c:\\users\\raphael\\documents\\github\\angleiron\\clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|solutionrelative:clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\order_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\order_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|solutionrelative:clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|C:\\Users\\Hugo\\source\\repos\\angleiron\\clientapp\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|solutionrelative:clientapp\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\orderdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\orderdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0ED327E-25D0-48CF-AB05-2F6B2BE13F22}|merchandapp\\merchandapp.csproj|C:\\Users\\Hugo\\source\\repos\\angleiron\\merchandapp\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0ED327E-25D0-48CF-AB05-2F6B2BE13F22}|merchandapp\\merchandapp.csproj|solutionrelative:merchandapp\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\userdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\userdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\userauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\userauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +46,140 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs",
-              "RelativeDocumentMoniker": "clientapp\\Form1.cs",
-              "ToolTip": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs",
-              "RelativeToolTip": "clientapp\\Form1.cs",
-              "ViewState": "AgIAAOUAAAAAAAAAAAAmwJEAAABRAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Network.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\clientapp\\Network.cs",
+              "RelativeDocumentMoniker": "clientapp\\Network.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\clientapp\\Network.cs",
+              "RelativeToolTip": "clientapp\\Network.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwEMAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T07:56:11.873Z",
+              "WhenOpened": "2025-02-18T09:30:20.248Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Network.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Network.cs",
+              "RelativeDocumentMoniker": "serverapp\\Network.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Network.cs",
+              "RelativeToolTip": "serverapp\\Network.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAkwDUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T10:06:49.231Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs",
-              "RelativeDocumentMoniker": "clientapp\\Form1.cs",
-              "ToolTip": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs [Design]",
-              "RelativeToolTip": "clientapp\\Form1.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "OrderDB.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\OrderDB.cs",
+              "RelativeDocumentMoniker": "serverapp\\OrderDB.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\OrderDB.cs",
+              "RelativeToolTip": "serverapp\\OrderDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T07:55:40.904Z"
+              "WhenOpened": "2025-02-25T09:57:24.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Network.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\merchandapp\\Network.cs",
+              "RelativeDocumentMoniker": "merchandapp\\Network.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\merchandapp\\Network.cs",
+              "RelativeToolTip": "merchandapp\\Network.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAowFYAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T08:43:26.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Order_management.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Order_management.cs",
+              "RelativeDocumentMoniker": "serverapp\\Order_management.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Order_management.cs",
+              "RelativeToolTip": "serverapp\\Order_management.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAIwJMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T08:29:54.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserDB.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\UserDB.cs",
+              "RelativeDocumentMoniker": "serverapp\\UserDB.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\UserDB.cs",
+              "RelativeToolTip": "serverapp\\UserDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T07:41:25.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Program.cs",
+              "RelativeDocumentMoniker": "serverapp\\Program.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Program.cs",
+              "RelativeToolTip": "serverapp\\Program.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAEwB4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T08:04:48.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Session.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Session.cs",
+              "RelativeDocumentMoniker": "serverapp\\Session.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Session.cs",
+              "RelativeToolTip": "serverapp\\Session.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T09:40:14.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserAuth.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\UserAuth.cs",
+              "RelativeDocumentMoniker": "serverapp\\UserAuth.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\UserAuth.cs",
+              "RelativeToolTip": "serverapp\\UserAuth.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T08:59:22.891Z"
             }
           ]
         }

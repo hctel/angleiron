@@ -89,9 +89,8 @@ namespace merchandapp
                     OrderSummary summary = new OrderSummary(order[0], order[1], order[2], order[3], order[4]);
                     summaries.Add(summary);
                 }
-                return summaries;
             }
-            return null;
+            return summaries;
         }
 
         public Order getOrderDetails(int orderID)
