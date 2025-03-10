@@ -1,39 +1,51 @@
 # Frontend-backend protocol documentation
 ## Abstract
-Communication between the frontends and the backend are made through TCP. Standard port is 6210.
-Requests always contain a command (first word), arguments are separaded with an '&'.
-If an argument is a list, elements are separated with ';'. If this list contains more than one element, these sub-elements are separated with a '/'.
+Communication between the frontends and the backend are made through TCP. Standard port is 58913.<br>  
+Requests always contain a command (first word), arguments are separaded with an '&'.<br>  
+If an argument is a list, elements are separated with ';'. If a list element is also a list, it's elements are separated with '/'.<br>
+Example: 
+elem1;elem2;subElem3.1/subElem3.2/subElem3.3;elem4 represents:<br>  
+List<br>  
+  |<br>  
+  |-elem1<br>  
+  |-elem2<br>  
+  |-elem3<br>  
+  |--subElem3.1<br>  
+  |--subElem3.2<br>  
+  |--subElem3.3<br>  
+  |-elem4<br> 
 ## Client frontend requests
 ### SHOWTYPES
-Use to list the different types (models) of products.
-Example:
-  F-B: SHOWTYPES
-  B-F (Response): TYPELIST&modelname1/price1;modelname2/price2;modelname3/price3; (etc.) 
+Use to list the different types (models) of products.<br>  
+Example:<br>  
+  F-B: SHOWTYPES<br>  
+  B-F (Response): TYPELIST&modelname1/price1;modelname2/price2;modelname3/price3; (etc.) <br>
 ### AUTH
-Use to authenticate an user
+Use to authenticate an user<br>  
 Example:
-  F-B: AUTH&email&password
-  B-F (Response):
-  If sucessful: AUTHOK&sessionID&clientID&remoteIP
-  If incorrect password: AUTHFAIL&NOPASSWD
-  If unknown user: AUTHFAIL&NOUSER
+  F-B: AUTH&email&password<br>  
+  B-F (Response):<br>  
+  If sucessful: AUTHOK&sessionID&clientID&remoteIP<br>  
+  If incorrect password: AUTHFAIL&NOPASSWD<br>  
+  If unknown user: AUTHFAIL&NOUSER<br>  
 ### NEWORDER
-Use to make an new order 
-Example request : NEWORDER&IDorder&IDcategory&IDclient&Statuspayed&Status&price
-## Merchand frontend requests
+Use to make an new order <br>  
+Example request : NEWORDER&IDcategory&IDclient&Statuspayed&Status&price<br>  
+## Merchand frontend requests<br>  
 ### SHOWORDERS
-Use to list all orders
-Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/orderStock1;orderID2/orderName2/orderStatus2/orderDate2/orderStock2; (etc.)
+Use to list all orders<br>  
+Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/orderStock1;orderID2/orderName2/orderStatus2/orderDate2/orderStock2; (etc.)<br>  
 ### DETAILORDER
-Use to show the details of an order
-Example request: DETAILORDER&orderID
-Example response: ORDERDETAIL&orderID&elemnt1/quantity1/inStock1/Description1(Name);elemnt2/quantity2/inStock/Description2(Name);elemnt3/quantity3/InStock3/Description3(Name); (etc.)
+Use to show the details of an order<br>  
+Example request: DETAILORDER&orderID<br>  
+Example response: ORDERDETAIL&orderID&elemnt1/quantity1/inStock1/Description1(Name);elemnt2/quantity2/inStock/Description2(Name);elemnt3/quantity3/InStock3/Description3(Name); (etc.)<br>  
+  If order id is unknown, NOORDER will be sent.<br>  
 ### ORDERSTOCK
-Use to order new stock
-Request must give the component ID and the quantity 
+Use to order new stock<br>  
+Request must give the component ID and the quantity <br>  
 ### STOCKDEDELIVERED
-Use to let known the database when knew component arrives
-Request must give the component ID and the quantity
+Use to let known the database when new component arrives<br>  
+Request must give the component ID and the quantity<br>  
 ### STOCKTOORDER
-Use to let known the marchand what he must order
-Request must give the component ID he wants to check
+Use to let known the marchand what he must order<br>  
+Request must give the component ID he wants to check<br>  
