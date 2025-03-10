@@ -75,6 +75,46 @@ string networkReceiveFunction(string[] data, string ipAddress)
      *  Sucessful: AUTHOK&sessionID&clientID&remoteIP
      *  Incorrect password: AUTHFAIL&NOPASSWD
      *  User not fount: AUTHFAIL&NOUSER
+     *
+     * OrderStock :
+     * Command: ORDERSTOCK
+     * Structure: ORDERSTOCK&componentID&quantity
+     *
+     *response: 
+     *  Sucessful: stock updated
+     *  Syntax error: STXERR
+     * 
+     * Stock delivered:
+     * Command: STOCKDEDELIVERED
+     * Structure: STOCKDEDELIVERED&componentID&quantity
+     *
+     *response:
+     *  Sucessful: stock updated
+     *  Syntax error: STXERR
+     *
+     * Stock to order:
+     * Command: STOCKTOORDER
+     * Structure: STOCKTOORDER&componentID
+     *
+     *response:
+     *  Sucessful: TOORDER&quantity
+     *  Syntax error: STXERR
+     *
+     * New order:
+     * Command: NEWORDER
+     * Structure: NEWORDER&categoryID&clientID&already_paid&status&price
+     *
+     *response:
+     *  Sucessful: Order added
+     *  Syntax error: STXERR
+     *
+     * Update status:
+     * Command: UPDATESTATUS
+     * Structure: UPDATESTATUS&orderID&status
+     *
+     *response:
+     *  Sucessful: Status updated
+     *  Syntax error: STXERR
      */
 
     if (data[0].Equals("SHOWTYPES"))
@@ -86,7 +126,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
     }
 
     else if (data[0].Equals("SHOWORDERS"))
-    {
+    {   
         List<List<string>> orders = order_manager.get_orders();
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
@@ -160,7 +200,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
     else if (data[0].Equals("STOCKTOORDER")){
         int componentId = Int32.Parse(data[1]);
         stockCalculation.check(componentId);
-        return "&TOORDER&"+stockCalculation.get_to_order();
+        return "TOORDER&"+stockCalculation.get_to_order();
     }
     else if (data[0].Equals("NEWORDER")){
         if(data.Length != 6) return "STXERR";
