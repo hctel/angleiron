@@ -5,7 +5,7 @@ Requests always contain a command (first word), arguments are separaded with an 
 If an argument is a list, elements are separated with ';'. If a list element is also a list, it's elements are separated with '/'.<br>
 Example: 
 elem1;elem2;subElem3.1/subElem3.2/subElem3.3;elem4 represents:<br>  
-```  List<br>  
+`  List<br>  
   |<br>  
   |-elem1<br>  
   |-elem2<br>  
@@ -13,13 +13,13 @@ elem1;elem2;subElem3.1/subElem3.2/subElem3.3;elem4 represents:<br>
   |--subElem3.1<br>  
   |--subElem3.2<br>  
   |--subElem3.3<br>  
-  |-elem4<br>  ```
+  |-elem4<br>  `
 ## Client frontend requests
 ### SHOWTYPES
 Use to list the different types (models) of products.<br>  
 Example:<br>  
-  F-B: SHOWTYPES<br>  
-  B-F (Response): TYPELIST&modelname1/price1;modelname2/price2;modelname3/price3; (etc.) <br>  
+  `F-B: SHOWTYPES<br>  
+  B-F (Response): TYPELIST&modelname1/price1;modelname2/price2;modelname3/price3; (etc.) <br>`
 ### AUTH
 Use to authenticate an user<br>  
 Example:
