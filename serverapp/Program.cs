@@ -100,6 +100,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
     else if (data[0].Equals("DETAILORDER"))
     {
         List<List<string>> orderDetails = order_manager.detail_order(Int32.Parse(data[1]));
+        if (orderDetails.Count == 0) return "NOORDER";
         string response = "ORDERDETAIL&" + data[1] + "&";
         foreach (List<string> detail in orderDetails)
         {
@@ -165,14 +166,13 @@ string networkReceiveFunction(string[] data, string ipAddress)
         if(data.Length != 6) return "STXERR";
         else
         {
-            int idorder = Int32.Parse(data[1]);
-            int idcategory = Int32.Parse(data[2]);
-            int idclient = Int32.Parse(data[3]);
-            string already_paid = data[4];
-            string status = data[5];
-            double price = Double.Parse(data[6]);
+            int idcategory = Int32.Parse(data[1]);
+            int idclient = Int32.Parse(data[2]);
+            string already_paid = data[3];
+            string status = data[4];
+            double price = Double.Parse(data[5]);
             order_manager.add_order(idcategory, idclient, already_paid, status, price);
-            order_manager.management(idorder);
+            order_manager.management();
             return "Order added";
         }
     }
