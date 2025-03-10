@@ -37,3 +37,7 @@ Request must give the component ID and the quantity
 ### STOCKTOORDER
 Use to let known the marchand what he must order
 Request must give the component ID he wants to check
+### Update status:
+Command: UPDATESTATUS
+Structure: UPDATESTATUS&orderID&status
+reponse : status update
