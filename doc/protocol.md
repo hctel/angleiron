@@ -2,7 +2,18 @@
 ## Abstract
 Communication between the frontends and the backend are made through TCP. Standard port is 58913.<br>  
 Requests always contain a command (first word), arguments are separaded with an '&'.<br>  
-If an argument is a list, elements are separated with ';'. If this list contains more than one element, these sub-elements are separated with a '/'.<br>  
+If an argument is a list, elements are separated with ';'. If a list element is also a list, it's elements are separated with '/'.<br>
+Example: 
+elem1;elem2;subElem3.1/subElem3.2/subElem3.3;elem4 represents:<br>  
+```  List<br>  
+  |<br>  
+  |-elem1<br>  
+  |-elem2<br>  
+  |-elem3<br>  
+  |--subElem3.1<br>  
+  |--subElem3.2<br>  
+  |--subElem3.3<br>  
+  |-elem4<br>  ```
 ## Client frontend requests
 ### SHOWTYPES
 Use to list the different types (models) of products.<br>  
