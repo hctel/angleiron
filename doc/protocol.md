@@ -28,6 +28,7 @@ Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/orderSto
 Use to show the details of an order<br>  
 Example request: DETAILORDER&orderID<br>  
 Example response: ORDERDETAIL&orderID&elemnt1/quantity1/inStock1/Description1(Name);elemnt2/quantity2/inStock/Description2(Name);elemnt3/quantity3/InStock3/Description3(Name); (etc.)<br>  
+  If order id is unknown, NOORDER will be sent.<br>  
 ### ORDERSTOCK
 Use to order new stock<br>  
 Request must give the component ID and the quantity <br>  
