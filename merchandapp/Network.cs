@@ -53,7 +53,7 @@ namespace merchandapp
             this.orderID = Int32.Parse(orderID);
             foreach (string[] part in items)
             {
-                Debug.WriteLine(part);
+                Debug.WriteLine(part[0]);
                 parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
                 
             }
@@ -98,7 +98,7 @@ namespace merchandapp
             List<string> list = get($"DETAILORDER&{orderID}");
             if (list[0].Equals("ORDERDETAIL"))
             {
-                string[] items = list[1].Split(';');
+                string[] items = list[2].Split(';');
                 string[][] orderItems = new string[items.Length][];
                 for (int i = 0; i < items.Length; i++)
                 {
