@@ -165,6 +165,7 @@ namespace clientapp
         {
             adding = true;            
             Debug.WriteLine("Button clicked");
+            Console.Beep();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -248,7 +249,29 @@ namespace clientapp
             
             this.ImagePanel.Size = new Size(680, 490);
             this.ImagePanel.Location = new Point(300, 70);
-            this.ImagePanel.BackColor = colorPanel;
+            this.ImagePanel.BackColor = Color.FromArgb(255, 255, 255);
+
+
+            // Charge the image
+            Bitmap image = new Bitmap("image1.png");
+
+            // Change the image background color
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color pixelColor = image.GetPixel(x, y);
+                    if (pixelColor.A > 0) // Si le pixel n'est pas transparent
+                    {
+                        image.SetPixel(x, y, colorPanel);
+                    }
+                }
+            }
+
+            // Print the image on the panel
+            e.Graphics.DrawImage(image, new Point(200, 200));
+
+
         }
     }
 }
