@@ -125,6 +125,9 @@ namespace merchandapp
         private void backButton_Click(object sender, EventArgs e)
         {
             index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
             listPanel[index].BringToFront();
             orderPartsSource.Clear();
             //((Button)sender).Text = index.ToString();
