@@ -131,37 +131,42 @@ namespace backend
             List<List<string>> result = new List<List<string>>();
             using (MySqlDataReader row = order_DB.getIdOrder(idorder))
             {
-                row.Read();
-                int id_category = row.GetInt32("id_category");
-                using (MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category))
+                if(row.Read())
                 {
-                    while (resultcomponent_type.Read())
+                    int id_category = row.GetInt32("id_category");
+                    using (MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category))
                     {
-                        List<string> row_result = new List<string>();
-                        int id_component = resultcomponent_type.GetInt32("id_component");
-                        row_result.Add(id_component + "");
-                        using (MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component))
+                        while (resultcomponent_type.Read())
                         {
-                            resultStock.Read();
-                            row_result.Add(resultStock.GetInt32("Quantity_client") + "");
-                            int not_in_stock = stock_calculation.get_not_in_stock();
-                            if (not_in_stock > 0)
+                            List<string> row_result = new List<string>();
+                            int id_component = resultcomponent_type.GetInt32("id_component");
+                            row_result.Add(id_component + "");
+                            using (MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component))
                             {
-                                row_result.Add("1");
+                                resultStock.Read();
+                                row_result.Add(resultStock.GetInt32("Quantity_client") + "");
+                                int not_in_stock = stock_calculation.get_not_in_stock();
+                                if (not_in_stock > 0)
+                                {
+                                    row_result.Add("1");
+                                }
+                                else
+                                {
+                                    row_result.Add("0");
+                                }
                             }
-                            else
+                            using (MySqlDataReader material = materialDB.getIdcomponent(id_component))
                             {
-                                row_result.Add("0");
+                                if (material.Read())
+                                {
+                                    row_result.Add(material.GetString("Description"));
+                                    result.Add(row_result);
+                                }
                             }
-                        }
-                        using (MySqlDataReader material = materialDB.getIdcomponent(id_component))
-                        {
-                            material.Read();
-                            row_result.Add(material.GetString("Description"));
-                            result.Add(row_result);
                         }
                     }
                 }
+                
             }
 
 

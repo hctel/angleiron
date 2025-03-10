@@ -100,6 +100,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
     else if (data[0].Equals("DETAILORDER"))
     {
         List<List<string>> orderDetails = order_manager.detail_order(Int32.Parse(data[1]));
+        if (orderDetails.Count == 0) return "NOORDER";
         string response = "ORDERDETAIL&" + data[1] + "&";
         foreach (List<string> detail in orderDetails)
         {
