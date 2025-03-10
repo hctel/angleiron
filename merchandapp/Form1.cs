@@ -140,7 +140,7 @@ namespace merchandapp
 
         private void completeButton_Click(object sender, EventArgs e)
         {
-
+            network.updateStatus(1);
         }
     }
 }

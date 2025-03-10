@@ -108,6 +108,11 @@ namespace merchandapp
             }
             return null;
         }
+        public string updateStatus(int orderID)
+        {
+            get("UPDATESTATUS" + "&" + orderID.ToString() + "&" + "PAID");
+            return "fghjk";
+        }
         private List<string> get(string request)
         {
             Debug.WriteLine($"Sent to server: {request}");
