@@ -17,7 +17,7 @@ namespace merchandapp
     {
         const int VIEW_BUTTON_COLUMN_INDEX = 5;
         List<Panel> listPanel = new List<Panel>();
-        int index = 1;
+        int index = 0;
         Network network;
 
         List<OrderSummary> orderSummaries = new List<OrderSummary>();
@@ -55,8 +55,10 @@ namespace merchandapp
             foreach (OrderSummary order in network.getOrders())
             { orderSummariesSource.Add(order); }
 
-            //orderSummariesSource.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
-            //orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
+            /*PartListDataGridView.ReadOnly = false;
+            for (int i = 0; i < PartListDataGridView.ColumnCount; i++)
+            { PartListDataGridView.Columns[i].ReadOnly = true; }
+            PartListDataGridView.Columns[4].ReadOnly = true;*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -102,13 +104,16 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                foreach (OrderPart item in network.getOrderDetails(e.RowIndex+1).parts)
+                Order order = network.getOrderDetails(e.RowIndex + 1);
+                Debug.WriteLine(order);
+                if (order != null)
                 {
-                    orderPartsSource.Add(item);
+                    foreach (OrderPart item in order.parts)
+                    {
+                        orderPartsSource.Add(item);
+                    }
+                    listPanel[1].BringToFront();
                 }
-                listPanel[1].BringToFront();
-                Debug.WriteLine(network.getOrderDetails(e.RowIndex+1));
-                
             }
         }
 
@@ -120,6 +125,9 @@ namespace merchandapp
         private void backButton_Click(object sender, EventArgs e)
         {
             index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
             listPanel[index].BringToFront();
             orderPartsSource.Clear();
             //((Button)sender).Text = index.ToString();
@@ -132,7 +140,7 @@ namespace merchandapp
 
         private void completeButton_Click(object sender, EventArgs e)
         {
-
+            network.updateStatus(1);
         }
     }
 }
