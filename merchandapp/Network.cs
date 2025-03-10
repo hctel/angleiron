@@ -53,7 +53,7 @@ namespace merchandapp
             this.orderID = Int32.Parse(orderID);
             foreach (string[] part in items)
             {
-                Debug.WriteLine(part[0]);
+                //Debug.WriteLine(part[0]);
                 parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
                 
             }
@@ -110,6 +110,7 @@ namespace merchandapp
         }
         private List<string> get(string request)
         {
+            Debug.WriteLine($"Sent to server: {request}");
             client = new TcpClient();
             client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();
