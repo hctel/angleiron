@@ -81,7 +81,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
      * Structure: ORDERSTOCK&componentID&quantity
      *
      *response: 
-     *  Sucessful: stock updated
+     *  Sucessful: OK
      *  Syntax error: STXERR
      * 
      * Stock delivered:
@@ -89,7 +89,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
      * Structure: STOCKDEDELIVERED&componentID&quantity
      *
      *response:
-     *  Sucessful: stock updated
+     *  Sucessful: OK
      *  Syntax error: STXERR
      *
      * Stock to order:
@@ -105,7 +105,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
      * Structure: NEWORDER&categoryID&clientID&already_paid&status&price
      *
      *response:
-     *  Sucessful: Order added
+     *  Sucessful: OK
      *  Syntax error: STXERR
      *
      * Update status:
@@ -113,7 +113,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
      * Structure: UPDATESTATUS&orderID&status
      *
      *response:
-     *  Sucessful: Status updated
+     *  Sucessful: OK
      *  Syntax error: STXERR
      */
 
@@ -156,7 +156,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int orderId = Int32.Parse(data[1]);
             order_manager.change_satus(data[2], orderId);
-            return "Status updated";
+            return "OK";
         }
     }
 
@@ -167,7 +167,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int orderId = Int32.Parse(data[1]);
             order_manager.delete_row(orderId);
-            return "Order deleted";
+            return "OK";
         }
     }
 
@@ -181,7 +181,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
                 result.Read();
                 int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
                 stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-                return "stock updated";
+                return "OK";
             }
         }
     }
@@ -194,7 +194,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
                 int new_quantity = result.GetInt32("Quantity") + quantity;
                 stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
                 stockCalculation.updateInt("Quantity", new_quantity, componentId);
-                return "stock updated";
+                return "OK";
             }
     }
     else if (data[0].Equals("STOCKTOORDER")){
@@ -213,7 +213,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
             double price = Double.Parse(data[5]);
             order_manager.add_order(idcategory, idclient, already_paid, status, price);
             order_manager.management();
-            return "Order added";
+            return "OK";
         }
     }
 
