@@ -23,7 +23,7 @@ Example request : NEWORDER&IDcategory&IDclient&Statuspayed&Status&price<br>
 ## Merchand frontend requests<br>  
 ### SHOWORDERS
 Use to list all orders<br>  
-Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/orderPaid1;orderID2/orderName2/orderStatus2/orderDate2/orderPaid2; (etc.)<br>  
+Example response: ORDERLIST&orderID1/orderName1/orderStatus1/orderDate1/Instock1;orderID2/orderName2/orderStatus2/orderDate2/Instock2; (etc.)<br>  
 ### DETAILORDER
 Use to show the details of an order<br>  
 Example request: DETAILORDER&orderID<br>  
