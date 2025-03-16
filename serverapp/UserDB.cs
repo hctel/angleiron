@@ -16,7 +16,7 @@ namespace backend
         }
         public MySqlDataReader getUserFromId(int id)
         {
-            return read(String.Format("SELECT * FROM client WHERE id_client={0};", id));
+            return read(String.Format("SELECT * FROM client WHERE idClient={0};", id));
         }
 
         public void addUser(string name, string address, string email, string password)

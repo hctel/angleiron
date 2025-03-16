@@ -1,8 +1,11 @@
 using MySql.Data.MySqlClient;
 using Mysqlx.Resultset;
 using MySqlX.XDevAPI.Common;
+using MySqlX.XDevAPI.Relational;
 using Org.BouncyCastle.Asn1.Misc;
 using System;
+using System.Data;
+using System.Diagnostics;
 
 namespace backend
 {
@@ -96,6 +99,7 @@ namespace backend
         {
 
             List<List<string>> result = new List<List<string>>();
+            List<int> ids = new List<int>();
 
             try
             {
@@ -116,22 +120,9 @@ namespace backend
                             }
                             row_result.Add(row.GetInt32("idorder") + "");;
                             row_result.Add(row.GetString("Status"));
-                            row_result.Add(row.GetString("date"));
+                            row_result.Add(row.GetDateTime("date").ToString());
                             int id_order = row.GetInt32("idorder");
-                            List<List<string>> detailorder = detail_order(id_order);
-                            string res = "0";
-                            foreach (List<string> detail in detailorder)
-                            {
-                                if (detail[2].Equals("1"))
-                                {
-                                    res = "1";
-                                }
-                                else
-                                {
-                                    res = "0";
-                                }
-                            }
-                            row_result.Add(res);
+                            ids.Add(id_order);
                             result.Add(row_result);
                         }
                     }
@@ -140,10 +131,30 @@ namespace backend
                         Console.WriteLine("Aucune commande trouvée.");
                     }
                 }
+                for(int i = 0; i < ids.Count; i++)
+                {
+                    int id_order = ids[i];
+                    List<List<string>> detailorder = detail_order(id_order);
+                    string res = "0";
+                    foreach (List<string> detail in detailorder)
+                    {
+                        if (detail[2].Equals("1"))
+                        {
+                            res = "1";
+                        }
+                        else
+                        {
+                            res = "0";
+                        }
+                    }
+                    result[i].Add(res);
+                    
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erreur lors de la récupération des commandes : {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
             }
 
             return result;
@@ -189,8 +200,7 @@ namespace backend
                             }
                         }
                     }
-                }
-                
+                } 
             }
 
 

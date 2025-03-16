@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using backend;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Diagnostics.Metrics;
 
@@ -29,8 +30,6 @@ Stock_calculation stockCalculation = new Stock_calculation(stockDB);
 Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation, dbcon, userAuthenticator);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
-Console.WriteLine("Press any key to enter");
-Console.ReadKey();
 Console.WriteLine($"Server started on port {port}");
 Console.WriteLine("Press Q to stop the server");
 
@@ -131,7 +130,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
         {
-            response += order[1] + "/" + order[0] + "/" + order[2] + "/" + order[3] + "/" + order[4] +"/"+order[5]+";";
+            response += order[1] + "/" + order[0] + "/" + order[2] + "/" + order[3] + "/"+order[4] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }

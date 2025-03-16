@@ -45,6 +45,7 @@ namespace backend
 					Console.Beep();
 
 					string msgOut = rcvFunc(data, remoteIpEndPoint.Address.ToString());
+					Console.WriteLine($"Reponse: {msgOut}");
                     var bytesOut = Encoding.UTF8.GetBytes(msgOut);
 					try
 					{
