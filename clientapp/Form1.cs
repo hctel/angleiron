@@ -24,6 +24,7 @@ namespace clientapp
         private Bitmap image; // Variable de classe pour le Bitmap
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
 
+        private Network network;
 
 
         public Window()
@@ -39,6 +40,11 @@ namespace clientapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            network = new Network("172.17.33.231", 80);
+            foreach(Kit k in network.getItems()) {
+                Debug.WriteLine(k);
+            }
+
             Articles.Add(1);
             Articles.Add(2);
             Articles.Add(3);
@@ -115,10 +121,11 @@ namespace clientapp
 
 
 
-            foreach (int i in Articles)
+            foreach (Kit k in network.getItems())
             {
-                int a = i - 1;
-                Debug.WriteLine(i);
+                int id = k.id;
+                int a = id - 1;
+                Debug.WriteLine(id);
 
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
@@ -137,12 +144,12 @@ namespace clientapp
                 addButton.BackColor = Color.FromArgb(0, 0, 0);
                 addButton.ForeColor = Color.White;
                 contentPanel.Controls.Add(addButton);
-                addButton.Click += (s, ev) => SelectImage(i + 1); // Passer l'index de l'article
+                addButton.Click += (s, ev) => SelectImage(id + 1); // Passer l'index de l'article
 
 
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
-                infoLabel.Text = "69 x 69 cm " + i;
+                infoLabel.Text = k.dimension + " " + id;
                 contentPanel.Controls.Add(infoLabel);
                 infoLabel.Location = new Point(15, contentPanel.Height - 45);
                 infoLabel.Font = new Font("Sans Serif", 16);
@@ -157,7 +164,7 @@ namespace clientapp
 
                 if(adding)
                 {
-                    Add(i);
+                    Add(id);
                 }
             }
 
