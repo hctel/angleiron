@@ -248,6 +248,7 @@ namespace clientapp
             
             this.ImagePanel.Size = new Size(680, 490);
             this.ImagePanel.Location = new Point(300, 70);
+<<<<<<< HEAD
             this.ImagePanel.BackColor = Color.FromArgb(255,255,255);
 
             // Charger l'image en tant que Bitmap
@@ -269,6 +270,9 @@ namespace clientapp
             // Dessiner l'image sur le panneau
             e.Graphics.DrawImage(image, new Point(200, 200));
 
+=======
+            this.ImagePanel.BackColor = colorPanel;
+>>>>>>> parent of cfbc50c (for nomena)
         }
     }
 }
