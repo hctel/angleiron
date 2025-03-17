@@ -17,6 +17,16 @@ Example:
   If sucessful: AUTHOK&sessionID&clientID&remoteIP<br>  
   If incorrect password: AUTHFAIL&NOPASSWD<br>  
   If unknown user: AUTHFAIL&NOUSER<br>  
+### NEWUSER 
+Use to add a new user<br>
+Example : <br>
+- F-B: NEWUSER&name&adress&email&password
+- B-F: if succesfull "OK"
+### DELUSER 
+Use to delete a user<br>
+Example : <br>
+- F-B: DELUSER&idclient
+- B-F: if succesful "OK"
 ### NEWORDER
 Use to make an new order <br>  
 Example request : NEWORDER&IDcategory&IDclient&Statuspayed&Status&price<br>  
