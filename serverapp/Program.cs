@@ -28,6 +28,7 @@ KIT_to_component kitToComponentDB = new KIT_to_component(hostname, dataName, use
 UserAuth userAuthenticator = new UserAuth( dbcon);
 Stock_calculation stockCalculation = new Stock_calculation(stockDB);
 Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation, dbcon, userAuthenticator);
+Kit_manager kitM = new Kit_manager(kitDB);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine($"Server started on port {port}");
@@ -118,10 +119,13 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     if (data[0].Equals("SHOWTYPES"))
     {
-        /*
-         * -nom
-         * -prix*/
-        return "TYPELIST&small dumb model/7.00;medium dumb model/15.00;big model/69.00";
+        List<Kit> kits = kitM.getKits();
+        string response = "TYPELIST&";
+        foreach (Kit kit in kits)
+        {
+            response += kit.ToString() + ";";
+        }
+        return response.Remove(response.Length - 1, 1); ;
     }
 
     else if (data[0].Equals("SHOWORDERS"))
@@ -241,6 +245,33 @@ string networkReceiveFunction(string[] data, string ipAddress)
                 return "AUTHFAIL&NOPASSWD";
             }
         }
+    }
+    else if (data[0].Equals("NEWUSER"))
+    {
+        if(data.Length != 5) 
+        {
+            return "STXERR";
+        }
+        else
+        {
+            string name = data[1];
+            string address = data[2];
+            string email = data[3];
+            string password = data[4];
+            userAuthenticator.createUser(name,address ,email, password);
+            return "OK";
+        }
+    }
+    else if(data[0].Equals("DELUSER"))
+    {
+        if(data.Length != 2) return "STXERR";
+        else
+        {
+            int id = Int32.Parse(data[1]);
+            dbcon.deleteuser(id);
+            return "OK";
+        }
+    
     }
     return "NOFUNC";
 }

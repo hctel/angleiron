@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
+using System.ComponentModel;
 
 namespace merchandapp
 {
@@ -119,7 +120,9 @@ namespace merchandapp
                 for (int i = 0; i < items.Length; i++)
                 {
                     orderItems[i] = items[i].Split('/');
+                    orderItems[i][2] = Int32.Parse(orderItems[i][2]) >= Int32.Parse(orderItems[i][1]) ? "1" : "0"; // quantity in stock
                 }
+
                 return new Order(orderID.ToString(), orderItems);
             }
             return null;
