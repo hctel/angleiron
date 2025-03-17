@@ -121,7 +121,7 @@ namespace clientapp
 
                 Button addButton = new Button();
                 addButton.Size = new Size(80, 30);
-                addButton.Text = "Add";
+                addButton.Text = "Select";
                 addButton.TextAlign = ContentAlignment.MiddleCenter;
                 addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
                 addButton.FlatStyle = FlatStyle.Flat;
@@ -140,7 +140,7 @@ namespace clientapp
                 infoLabel.Font = new Font("Sans Serif", 16);
 
                 PictureBox pictureBox = new PictureBox();
-                pictureBox.Image = Image.FromFile("../Image/test.png"); // Charge l'image
+                pictureBox.Image = Image.FromFile("./Images/image1.png"); // Charge l'image
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage; // Ajuste l'image à la taille du PictureBox
                 pictureBox.Size = new Size(300, 50); // Définir la taille
                 pictureBox.Location = new Point(490, 335); // Définir la position
@@ -248,11 +248,11 @@ namespace clientapp
             
             this.ImagePanel.Size = new Size(680, 490);
             this.ImagePanel.Location = new Point(300, 70);
-<<<<<<< HEAD
+ 
             this.ImagePanel.BackColor = Color.FromArgb(255,255,255);
 
             // Charger l'image en tant que Bitmap
-            Bitmap image = new Bitmap("../Image/image1.png");
+            Bitmap image = new Bitmap("./Images/image1.png");
 
             // Changer la couleur de l'image
             for (int y = 0; y < image.Height; y++)
@@ -269,10 +269,6 @@ namespace clientapp
 
             // Dessiner l'image sur le panneau
             e.Graphics.DrawImage(image, new Point(200, 200));
-
-=======
-            this.ImagePanel.BackColor = colorPanel;
->>>>>>> parent of cfbc50c (for nomena)
         }
     }
 }
