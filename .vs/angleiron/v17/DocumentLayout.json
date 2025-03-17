@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\",
+  "WorkspaceRootPath": "C:\\Users\\Hugo\\source\\repos\\angleiron\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|c:\\users\\raphael\\documents\\github\\angleiron\\clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|solutionrelative:clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F77D262F-E3CD-468B-B16E-4F70739968FF}|clientapp\\clientapp.csproj|solutionrelative:clientapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|c:\\users\\hugo\\source\\repos\\angleiron\\serverapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}|serverapp\\serverapp.csproj|solutionrelative:serverapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +14,40 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs",
-              "RelativeDocumentMoniker": "clientapp\\Form1.cs",
-              "ToolTip": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs",
-              "RelativeToolTip": "clientapp\\Form1.cs",
-              "ViewState": "AgIAAPsAAAAAAAAAAAAmwA0BAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T07:56:11.873Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs",
-              "RelativeDocumentMoniker": "clientapp\\Form1.cs",
-              "ToolTip": "C:\\Users\\Raphael\\Documents\\GitHub\\angleiron\\clientapp\\Form1.cs [Design]",
-              "RelativeToolTip": "clientapp\\Form1.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Program.cs",
+              "RelativeDocumentMoniker": "serverapp\\Program.cs",
+              "ToolTip": "C:\\Users\\Hugo\\source\\repos\\angleiron\\serverapp\\Program.cs",
+              "RelativeToolTip": "serverapp\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T07:55:40.904Z"
+              "WhenOpened": "2025-02-04T09:43:30.064Z",
+              "EditorCaption": ""
             }
           ]
         }
