@@ -2,6 +2,7 @@
 /clientapp/obj
 /merchandapp/obj
 /serverapp/obj
+/ClientAppRemake/obj
 .vs/
 /.vs/angleiron/v17
 angleiron.sln
