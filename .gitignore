@@ -15,3 +15,5 @@ clientapp/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
 clientapp/bin/Debug/System.Threading.Tasks.Extensions.dll
 clientapp/bin/Debug/System.Threading.Tasks.Extensions.xml
 clientapp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
+/ClientAppRemake/bin/Debug
+/ClientAppRemake/bin/Release

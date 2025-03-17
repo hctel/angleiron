@@ -242,5 +242,32 @@ string networkReceiveFunction(string[] data, string ipAddress)
             }
         }
     }
+    else if (data[0].Equals("NEWUSER"))
+    {
+        if(data.Length != 5) 
+        {
+            return "STXERR";
+        }
+        else
+        {
+            string name = data[1];
+            string address = data[2];
+            string email = data[3];
+            string password = data[4];
+            userAuthenticator.createUser(name,address ,email, password);
+            return "OK";
+        }
+    }
+    else if(data[0].Equals("DELUSER"))
+    {
+        if(data.Length != 2) return "STXERR";
+        else
+        {
+            int id = Int32.Parse(data[1]);
+            dbcon.deleteuser(id);
+            return "OK";
+        }
+    
+    }
     return "NOFUNC";
 }

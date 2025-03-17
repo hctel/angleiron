@@ -8,7 +8,7 @@ If an argument is a list, elements are separated with ';'. If this list contains
 Use to list the different types (models) of products.<br>  
 Example:<br>  
   F-B: SHOWTYPES<br>  
-  B-F (Response): TYPELIST&modelname1/price1;modelname2/price2;modelname3/price3; (etc.) <br>  
+  B-F (Response): TYPELIST&modelname1/size1/price1/colorsAvail1/optionsAvail1/ImageName1;(etc.) <br>  
 ### AUTH
 Use to authenticate an user<br>  
 Example:

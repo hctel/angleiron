@@ -44,5 +44,9 @@ namespace backend
 				} else throw new KeyNotFoundException("User not found");
 			}
 		}
+		public void deleteUser(int id)
+		{
+			database.deleteuser(id);
+		}
     }
 }

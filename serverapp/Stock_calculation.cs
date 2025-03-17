@@ -7,6 +7,7 @@ namespace backend {
         private Stock_DB database;
         private int not_in_stock;
         private int to_order;
+        private int delta_stock_need;
         public Stock_calculation(Stock_DB database)
         {
             this.database=database;
@@ -16,14 +17,13 @@ namespace backend {
                 if(result.Read()){
                     int delta_stock_need=0;
                     delta_stock_need = result.GetInt32("Quantity")-result.GetInt32("Quantity_client");
-                    not_in_stock = delta_stock_need;
                     delta_stock_need += result.GetInt32("Quantity_order");
                     to_order = delta_stock_need;
                 }
             }
         }
-        public int get_not_in_stock(){
-            return not_in_stock;
+        public bool get_not_in_stock(){
+            return delta_stock_need < 1;
         }
         public int get_to_order(){
             return to_order;
