@@ -23,5 +23,8 @@ namespace backend
         {
             execute(String.Format("INSERT INTO client (Name, Address, Email, password) VALUES ('{0}', '{1}', '{2}', '{3}');", name, address, email, password));
         }
+        public void deleteuser(int id){
+            execute(String.Format("DELETE FROM client WHERE idClient={0};", id));
+        }
     }
 }

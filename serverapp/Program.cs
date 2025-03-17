@@ -258,5 +258,16 @@ string networkReceiveFunction(string[] data, string ipAddress)
             return "OK";
         }
     }
+    else if(data[0].Equals("DELUSER"))
+    {
+        if(data.Length != 2) return "STXERR";
+        else
+        {
+            int id = Int32.Parse(data[1]);
+            dbcon.deleteuser(id);
+            return "OK";
+        }
+    
+    }
     return "NOFUNC";
 }
