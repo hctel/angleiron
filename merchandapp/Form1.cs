@@ -27,8 +27,13 @@ namespace merchandapp
         List<OrderPart> orderParts = new List<OrderPart>();
         BindingList<OrderPart> orderPartsBindingList;
         BindingSource orderPartsSource;
-        Order currentOrder;
 
+        List<PartSummary> partSummaries = new List<PartSummary>();
+        BindingList<PartSummary> partSummariesBindingList;
+        BindingSource partSummariesSource;
+
+        Order currentOrder;
+        
         public Form1()
         {
             InitializeComponent();
@@ -39,6 +44,7 @@ namespace merchandapp
             // Panels / Pages
             listPanel.Add(panel1);
             listPanel.Add(panel2);
+            listPanel.Add(panel3);
             listPanel[index].BringToFront();
 
             // Bindings
@@ -49,6 +55,12 @@ namespace merchandapp
             orderPartsBindingList = new BindingList<OrderPart>(orderParts);
             orderPartsSource = new BindingSource(orderPartsBindingList, null);
             this.PartListDataGridView.DataSource = orderPartsSource;
+
+            partSummariesBindingList = new BindingList<PartSummary>(partSummaries);
+            partSummariesSource = new BindingSource(partSummariesBindingList, null);
+            this.stockDataGridView.DataSource = partSummariesSource;
+
+
 
             network = new Network("172.17.33.231", 80);
             Debug.WriteLine(network.getOrders().ToString());
@@ -143,6 +155,30 @@ namespace merchandapp
         {
             network.updateStatus(currentOrder.orderID);
             Debug.WriteLine(currentOrder.orderID);
+        }
+
+        private void stock_button_Click(object sender, EventArgs e)
+        {
+            listPanel[2].BringToFront();
+        }
+
+        private void dataGridView1_CellContentClick_4(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void back_stock_button_Click(object sender, EventArgs e)
+        {
+            index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
+            listPanel[index].BringToFront();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

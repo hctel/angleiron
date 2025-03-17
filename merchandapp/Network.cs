@@ -43,6 +43,21 @@ namespace merchandapp
             this.inStock = inStock;
         }
     }
+    public class PartSummary
+    {
+        public int ID { get; }
+        public string Name { get; }
+        public int QuantityNeeded { get; }
+        public int QuantityInStock { get; }
+        public PartSummary(int ID, string Name, int QuantityNeeded, int QuantityInStock)
+        {
+            this.ID = ID;
+            this.Name = Name;
+            this.QuantityNeeded = QuantityNeeded;
+            this.QuantityInStock = QuantityInStock;
+        }
+    }
+
 
     public class Order
     {
@@ -111,7 +126,7 @@ namespace merchandapp
         }
         public string updateStatus(int orderID)
         {
-            return get("UPDATESTATUS" + "&" + orderID.ToString() + "&" + "PAID")[0];
+            return get("UPDATESTATUS" + "&" + orderID.ToString() + "&" + "COMPLETED")[0];
         }
         private List<string> get(string request)
         {
