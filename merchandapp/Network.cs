@@ -19,7 +19,8 @@ namespace merchandapp
 
         public OrderSummary() { }
 
-        public OrderSummary(string orderId, string orderName, string orderStatus, string orderDate, string orderStock) {
+        public OrderSummary(string orderId, string orderName, string orderStatus, string orderDate, string orderStock)
+        {
             this.orderID = Int32.Parse(orderId);
             this.orderName = orderName;
             this.orderStatus = orderStatus;
@@ -55,12 +56,12 @@ namespace merchandapp
             {
                 //Debug.WriteLine(part[0]);
                 parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
-                
+
             }
         }
     }
 
-        public class Network
+    public class Network
     {
         private string serverIp;
         private int port;

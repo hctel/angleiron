@@ -9,7 +9,6 @@ angleiron.sln
 /merchandapp/bin/Release
 /serverapp/bin/Debug
 /serverapp/bin/Release
-!/clientapp/bin/Debug/Images!/clientapp/bin/Debug/Imagesclientapp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
 clientapp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.xml
 clientapp/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
 clientapp/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
