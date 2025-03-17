@@ -22,12 +22,13 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table angleiron.client : ~0 rows (environ)
 INSERT INTO `client` (`idClient`, `Name`, `Address`, `Email`, `password`) VALUES
 	(1, 'Nido Flow', '50 Promenade de l\'Alma', 'nido@e621.net', 'toto'),
-	(2, 'h0rs3', 'Yiff Street 1', 'h0rs3@fa.net', 'tata');
+	(2, 'h0rs3', 'Yiff Street 1', 'h0rs3@fa.net', 'tata'),
+	(3, 'beta', 'fuzzbal way 34', 'beta@eta.delota', 'v0re3');
 
 -- Listage de la structure de table angleiron. component
 CREATE TABLE IF NOT EXISTS `component` (
@@ -38,11 +39,11 @@ CREATE TABLE IF NOT EXISTS `component` (
 
 -- Listage des données de la table angleiron.component : ~5 rows (environ)
 INSERT INTO `component` (`id_component`, `Description`) VALUES
-	(1, 'Planche de verre'),
-	(2, 'Planche de bois'),
-	(3, 'Vis de métal'),
-	(4, 'Angleiron'),
-	(5, 'Un truc qui sert à faire de la soudure');
+	(1, 'ecorce'),
+	(2, 'tranche de peuplier'),
+	(3, 'sapin cubique'),
+	(4, 'Section longitudinale rectangulaire de chene'),
+	(5, 'Bout de bois');
 
 -- Listage de la structure de table angleiron. component_type
 CREATE TABLE IF NOT EXISTS `component_type` (
@@ -55,16 +56,15 @@ CREATE TABLE IF NOT EXISTS `component_type` (
 
 -- Listage des données de la table angleiron.component_type : ~9 rows (environ)
 INSERT INTO `component_type` (`id_component`, `id_category`, `numberpercategory`, `id_index`) VALUES
-	(1, 1, 4, 1),
-	(2, 1, 5, 2),
-	(3, 1, 7, 3),
-	(4, 1, 5678, 4),
-	(5, 1, 766657, 5),
-	(1, 2, 254, 6),
-	(2, 2, 5445, 7),
-	(3, 2, 658746, 8),
-	(4, 2, 576, 9),
-	(5, 2, 44, 10);
+	(1, 1, 1, 1),
+	(2, 1, 1, 2),
+	(3, 1, 1, 3),
+	(4, 1, 1, 4),
+	(5, 1, 1, 5),
+	(1, 2, 1, 6),
+	(2, 2, 1, 7),
+	(3, 2, 1, 8),
+	(4, 2, 1, 9);
 
 -- Listage de la structure de table angleiron. orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -80,9 +80,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 -- Listage des données de la table angleiron.orders : ~3 rows (environ)
 INSERT INTO `orders` (`idorder`, `id_client`, `id_category`, `Price`, `Already_paid`, `Status`, `date`) VALUES
-	(1, 1, 1, 70, 'Y', 'COMPLETED', '2025-03-10'),
-	(2, 2, 1, 69, 'N', 'ORDERED', '2025-03-10'),
-	(3, 1, 2, 874, 'Y', 'IN_PROGRESS', '2025-03-10');
+	(1, 1, 1, 70, 'Y', 'PAID', '2025-03-10'),
+	(2, 2, 1, 69, 'N', 'PAID', '2025-03-10'),
+	(3, 1, 2, 874, 'Y', 'PAID', '2025-03-10');
 
 -- Listage de la structure de table angleiron. stock
 CREATE TABLE IF NOT EXISTS `stock` (
@@ -99,25 +99,29 @@ CREATE TABLE IF NOT EXISTS `stock` (
 
 -- Listage des données de la table angleiron.stock : ~5 rows (environ)
 INSERT INTO `stock` (`id_stock`, `id_component`, `Quantity`, `Quantity_client`, `Quantity_order`, `supplier`, `Price`, `delivery_duration`) VALUES
-	(1, 1, 127, 6, 0, 'ECAM', 5, 1),
-	(2, 2, 1, 1, 1, 'gfdsgf', 1, 1),
-	(3, 3, 1, 1, 1, 'fdsq', 1, 1),
-	(4, 4, 1, 1, 1, 'bv', 1, 1),
-	(5, 5, 1, 1, 1, 'ssg', 1, 1);
+	(1, 1, 0, 6, 1, 'ECAM', 5, 1),
+	(2, 2, 23254, 1, 1, 'gfdsgf', 1, 1),
+	(3, 3, 12354, 1, 1, 'fdsq', 1, 1),
+	(4, 4, 23543, 1, 1, 'bv', 1, 1),
+	(5, 5, 6546, 1, 1, 'ssg', 1, 1);
 
 -- Listage de la structure de table angleiron. table_categories
 CREATE TABLE IF NOT EXISTS `table_categories` (
   `id_category` int NOT NULL AUTO_INCREMENT,
+  `Name` text NOT NULL,
   `Dimension` text,
+  `Price` double DEFAULT '0',
   `Colors_available` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `Options_available` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `ImageName` text NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table angleiron.table_categories : ~3 rows (environ)
-INSERT INTO `table_categories` (`id_category`, `Dimension`, `Colors_available`, `Options_available`) VALUES
-	(1, '69*69*12', 'RGB', 'X'),
-	(2, '128*128*32', 'BW', 'X');
+INSERT INTO `table_categories` (`id_category`, `Name`, `Dimension`, `Price`, `Colors_available`, `Options_available`, `ImageName`) VALUES
+	(1, 'Petitmodele', '69*69*12', 69, 'BW', 'X', 'image1.png'),
+	(2, 'Moyenmodele', '128*128*32', 12.5, 'BW', 'X', 'image2.png'),
+	(3, 'Grosmodele', '88*12*465', 33.7, 'BW', 'X', 'image3.png');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
