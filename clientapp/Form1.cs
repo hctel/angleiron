@@ -140,7 +140,7 @@ namespace clientapp
                 infoLabel.Font = new Font("Sans Serif", 16);
 
                 PictureBox pictureBox = new PictureBox();
-                pictureBox.Image = Image.FromFile("test.png"); // Charge l'image
+                pictureBox.Image = Image.FromFile("../Image/test.png"); // Charge l'image
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage; // Ajuste l'image à la taille du PictureBox
                 pictureBox.Size = new Size(300, 50); // Définir la taille
                 pictureBox.Location = new Point(490, 335); // Définir la position
@@ -251,7 +251,7 @@ namespace clientapp
             this.ImagePanel.BackColor = Color.FromArgb(255,255,255);
 
             // Charger l'image en tant que Bitmap
-            Bitmap image = new Bitmap("image1.png");
+            Bitmap image = new Bitmap("../Image/image1.png");
 
             // Changer la couleur de l'image
             for (int y = 0; y < image.Height; y++)

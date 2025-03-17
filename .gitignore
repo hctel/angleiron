@@ -11,3 +11,4 @@ angleiron.sln
 /serverapp/bin/Release
 /clientapp/bin/Debug
 /clientapp/bin/Release
+!/clientapp/bin/Debug/Images
