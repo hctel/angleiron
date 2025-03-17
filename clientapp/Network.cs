@@ -23,6 +23,33 @@ namespace clientapp
         }
     }
 
+    public class Kit
+    {
+        public int id { get; }
+        public string name { get; }
+        public string dimension { get; }
+        public double price { get; }
+        public string colors_available { get; }
+        public string options_available { get; }
+        public string image { get; }
+
+        public Kit(int id, string name, string dimension, double price, string colors_available, string options_available, string image)
+        {
+            this.id = id;
+            this.name = name;
+            this.dimension = dimension;
+            this.price = price;
+            this.colors_available = colors_available;
+            this.options_available = options_available;
+            this.image = image;
+        }
+
+        public override string ToString()
+        {
+            return $"MODEL DETAIL:\n  id:{id}\n  name:{name}\n  dim:{dimension}\n  price:{price}\n  colors:{colors_available}\n  options:{options_available}\n  imageName{image}";
+        }
+    }
+
     public class Network
     {
         private string serverIp;
@@ -39,9 +66,9 @@ namespace clientapp
             client = new TcpClient();
         }
 
-        public List<Item> getItems()
+        public List<Kit> getItems()
         {
-            List<Item> itemList = new List<Item>();
+            List<Kit> itemList = new List<Kit>();
             List<string> list = get("SHOWTYPES");
             if (list[0].Equals("TYPELIST"))
             {
@@ -49,7 +76,8 @@ namespace clientapp
                 string[] items = list[1].Split(';');
                 foreach(string i in items)
                 {
-                    Item item = new Item(i.Split('/')[0], i.Split('/')[1]);
+                    string[] details = i.Split('/');
+                    Kit item = new Kit(Int32.Parse(details[0]), details[1], details[2], Double.Parse(details[3]), details[4], details[5], details[6]);
                     itemList.Add(item);
                 }
             }
