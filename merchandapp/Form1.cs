@@ -143,6 +143,14 @@ namespace merchandapp
         {
             network.updateStatus(currentOrder.orderID);
             Debug.WriteLine(currentOrder.orderID);
+
+            index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
+            listPanel[index].BringToFront();
+            orderPartsSource.Clear();
+            //((Button)sender).Text = index.ToString();
         }
     }
 }
