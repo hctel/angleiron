@@ -7,15 +7,17 @@ namespace backend{
     public class Kit
     {
         public int id { get; }
+        public string name { get; }
         public string dimension { get; }
         public double price { get; }
         public string colors_available { get; }
         public string options_available { get; }
         public string image { get; }
 
-        public Kit(int id, string dimension, double price, string colors_available, string options_available, string image)
+        public Kit(int id, string name, string dimension, double price, string colors_available, string options_available, string image)
         {
             this.id = id;
+            this.name = name;
             this.dimension = dimension;
             this.price = price;
             this.colors_available = colors_available;
@@ -25,7 +27,7 @@ namespace backend{
 
         public override string ToString()
         {
-            return $"";
+            return $"{id}/{name}/{dimension}/{price}/{colors_available}/{options_available}/{image}";
         }
     }
         public class Kit_manager {
@@ -45,7 +47,7 @@ namespace backend{
                 {
                     if (reader.Read())
                     {
-                        kits.Add(new Kit(reader.GetInt32("id_category"), reader.GetString("Dimension"), reader.GetDouble("Price"), reader.GetString("Colors_available"), reader.GetString("Options_available"), reader.GetString("ImageName")));
+                        kits.Add(new Kit(reader.GetInt32("id_category"),reader.GetString("Name"), reader.GetString("Dimension"), reader.GetDouble("Price"), reader.GetString("Colors_available"), reader.GetString("Options_available"), reader.GetString("ImageName")));
                     }
                 }
             }

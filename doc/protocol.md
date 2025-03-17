@@ -7,16 +7,16 @@ If an argument is a list, elements are separated with ';'. If this list contains
 ### SHOWTYPES
 Use to list the different types (models) of products.<br>  
 Example:<br>  
-  F-B: SHOWTYPES<br>  
-  B-F (Response): TYPELIST&id1/modelname1/size1/price1/colorsAvail1/optionsAvail1/ImageName1;(etc.) <br>  
+- F-B: SHOWTYPES<br>  
+- B-F (Response): TYPELIST&id1/modelname1/size1/price1/colorsAvail1/optionsAvail1/ImageName1;(etc.) <br>  
 ### AUTH
 Use to authenticate an user<br>  
-Example:
-  F-B: AUTH&email&password<br>  
-  B-F (Response):<br>  
-  If sucessful: AUTHOK&sessionID&clientID&remoteIP<br>  
-  If incorrect password: AUTHFAIL&NOPASSWD<br>  
-  If unknown user: AUTHFAIL&NOUSER<br>  
+Example:<br>
+- F-B: AUTH&email&password
+- B-F (Response):  
+  - If sucessful: AUTHOK&sessionID&clientID&remoteIP
+  - If incorrect password: AUTHFAIL&NOPASSWD 
+  - If unknown user: AUTHFAIL&NOUSER 
 ### NEWUSER 
 Use to add a new user<br>
 Example : <br>
