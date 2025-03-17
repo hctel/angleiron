@@ -121,7 +121,7 @@ namespace clientapp
 
                 Button addButton = new Button();
                 addButton.Size = new Size(80, 30);
-                addButton.Text = "Add";
+                addButton.Text = "Select";
                 addButton.TextAlign = ContentAlignment.MiddleCenter;
                 addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
                 addButton.FlatStyle = FlatStyle.Flat;
