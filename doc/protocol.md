@@ -8,7 +8,7 @@ If an argument is a list, elements are separated with ';'. If this list contains
 Use to list the different types (models) of products.<br>  
 Example:<br>  
   F-B: SHOWTYPES<br>  
-  B-F (Response): TYPELIST&modelname1/price1;modelname2/price2;modelname3/price3; (etc.) <br>  
+  B-F (Response): TYPELIST&id1/modelname1/size1/price1/colorsAvail1/optionsAvail1/ImageName1;(etc.) <br>  
 ### AUTH
 Use to authenticate an user<br>  
 Example:
@@ -17,6 +17,16 @@ Example:
   If sucessful: AUTHOK&sessionID&clientID&remoteIP<br>  
   If incorrect password: AUTHFAIL&NOPASSWD<br>  
   If unknown user: AUTHFAIL&NOUSER<br>  
+### NEWUSER 
+Use to add a new user<br>
+Example : <br>
+- F-B: NEWUSER&name&adress&email&password
+- B-F: if succesfull "OK"
+### DELUSER 
+Use to delete a user<br>
+Example : <br>
+- F-B: DELUSER&idclient
+- B-F: if succesful "OK"
 ### NEWORDER
 Use to make an new order <br>  
 Example request : NEWORDER&IDcategory&IDclient&Statuspayed&Status&price<br>  
