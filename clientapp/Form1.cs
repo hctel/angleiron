@@ -16,11 +16,15 @@ namespace clientapp
         private bool adding = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
-        private Color colorPanel = Color.Empty;
+        private Color colorPanel = Color.FromArgb(0,0,0);
         private Color firstColor = Color.FromArgb(187, 153, 112);
         private Color secondColor = Color.FromArgb(88, 76, 69);
         private Color thirdColor = Color.FromArgb(191, 180, 157);
         private Color fourthColor = Color.FromArgb(166, 167, 171);
+        private Bitmap image; // Variable de classe pour le Bitmap
+        private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
+
+
 
         public Window()
         {
@@ -62,6 +66,10 @@ namespace clientapp
 
             this.SummaryLabel.BackColor = Color.FromArgb(200, 200, 200);
             this.SummaryLabel.Location = new Point(this.Width - 230, 90);
+
+            // Charger l'image par défaut
+            currentImagePath = "./Images/image.png";
+            image = new Bitmap(currentImagePath);
 
             //To be optimized
             Button choiceOneButton = new Button();
@@ -129,9 +137,9 @@ namespace clientapp
                 addButton.BackColor = Color.FromArgb(0, 0, 0);
                 addButton.ForeColor = Color.White;
                 contentPanel.Controls.Add(addButton);
-                addButton.Click += addButton_Click;
+                addButton.Click += (s, ev) => SelectImage(i + 1); // Passer l'index de l'article
 
-                
+
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
                 infoLabel.Text = "69 x 69 cm " + i;
@@ -154,6 +162,37 @@ namespace clientapp
             }
 
         }
+
+        private void SelectImage(int articleIndex)
+        {
+            adding = true;
+            Debug.WriteLine("Button clicked for article " + articleIndex);
+
+            // Modifier le chemin de l'image en fonction de l'article sélectionné
+            switch (articleIndex)
+            {
+                case 1:
+                    currentImagePath = "./Images/image.png";
+                    break;
+                case 2:
+                    currentImagePath = "./Images/image1.png";
+                    break;
+                case 3:
+                    currentImagePath = "./Images/image2.png";
+                    break;
+                default:
+                    currentImagePath = "./Images/image3.png";
+                    break;
+            }
+
+            colorPanel = Color.FromArgb(0, 0, 0);
+            // Recharger le Bitmap avec la nouvelle image
+            image = new Bitmap(currentImagePath);
+
+            // Rafraîchir le panneau pour redessiner l'image modifiée
+            ImagePanel.Invalidate();
+        }
+
 
         private void changeColor(Color newcolor)
         {
@@ -250,9 +289,7 @@ namespace clientapp
             this.ImagePanel.Location = new Point(300, 70);
  
             this.ImagePanel.BackColor = Color.FromArgb(255,255,255);
-
-            // Charger l'image en tant que Bitmap
-            Bitmap image = new Bitmap("./Images/image1.png");
+      
 
             // Changer la couleur de l'image
             for (int y = 0; y < image.Height; y++)
