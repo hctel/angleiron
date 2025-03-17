@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "merchandapp", "merchandapp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "serverapp", "serverapp\serverapp.csproj", "{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientAppRemake", "ClientAppRemake\ClientAppRemake.csproj", "{28B76BF2-6963-4207-A1C0-3FAC84C85036}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28B76BF2-6963-4207-A1C0-3FAC84C85036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B76BF2-6963-4207-A1C0-3FAC84C85036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B76BF2-6963-4207-A1C0-3FAC84C85036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B76BF2-6963-4207-A1C0-3FAC84C85036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
