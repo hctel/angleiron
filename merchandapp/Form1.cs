@@ -27,7 +27,6 @@ namespace merchandapp
         List<OrderPart> orderParts = new List<OrderPart>();
         BindingList<OrderPart> orderPartsBindingList;
         BindingSource orderPartsSource;
-        Order currentOrder;
 
         public Form1()
         {
@@ -50,7 +49,7 @@ namespace merchandapp
             orderPartsSource = new BindingSource(orderPartsBindingList, null);
             this.PartListDataGridView.DataSource = orderPartsSource;
 
-            network = new Network("172.17.33.231", 80);
+            network = new Network("172.17.34.124", 80);
             Debug.WriteLine(network.getOrders().ToString());
 
             foreach (OrderSummary order in network.getOrders())
@@ -105,11 +104,11 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                currentOrder = network.getOrderDetails(e.RowIndex + 1);
-                Debug.WriteLine(currentOrder);
-                if (currentOrder != null)
+                Order order = network.getOrderDetails(e.RowIndex + 1);
+                Debug.WriteLine(order);
+                if (order != null)
                 {
-                    foreach (OrderPart item in currentOrder.parts)
+                    foreach (OrderPart item in order.parts)
                     {
                         orderPartsSource.Add(item);
                     }
@@ -141,8 +140,7 @@ namespace merchandapp
 
         private void completeButton_Click(object sender, EventArgs e)
         {
-            network.updateStatus(currentOrder.orderID);
-            Debug.WriteLine(currentOrder.orderID);
+            network.updateStatus(1);
         }
     }
 }
