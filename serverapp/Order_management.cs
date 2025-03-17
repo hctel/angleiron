@@ -138,7 +138,7 @@ namespace backend
                     string res = "0";
                     foreach (List<string> detail in detailorder)
                     {
-                        if (detail[2].Equals("1"))
+                        if (Int32.Parse(detail[2]) - Int32.Parse(detail[1]) > 0)
                         {
                             res = "1";
                         }
@@ -180,15 +180,7 @@ namespace backend
                             {
                                 resultStock.Read();
                                 row_result.Add(resultStock.GetInt32("Quantity_client") + "");
-                                int not_in_stock = stock_calculation.get_not_in_stock();
-                                if (not_in_stock > 0)
-                                {
-                                    row_result.Add("1");
-                                }
-                                else
-                                {
-                                    row_result.Add("0");
-                                }
+                                row_result.Add(resultStock.GetInt32("Quantity") + "");
                             }
                             using (MySqlDataReader material = materialDB.getIdcomponent(id_component))
                             {
