@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics.Metrics;
 
 string version = "0.0.1b";
-int port = 80;
+int port = 0xe621;
 
 string hostname = "127.0.0.1";
 string dataName = "angleiron";
