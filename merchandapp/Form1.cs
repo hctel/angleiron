@@ -62,8 +62,8 @@ namespace merchandapp
 
 
 
-            network = new Network("172.17.33.231", 80);
-            Debug.WriteLine(network.getOrders().ToString());
+            network = new Network("hctel.net", 0xe621);
+            network.debugCommand("STOCKCHK");
 
             foreach (OrderSummary order in network.getOrders())
             { orderSummariesSource.Add(order); }
