@@ -29,7 +29,7 @@ namespace ClientAppRemake
             headerPanel.Controls.Add(new Label
             {
                 Text = "AngleIron V2",
-                Font = new Font("Arial", 24, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 24, FontStyle.Bold),
                 ForeColor = Color.White,
                 Location = new Point(10, 35),
                 AutoSize = true
@@ -55,6 +55,14 @@ namespace ClientAppRemake
             selectionPanel.BackColor = Color.FromArgb(200, 200, 200);
             selectionPanel.Dock = DockStyle.Left;
             mainPanel.Controls.Add(selectionPanel);
+            selectionPanel.Controls.Add(new Label
+            {
+                Text = "Lockers",
+                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
+                ForeColor = Color.Black,
+                Location = new Point(125, 10),
+                AutoSize = true
+            });
 
             //Summary Panel
             Panel summaryPanel = new Panel();
@@ -62,12 +70,28 @@ namespace ClientAppRemake
             summaryPanel.BackColor = Color.FromArgb(0, 232, 0);
             summaryPanel.Location = new Point(mainPanel.Width - summaryPanel.Width - 25, 0);
             mainPanel.Controls.Add(summaryPanel);
+            summaryPanel.Controls.Add(new Label
+            {
+                Text = "Summary",
+                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
+                ForeColor = Color.Black,
+                Location = new Point(115, 10),
+                AutoSize = true
+            });
 
             //Preview Panel
             Panel previewPanel = new Panel();
             previewPanel.BackColor = Color.FromArgb(255, 255, 255);
             previewPanel.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(previewPanel);
+            previewPanel.Controls.Add(new Label
+            {
+                Text = "Preview",
+                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
+                ForeColor = Color.Black,
+                Location = new Point(850, 10),
+                AutoSize = true
+            });
 
             //Color button
             Button choiceOneButton = new Button();
@@ -110,7 +134,7 @@ namespace ClientAppRemake
             //Lockers list panel
             Panel lockersListPanel = new Panel();
             lockersListPanel.Size = new Size(selectionPanel.Width, 450);
-            lockersListPanel.Location = new Point(0, 75);
+            lockersListPanel.Location = new Point(0, 90);
             lockersListPanel.BackColor = Color.FromArgb(250, 250, 250);
             selectionPanel.Controls.Add(lockersListPanel);
             lockersListPanel.AutoScroll = true;
@@ -124,7 +148,7 @@ namespace ClientAppRemake
             addButton.BackColor = Color.FromArgb(94, 176, 87);
             addButton.ForeColor = Color.White;
             addButton.Text = "Add";
-            addButton.Font = new Font("Arial", 14, FontStyle.Bold);
+            addButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             previewPanel.Controls.Add(addButton);
 
             Button previewButton = new Button();
@@ -135,7 +159,7 @@ namespace ClientAppRemake
             previewButton.BackColor = Color.FromArgb(168, 168, 168);
             previewButton.ForeColor = Color.White;
             previewButton.Text = "Preview";
-            previewButton.Font = new Font("Arial", 14, FontStyle.Bold);
+            previewButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             previewPanel.Controls.Add(previewButton);
 
             Button orderButton = new Button();
@@ -146,7 +170,7 @@ namespace ClientAppRemake
             orderButton.BackColor = Color.FromArgb(243, 187, 78);
             orderButton.ForeColor = Color.White;
             orderButton.Text = "Order";
-            orderButton.Font = new Font("Arial", 14, FontStyle.Bold);
+            orderButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             footerPanel.Controls.Add(orderButton);
 
 
