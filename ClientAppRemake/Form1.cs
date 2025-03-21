@@ -26,6 +26,15 @@ namespace ClientAppRemake
             headerPanel.Location = new Point(0, 0);
             this.Controls.Add(headerPanel);
 
+            headerPanel.Controls.Add(new Label
+            {
+                Text = "AngleIron V2",
+                Font = new Font("Arial", 24, FontStyle.Bold),
+                ForeColor = Color.White,
+                Location = new Point(10, 35),
+                AutoSize = true
+            });
+
             //Footer Panel
             Panel footerPanel = new Panel();
             footerPanel.Size = new Size(1920, 160);
