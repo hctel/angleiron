@@ -52,7 +52,7 @@ namespace ClientAppRemake
             //Selection Panel
             Panel selectionPanel = new Panel();
             selectionPanel.Size = new Size(450, mainPanel.Height);
-            selectionPanel.BackColor = Color.FromArgb(0, 0, 232);
+            selectionPanel.BackColor = Color.FromArgb(200, 200, 200);
             selectionPanel.Dock = DockStyle.Left;
             mainPanel.Controls.Add(selectionPanel);
 
@@ -106,6 +106,50 @@ namespace ClientAppRemake
             colorGroup.Controls.Add(choiceFourButton);
             colorGroup.Location = new Point((selectionPanel.Width - colorGroup.Width) / 2, selectionPanel.Height - 200);
             selectionPanel.Controls.Add(colorGroup);
+
+            //Lockers list panel
+            Panel lockersListPanel = new Panel();
+            lockersListPanel.Size = new Size(selectionPanel.Width, 450);
+            lockersListPanel.Location = new Point(0, 75);
+            lockersListPanel.BackColor = Color.FromArgb(250, 250, 250);
+            selectionPanel.Controls.Add(lockersListPanel);
+            lockersListPanel.AutoScroll = true;
+
+            //Command buttons
+            Button addButton = new Button();
+            addButton.Size = new Size(120, 80);
+            addButton.Location = new Point(footerPanel.Width - 400, 40);
+            addButton.FlatStyle = FlatStyle.Flat;
+            addButton.FlatAppearance.BorderSize = 0;
+            addButton.BackColor = Color.FromArgb(0, 168, 0);
+            addButton.ForeColor = Color.White;
+            addButton.Text = "Add";
+            addButton.Font = new Font("Arial", 14, FontStyle.Bold);
+            footerPanel.Controls.Add(addButton);
+
+            Button previewButton = new Button();
+            previewButton.Size = new Size(180, 80);
+            previewButton.Location = new Point(footerPanel.Width - 650, 40);
+            previewButton.FlatStyle = FlatStyle.Flat;
+            previewButton.FlatAppearance.BorderSize = 0;
+            previewButton.BackColor = Color.FromArgb(0, 168, 0);
+            previewButton.ForeColor = Color.White;
+            previewButton.Text = "Preview";
+            previewButton.Font = new Font("Arial", 14, FontStyle.Bold);
+            footerPanel.Controls.Add(previewButton);
+
+            Button orderButton = new Button();
+            orderButton.Size = new Size(150, 80);
+            orderButton.Location = new Point(footerPanel.Width - 250, 40);
+            orderButton.FlatStyle = FlatStyle.Flat;
+            orderButton.FlatAppearance.BorderSize = 0;
+            orderButton.BackColor = Color.FromArgb(0, 168, 0);
+            orderButton.ForeColor = Color.White;
+            orderButton.Text = "Order";
+            orderButton.Font = new Font("Arial", 14, FontStyle.Bold);
+            footerPanel.Controls.Add(orderButton);
+
+
         }
     }
 }
