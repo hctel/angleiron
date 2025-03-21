@@ -5,9 +5,9 @@ namespace ClientAppRemake
         public Form1()
         {
             InitializeComponent();
-            this.Size = new Size(1280, 720);
-            this.MinimumSize = new Size(1280, 720);
-            this.MaximumSize = new Size(1280, 720);
+            this.Size = new Size(1920, 1080);
+            this.MinimumSize = new Size(1920, 1080);
+            this.MaximumSize = new Size(1920, 1080);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "AngleIron V2";
