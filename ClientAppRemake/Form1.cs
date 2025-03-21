@@ -19,11 +19,19 @@ namespace ClientAppRemake
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Header Panel
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(1920, 160);
             headerPanel.BackColor = Color.FromArgb(0, 168, 232);
             headerPanel.Location = new Point(0, 0);
             this.Controls.Add(headerPanel);
+
+            //Footer Panel
+            Panel footerPanel = new Panel();
+            footerPanel.Size = new Size(1920, 160);
+            footerPanel.BackColor = Color.FromArgb(0, 168, 232);
+            footerPanel.Location = new Point(0, this.ClientSize.Height - footerPanel.Height);
+            this.Controls.Add(footerPanel);
         }
     }
 }
