@@ -32,6 +32,13 @@ namespace ClientAppRemake
             footerPanel.BackColor = Color.FromArgb(0, 168, 232);
             footerPanel.Location = new Point(0, this.ClientSize.Height - footerPanel.Height);
             this.Controls.Add(footerPanel);
+
+            //Main Panel
+            Panel mainPanel = new Panel();
+            mainPanel.Size = new Size(1920, 1080 - headerPanel.Height - footerPanel.Height);
+            mainPanel.BackColor = Color.FromArgb(255, 255, 255);
+            mainPanel.Location = new Point(0, headerPanel.Height);
+            this.Controls.Add(mainPanel);
         }
     }
 }
