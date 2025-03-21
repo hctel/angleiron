@@ -48,6 +48,20 @@ namespace ClientAppRemake
             mainPanel.BackColor = Color.FromArgb(255, 255, 255);
             mainPanel.Location = new Point(0, headerPanel.Height);
             this.Controls.Add(mainPanel);
+
+            //Selection Panel
+            Panel selectionPanel = new Panel();
+            selectionPanel.Size = new Size(450, mainPanel.Height);
+            selectionPanel.BackColor = Color.FromArgb(0, 0, 232);
+            selectionPanel.Location = new Point(0, 0); 
+            mainPanel.Controls.Add(selectionPanel);
+
+            //Summary Panel
+            Panel summaryPanel = new Panel();
+            summaryPanel.Size = new Size(450, mainPanel.Height);
+            summaryPanel.BackColor = Color.FromArgb(0, 232, 0);
+            summaryPanel.Location = new Point(mainPanel.Width - summaryPanel.Width, 0);
+            mainPanel.Controls.Add(summaryPanel);
         }
     }
 }
