@@ -71,26 +71,26 @@ namespace ClientAppRemake
 
             //Color button
             Button choiceOneButton = new Button();
-            choiceOneButton.Size = new Size(50, 50);
+            choiceOneButton.Size = new Size(90, 75);
             choiceOneButton.Location = new Point(0, 0);
             choiceOneButton.FlatStyle = FlatStyle.Flat;
             choiceOneButton.FlatAppearance.BorderSize = 0;
             choiceOneButton.BackColor = Color.FromArgb(187, 153, 112);
             Button choiceTwoButton = new Button();
-            choiceTwoButton.Size = new Size(50, 50);
-            choiceTwoButton.Location = new Point(50, 0);
+            choiceTwoButton.Size = new Size(90, 75);
+            choiceTwoButton.Location = new Point(90, 0);
             choiceTwoButton.FlatStyle = FlatStyle.Flat;
             choiceTwoButton.FlatAppearance.BorderSize = 0;
             choiceTwoButton.BackColor = Color.FromArgb(88, 76, 69);
             Button choiceThreeButton = new Button();
-            choiceThreeButton.Size = new Size(50, 50);
-            choiceThreeButton.Location = new Point(100, 0);
+            choiceThreeButton.Size = new Size(90, 75);
+            choiceThreeButton.Location = new Point(180, 0);
             choiceThreeButton.FlatStyle = FlatStyle.Flat;
             choiceThreeButton.FlatAppearance.BorderSize = 0;
             choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
             Button choiceFourButton = new Button();
-            choiceFourButton.Size = new Size(50, 50);
-            choiceFourButton.Location = new Point(150, 0);
+            choiceFourButton.Size = new Size(90, 75);
+            choiceFourButton.Location = new Point(270, 0);
             choiceFourButton.FlatStyle = FlatStyle.Flat;
             choiceFourButton.FlatAppearance.BorderSize = 0;
             choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
