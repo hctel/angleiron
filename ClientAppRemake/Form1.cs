@@ -104,7 +104,7 @@ namespace ClientAppRemake
             colorGroup.Controls.Add(choiceTwoButton);
             colorGroup.Controls.Add(choiceThreeButton);
             colorGroup.Controls.Add(choiceFourButton);
-            colorGroup.Location = new Point((selectionPanel.Width - colorGroup.Width) / 2, selectionPanel.Height - 200);
+            colorGroup.Location = new Point((selectionPanel.Width - colorGroup.Width) / 2, selectionPanel.Height - 180);
             selectionPanel.Controls.Add(colorGroup);
 
             //Lockers list panel
@@ -118,32 +118,32 @@ namespace ClientAppRemake
             //Command buttons
             Button addButton = new Button();
             addButton.Size = new Size(120, 80);
-            addButton.Location = new Point(footerPanel.Width - 400, 40);
+            addButton.Location = new Point(780, previewPanel.Height - 180);
             addButton.FlatStyle = FlatStyle.Flat;
             addButton.FlatAppearance.BorderSize = 0;
-            addButton.BackColor = Color.FromArgb(0, 168, 0);
+            addButton.BackColor = Color.FromArgb(94, 176, 87);
             addButton.ForeColor = Color.White;
             addButton.Text = "Add";
             addButton.Font = new Font("Arial", 14, FontStyle.Bold);
-            footerPanel.Controls.Add(addButton);
+            previewPanel.Controls.Add(addButton);
 
             Button previewButton = new Button();
             previewButton.Size = new Size(180, 80);
-            previewButton.Location = new Point(footerPanel.Width - 650, 40);
+            previewButton.Location = new Point(942, previewPanel.Height - 180);
             previewButton.FlatStyle = FlatStyle.Flat;
             previewButton.FlatAppearance.BorderSize = 0;
-            previewButton.BackColor = Color.FromArgb(0, 168, 0);
+            previewButton.BackColor = Color.FromArgb(168, 168, 168);
             previewButton.ForeColor = Color.White;
             previewButton.Text = "Preview";
             previewButton.Font = new Font("Arial", 14, FontStyle.Bold);
-            footerPanel.Controls.Add(previewButton);
+            previewPanel.Controls.Add(previewButton);
 
             Button orderButton = new Button();
             orderButton.Size = new Size(150, 80);
             orderButton.Location = new Point(footerPanel.Width - 250, 40);
             orderButton.FlatStyle = FlatStyle.Flat;
             orderButton.FlatAppearance.BorderSize = 0;
-            orderButton.BackColor = Color.FromArgb(0, 168, 0);
+            orderButton.BackColor = Color.FromArgb(243, 187, 78);
             orderButton.ForeColor = Color.White;
             orderButton.Text = "Order";
             orderButton.Font = new Font("Arial", 14, FontStyle.Bold);
