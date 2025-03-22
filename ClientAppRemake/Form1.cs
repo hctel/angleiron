@@ -75,7 +75,7 @@ namespace ClientAppRemake
                 Text = "Summary",
                 Font = new Font("Comic sans MS", 18, FontStyle.Bold),
                 ForeColor = Color.Black,
-                Location = new Point(115, 10),
+                Location = new Point(110, 10),
                 AutoSize = true
             });
 
