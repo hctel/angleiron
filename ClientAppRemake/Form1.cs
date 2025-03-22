@@ -81,7 +81,7 @@ namespace ClientAppRemake
 
             //Preview Panel
             Panel previewPanel = new Panel();
-            previewPanel.BackColor = Color.FromArgb(255, 255, 255);
+            previewPanel.BackColor = Color.FromArgb(255, 0, 255);
             previewPanel.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(previewPanel);
             previewPanel.Controls.Add(new Label
@@ -213,6 +213,14 @@ namespace ClientAppRemake
             itemImage.Image = Image.FromFile("Images/image2.png");
             itemPanel.Controls.Add(itemImage);
             //Item panel ends here
+
+            //Preview image
+            PictureBox previewImage = new PictureBox();
+            previewImage.Size = new Size(600, 600);
+            previewImage.Location = new Point(800, 300);
+            previewImage.Image = Image.FromFile("Images/image1.png");
+            previewPanel.Controls.Add(previewImage);
+
         }
     }
 }
