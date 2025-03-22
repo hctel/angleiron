@@ -173,7 +173,20 @@ namespace ClientAppRemake
             orderButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             footerPanel.Controls.Add(orderButton);
 
-
+            //For each item
+            Panel itemPanel = new Panel();
+            itemPanel.Size = new Size(375, 400);
+            itemPanel.Location = new Point(25, 25);
+            itemPanel.BackColor = Color.FromArgb(255, 0, 0);
+            lockersListPanel.Controls.Add(itemPanel);
+            itemPanel.Controls.Add(new Label
+            {
+                Text = "Locker 1",
+                Font = new Font("Comic sans MS", 14, FontStyle.Bold),
+                ForeColor = Color.Black,
+                Location = new Point(10, 10),
+                AutoSize = true
+            });
         }
     }
 }
