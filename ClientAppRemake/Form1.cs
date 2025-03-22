@@ -178,7 +178,7 @@ namespace ClientAppRemake
             Panel itemPanel = new Panel();
             itemPanel.Size = new Size(375, 400);
             itemPanel.Location = new Point(25, 25);
-            itemPanel.BackColor = Color.FromArgb(240, 240, 240);
+            itemPanel.BackColor = Color.FromArgb(200, 200, 200);
             lockersListPanel.Controls.Add(itemPanel);
             itemPanel.Controls.Add(new Label
             {
@@ -192,20 +192,20 @@ namespace ClientAppRemake
             itemPanel.Controls.Add(new Label
             {
                 Text = "14.99€",
-                Font = new Font("Comic sans MS", 10, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 14, FontStyle.Bold),
                 ForeColor = Color.Black,
-                Location = new Point(35, itemPanel.Height - 70),
+                Location = new Point(30, itemPanel.Height - 85),
                 AutoSize = true
             });
             Button selectButton = new Button();
-            selectButton.Size = new Size(120, 50);
-            selectButton.Location = new Point(225, itemPanel.Height - 75);
+            selectButton.Size = new Size(160, 70);
+            selectButton.Location = new Point(200, itemPanel.Height - 90);
             selectButton.FlatStyle = FlatStyle.Flat;
             selectButton.FlatAppearance.BorderSize = 0;
-            selectButton.BackColor = Color.FromArgb(168, 168, 232);
+            selectButton.BackColor = Color.FromArgb(243, 187, 78);
             selectButton.ForeColor = Color.White;
             selectButton.Text = "Select";
-            selectButton.Font = new Font("Comic sans MS", 10, FontStyle.Bold);
+            selectButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             itemPanel.Controls.Add(selectButton);
             //Item panel ends here
         }
