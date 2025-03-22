@@ -183,10 +183,10 @@ namespace ClientAppRemake
             itemPanel.Controls.Add(new Label
             {
                 Text = "690 x 690 x 690",
-                Font = new Font("Comic sans MS", 10, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                 ForeColor = Color.Black,
                 BackColor = Color.FromArgb(255, 255, 255),
-                Location = new Point(0, 15),
+                Location = new Point(0, 20),
                 AutoSize = true
             });
             itemPanel.Controls.Add(new Label
@@ -207,6 +207,11 @@ namespace ClientAppRemake
             selectButton.Text = "Select";
             selectButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             itemPanel.Controls.Add(selectButton);
+            PictureBox itemImage = new PictureBox();
+            itemImage.Size = new Size(375, 300);
+            itemImage.Location = new Point(35, 150);
+            itemImage.Image = Image.FromFile("Images/image2.png");
+            itemPanel.Controls.Add(itemImage);
             //Item panel ends here
         }
     }
