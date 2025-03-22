@@ -221,6 +221,33 @@ namespace ClientAppRemake
             previewImage.Image = Image.FromFile("Images/image1.png");
             previewPanel.Controls.Add(previewImage);
 
+            //Summary list panel
+            Panel itemSummaryPanel = new Panel();
+            itemSummaryPanel.Size = new Size(400, 70);
+            itemSummaryPanel.Location = new Point(25, 100);
+            itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
+            summaryPanel.Controls.Add(itemSummaryPanel);
+            Button removeButton = new Button();
+            removeButton.Size = new Size(70, 70);
+            removeButton.Location = new Point(0, 0);
+            removeButton.FlatStyle = FlatStyle.Flat;
+            removeButton.FlatAppearance.BorderSize = 0;
+            removeButton.BackColor = Color.FromArgb(255, 0, 0);
+            removeButton.ForeColor = Color.White;
+            removeButton.Text = "X";
+            removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
+            itemSummaryPanel.Controls.Add(removeButton);
+            itemSummaryPanel.Controls.Add(new Label
+            {
+                Text = "690 x 690 x 690",
+                Font = new Font("Comic sans MS", 12, FontStyle.Bold),
+                ForeColor = Color.Black,
+                BackColor = Color.FromArgb(255, 255, 255),
+                Location = new Point(80, 12),
+                AutoSize = true
+            });
+
+
         }
     }
 }
