@@ -14,10 +14,17 @@ namespace backend
         {
             return read(String.Format("SELECT * FROM client WHERE Email='{0}';", email));
         }
+        public MySqlDataReader getUserFromId(int id)
+        {
+            return read(String.Format("SELECT * FROM client WHERE idClient={0};", id));
+        }
 
         public void addUser(string name, string address, string email, string password)
         {
             execute(String.Format("INSERT INTO client (Name, Address, Email, password) VALUES ('{0}', '{1}', '{2}', '{3}');", name, address, email, password));
+        }
+        public void deleteuser(int id){
+            execute(String.Format("DELETE FROM client WHERE idClient={0};", id));
         }
     }
 }

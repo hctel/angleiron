@@ -2,6 +2,7 @@
 /clientapp/obj
 /merchandapp/obj
 /serverapp/obj
+/ClientAppRemake/obj
 .vs/
 /.vs/angleiron/v17
 angleiron.sln
@@ -9,5 +10,11 @@ angleiron.sln
 /merchandapp/bin/Release
 /serverapp/bin/Debug
 /serverapp/bin/Release
-/clientapp/bin/Debug
-/clientapp/bin/Release
+clientapp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.xml
+clientapp/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+clientapp/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+clientapp/bin/Debug/System.Threading.Tasks.Extensions.dll
+clientapp/bin/Debug/System.Threading.Tasks.Extensions.xml
+clientapp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
+/ClientAppRemake/bin/Debug
+/ClientAppRemake/bin/Release

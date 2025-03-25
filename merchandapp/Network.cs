@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
+using System.ComponentModel;
 
 namespace merchandapp
 {
@@ -19,7 +20,8 @@ namespace merchandapp
 
         public OrderSummary() { }
 
-        public OrderSummary(string orderId, string orderName, string orderStatus, string orderDate, string orderStock) {
+        public OrderSummary(string orderId, string orderName, string orderStatus, string orderDate, string orderStock)
+        {
             this.orderID = Int32.Parse(orderId);
             this.orderName = orderName;
             this.orderStatus = orderStatus;
@@ -42,6 +44,21 @@ namespace merchandapp
             this.inStock = inStock;
         }
     }
+    public class PartSummary
+    {
+        public int ID { get; }
+        public string Name { get; }
+        public int QuantityNeeded { get; }
+        public int QuantityInStock { get; }
+        public PartSummary(int ID, string Name, int QuantityNeeded, int QuantityInStock)
+        {
+            this.ID = ID;
+            this.Name = Name;
+            this.QuantityNeeded = QuantityNeeded;
+            this.QuantityInStock = QuantityInStock;
+        }
+    }
+
 
     public class Order
     {
@@ -53,14 +70,14 @@ namespace merchandapp
             this.orderID = Int32.Parse(orderID);
             foreach (string[] part in items)
             {
-                Debug.WriteLine(part);
+                //Debug.WriteLine(part[0]);
                 parts.Add(new OrderPart(Int32.Parse(part[0]), part[3], Int32.Parse(part[1]), part[2].Equals("1")));
-                
+
             }
         }
     }
 
-        public class Network
+    public class Network
     {
         private string serverIp;
         private int port;
@@ -74,6 +91,11 @@ namespace merchandapp
             this.port = port;
             ipEndPoint = new IPEndPoint(Dns.GetHostEntry(serverIp).AddressList[0], port);
             //client = new TcpClient();
+        }
+
+        public void debugCommand(string command)
+        {
+            Debug.WriteLine(get(command));
         }
 
         public List<OrderSummary> getOrders()
@@ -98,18 +120,25 @@ namespace merchandapp
             List<string> list = get($"DETAILORDER&{orderID}");
             if (list[0].Equals("ORDERDETAIL"))
             {
-                string[] items = list[1].Split(';');
+                string[] items = list[2].Split(';');
                 string[][] orderItems = new string[items.Length][];
                 for (int i = 0; i < items.Length; i++)
                 {
                     orderItems[i] = items[i].Split('/');
+                    orderItems[i][2] = Int32.Parse(orderItems[i][2]) >= Int32.Parse(orderItems[i][1]) ? "1" : "0"; // quantity in stock
                 }
+
                 return new Order(orderID.ToString(), orderItems);
             }
             return null;
         }
+        public string updateStatus(int orderID)
+        {
+            return get("UPDATESTATUS" + "&" + orderID.ToString() + "&" + "COMPLETED")[0];
+        }
         private List<string> get(string request)
         {
+            Debug.WriteLine($"Sent to server: {request}");
             client = new TcpClient();
             client.Connect(Dns.GetHostAddresses(serverIp), port);
             NetworkStream stream = client.GetStream();

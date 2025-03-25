@@ -15,7 +15,7 @@ namespace clientapp
         [STAThread]
         static void Main()
         {
-            network = new Network("127.0.0.1", 6210);
+            network = new Network("hctel.net", 58913);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Window());

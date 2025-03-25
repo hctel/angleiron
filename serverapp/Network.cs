@@ -42,10 +42,19 @@ namespace backend
 
                     IPEndPoint remoteIpEndPoint = handler.Client.RemoteEndPoint as IPEndPoint;
 					Console.WriteLine($"Request from {remoteIpEndPoint.Address.ToString()}: {message}");
+					Console.Beep();
 
 					string msgOut = rcvFunc(data, remoteIpEndPoint.Address.ToString());
+					Console.WriteLine($"Reponse: {msgOut}");
                     var bytesOut = Encoding.UTF8.GetBytes(msgOut);
-                    stream.Write(bytesOut);
+					try
+					{
+                        stream.Write(bytesOut);
+                    } catch
+					{
+						stream.Close();
+					}
+                    
                 }
 			});
 			thread.Start();

@@ -16,11 +16,16 @@ namespace clientapp
         private bool adding = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
-        private Color colorPanel = Color.Empty;
+        private Color colorPanel = Color.FromArgb(0,0,0);
         private Color firstColor = Color.FromArgb(187, 153, 112);
         private Color secondColor = Color.FromArgb(88, 76, 69);
         private Color thirdColor = Color.FromArgb(191, 180, 157);
         private Color fourthColor = Color.FromArgb(166, 167, 171);
+        private Bitmap image; // Variable de classe pour le Bitmap
+        private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
+
+        private Network network;
+
 
         public Window()
         {
@@ -35,6 +40,11 @@ namespace clientapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            network = new Network("172.17.33.231", 80);
+            foreach(Kit k in network.getItems()) {
+                Debug.WriteLine(k);
+            }
+
             Articles.Add(1);
             Articles.Add(2);
             Articles.Add(3);
@@ -62,6 +72,10 @@ namespace clientapp
 
             this.SummaryLabel.BackColor = Color.FromArgb(200, 200, 200);
             this.SummaryLabel.Location = new Point(this.Width - 230, 90);
+
+            // Charger l'image par défaut
+            currentImagePath = "./Images/image.png";
+            image = new Bitmap(currentImagePath);
 
             //To be optimized
             Button choiceOneButton = new Button();
@@ -107,10 +121,11 @@ namespace clientapp
 
 
 
-            foreach (int i in Articles)
+            foreach (Kit k in network.getItems())
             {
-                int a = i - 1;
-                Debug.WriteLine(i);
+                int id = k.id;
+                int a = id - 1;
+                Debug.WriteLine(id);
 
                 Panel contentPanel = new Panel();
                 contentPanel.Size = new Size(260, 300);
@@ -121,7 +136,7 @@ namespace clientapp
 
                 Button addButton = new Button();
                 addButton.Size = new Size(80, 30);
-                addButton.Text = "Add";
+                addButton.Text = "Select";
                 addButton.TextAlign = ContentAlignment.MiddleCenter;
                 addButton.Location = new Point(contentPanel.Width - 95, contentPanel.Height - 45);
                 addButton.FlatStyle = FlatStyle.Flat;
@@ -129,25 +144,62 @@ namespace clientapp
                 addButton.BackColor = Color.FromArgb(0, 0, 0);
                 addButton.ForeColor = Color.White;
                 contentPanel.Controls.Add(addButton);
-                addButton.Click += addButton_Click;
+                addButton.Click += (s, ev) => SelectImage(id + 1); // Passer l'index de l'article
 
-                
+
                 Label infoLabel = new Label();
                 infoLabel.Size = new Size(200, 30);
-                infoLabel.Text = "69 x 69 cm " + i;
+                infoLabel.Text = k.dimension + " " + id;
                 contentPanel.Controls.Add(infoLabel);
                 infoLabel.Location = new Point(15, contentPanel.Height - 45);
                 infoLabel.Font = new Font("Sans Serif", 16);
+
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.Image = Image.FromFile("./Images/image1.png"); // Charge l'image
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage; // Ajuste l'image à la taille du PictureBox
+                pictureBox.Size = new Size(300, 50); // Définir la taille
+                pictureBox.Location = new Point(490, 335); // Définir la position
 
                 ContainerPanel.Controls.Add(contentPanel);
 
                 if(adding)
                 {
-                    Add(i);
+                    Add(id);
                 }
             }
 
         }
+
+        private void SelectImage(int articleIndex)
+        {
+            adding = true;
+            Debug.WriteLine("Button clicked for article " + articleIndex);
+
+            // Modifier le chemin de l'image en fonction de l'article sélectionné
+            switch (articleIndex)
+            {
+                case 1:
+                    currentImagePath = "./Images/image.png";
+                    break;
+                case 2:
+                    currentImagePath = "./Images/image1.png";
+                    break;
+                case 3:
+                    currentImagePath = "./Images/image2.png";
+                    break;
+                default:
+                    currentImagePath = "./Images/image3.png";
+                    break;
+            }
+
+            colorPanel = Color.FromArgb(0, 0, 0);
+            // Recharger le Bitmap avec la nouvelle image
+            image = new Bitmap(currentImagePath);
+
+            // Rafraîchir le panneau pour redessiner l'image modifiée
+            ImagePanel.Invalidate();
+        }
+
 
         private void changeColor(Color newcolor)
         {
@@ -239,9 +291,28 @@ namespace clientapp
 
         private void ImagePanel_Paint(object sender, PaintEventArgs e)
         {
+            
             this.ImagePanel.Size = new Size(680, 490);
             this.ImagePanel.Location = new Point(300, 70);
-            this.ImagePanel.BackColor = colorPanel;
+ 
+            this.ImagePanel.BackColor = Color.FromArgb(255,255,255);
+      
+
+            // Changer la couleur de l'image
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color pixelColor = image.GetPixel(x, y);
+                    if (pixelColor.A > 0) // Si le pixel n'est pas transparent
+                    {
+                        image.SetPixel(x, y, colorPanel);
+                    }
+                }
+            }
+
+            // Dessiner l'image sur le panneau
+            e.Graphics.DrawImage(image, new Point(200, 200));
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using backend;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Diagnostics.Metrics;
 
 string version = "0.0.1b";
-int port = 80;
+int port = 0xe621;
 
 string hostname = "127.0.0.1";
 string dataName = "angleiron";
@@ -26,11 +27,11 @@ KIT_to_component kitToComponentDB = new KIT_to_component(hostname, dataName, use
 
 UserAuth userAuthenticator = new UserAuth( dbcon);
 Stock_calculation stockCalculation = new Stock_calculation(stockDB);
-Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation);
+Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation, dbcon, userAuthenticator);
+Kit_manager kitM = new Kit_manager(kitDB);
+Stock stockManager = new Stock(stockDB);
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
-Console.WriteLine("Press any key to enter");
-Console.ReadKey();
 Console.WriteLine($"Server started on port {port}");
 Console.WriteLine("Press Q to stop the server");
 
@@ -75,14 +76,57 @@ string networkReceiveFunction(string[] data, string ipAddress)
      *  Sucessful: AUTHOK&sessionID&clientID&remoteIP
      *  Incorrect password: AUTHFAIL&NOPASSWD
      *  User not fount: AUTHFAIL&NOUSER
+     *
+     * OrderStock :
+     * Command: ORDERSTOCK
+     * Structure: ORDERSTOCK&componentID&quantity
+     *
+     *response: 
+     *  Sucessful: OK
+     *  Syntax error: STXERR
+     * 
+     * Stock delivered:
+     * Command: STOCKDEDELIVERED
+     * Structure: STOCKDEDELIVERED&componentID&quantity
+     *
+     *response:
+     *  Sucessful: OK
+     *  Syntax error: STXERR
+     *
+     * Stock to order:
+     * Command: STOCKTOORDER
+     * Structure: STOCKTOORDER&componentID
+     *
+     *response:
+     *  Sucessful: TOORDER&quantity
+     *  Syntax error: STXERR
+     *
+     * New order:
+     * Command: NEWORDER
+     * Structure: NEWORDER&categoryID&clientID&already_paid&status&price
+     *
+     *response:
+     *  Sucessful: OK
+     *  Syntax error: STXERR
+     *
+     * Update status:
+     * Command: UPDATESTATUS
+     * Structure: UPDATESTATUS&orderID&status
+     *
+     *response:
+     *  Sucessful: OK
+     *  Syntax error: STXERR
      */
 
     if (data[0].Equals("SHOWTYPES"))
     {
-        /*
-         * -nom
-         * -prix*/
-        return "TYPELIST&small dumb model/7.00;medium dumb model/15.00;big model/69.00";
+        List<Kit> kits = kitM.getKits();
+        string response = "TYPELIST&";
+        foreach (Kit kit in kits)
+        {
+            response += kit.ToString() + ";";
+        }
+        return response.Remove(response.Length - 1, 1); ;
     }
 
     else if (data[0].Equals("SHOWORDERS"))
@@ -91,19 +135,20 @@ string networkReceiveFunction(string[] data, string ipAddress)
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
         {
-            response += order[0] + "/" + order[1] + "/" + order[2] + "/" + order[3] + "/" + order[4] + "/"+ order[5] + ";";
+            response += order[1] + "/" + order[0] + "/" + order[2] + "/" + order[3] + "/" + order[4] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }
-        
+
 
     else if (data[0].Equals("DETAILORDER"))
     {
         List<List<string>> orderDetails = order_manager.detail_order(Int32.Parse(data[1]));
+        if (orderDetails.Count == 0) return "NOORDER";
         string response = "ORDERDETAIL&" + data[1] + "&";
         foreach (List<string> detail in orderDetails)
         {
-            response += detail[0] + "/" + detail[1] + "/" + detail[2] +"/"+detail[3] + ";";
+            response += detail[0] + "/" + detail[1] + "/" + detail[2] + "/" + detail[3] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }
@@ -115,7 +160,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int orderId = Int32.Parse(data[1]);
             order_manager.change_satus(data[2], orderId);
-            return "Status updated";
+            return "OK";
         }
     }
 
@@ -126,54 +171,74 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int orderId = Int32.Parse(data[1]);
             order_manager.delete_row(orderId);
-            return "Order deleted";
+            return "OK";
         }
     }
 
-    else if (data[0].Equals("ORDERSTOCK")) { 
-        if(data.Length != 3) return "STXERR";
+    else if (data[0].Equals("ORDERSTOCK"))
+    {
+        if (data.Length != 3) return "STXERR";
         else
         {
             int componentId = Int32.Parse(data[1]);
             int quantity = Int32.Parse(data[2]);
-            using(MySqlDataReader result = stockDB.getIdcomponent(componentId)){
+            using (MySqlDataReader result = stockDB.getIdcomponent(componentId))
+            {
                 result.Read();
                 int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
                 stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-                return "stock updated";
+                return "OK";
             }
         }
     }
-    else if (data[0].Equals("STOCKDEDELIVERED")){
-            int componentId = Int32.Parse(data[1]);
-            int quantity = Int32.Parse(data[2]);
-            using(MySqlDataReader result = stockDB.getIdcomponent(componentId)){
-                result.Read();
-                int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
-                int new_quantity = result.GetInt32("Quantity") + quantity;
-                stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-                stockCalculation.updateInt("Quantity", new_quantity, componentId);
-                return "stock updated";
-            }
+
+    else if (data[0].Equals("STOCKCHK"))
+    {
+        string response = "STOCKSTS&";
+        Dictionary<int, int> clientQuantities = stockManager.getClientQuantities();
+        Dictionary<int, int> stockQuantities = stockManager.getStockQuantities();
+        Dictionary<int, int> orderedQuantities = stockManager.getOrderedQuantities();
+        foreach (int key in clientQuantities.Keys)
+        {
+            response += $"{key}/{stockQuantities[key]}/{clientQuantities[key]}/{orderedQuantities[key]};";
+        }
+        return response.Remove(response.Length - 1, 1); ;
     }
-    else if (data[0].Equals("STOCKTOORDER")){
+
+    else if (data[0].Equals("STOCKDEDELIVERED"))
+    {
+        int componentId = Int32.Parse(data[1]);
+        int quantity = Int32.Parse(data[2]);
+        using (MySqlDataReader result = stockDB.getIdcomponent(componentId))
+        {
+            result.Read();
+            int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
+            int new_quantity = result.GetInt32("Quantity") + quantity;
+            stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
+            stockCalculation.updateInt("Quantity", new_quantity, componentId);
+            return "OK";
+        }
+    }
+    else if (data[0].Equals("STOCKTOORDER"))
+    {
         int componentId = Int32.Parse(data[1]);
         stockCalculation.check(componentId);
-        return "&TOORDER&"+stockCalculation.get_to_order();
+        return "TOORDER&" + stockCalculation.get_to_order();
     }
-    else if (data[0].Equals("NEWORDER")){
-        if(data.Length != 6) return "STXERR";
+    else if (data[0].Equals("NEWORDER"))
+    {
+        if (data.Length != 7) return "STXERR";
         else
         {
-            int idorder = Int32.Parse(data[1]);
-            int idcategory = Int32.Parse(data[2]);
-            int idclient = Int32.Parse(data[3]);
-            string already_paid = data[4];
-            string status = data[5];
-            double price = Double.Parse(data[6]);
-            order_manager.add_order(idcategory, idclient, already_paid, status, price);
-            order_manager.management(idorder);
-            return "Order added";
+            int idcategory = Int32.Parse(data[1]);
+            int idclient = Int32.Parse(data[2]);
+            string already_paid = data[3];
+            string status = data[4];
+            double price = Double.Parse(data[5]);
+            string date = data[6];
+            order_manager.add_order(idcategory, idclient, already_paid, status, price, date);
+            order_manager.management();
+            return "OK";
         }
     }
 
@@ -201,6 +266,33 @@ string networkReceiveFunction(string[] data, string ipAddress)
                 return "AUTHFAIL&NOPASSWD";
             }
         }
+    }
+    else if (data[0].Equals("NEWUSER"))
+    {
+        if (data.Length != 5)
+        {
+            return "STXERR";
+        }
+        else
+        {
+            string name = data[1];
+            string address = data[2];
+            string email = data[3];
+            string password = data[4];
+            userAuthenticator.createUser(name, address, email, password);
+            return "OK";
+        }
+    }
+    else if (data[0].Equals("DELUSER"))
+    {
+        if (data.Length != 2) return "STXERR";
+        else
+        {
+            int id = Int32.Parse(data[1]);
+            dbcon.deleteuser(id);
+            return "OK";
+        }
+
     }
     return "NOFUNC";
 }

@@ -17,7 +17,7 @@ namespace merchandapp
     {
         const int VIEW_BUTTON_COLUMN_INDEX = 5;
         List<Panel> listPanel = new List<Panel>();
-        int index = 1;
+        int index = 0;
         Network network;
 
         List<OrderSummary> orderSummaries = new List<OrderSummary>();
@@ -28,6 +28,12 @@ namespace merchandapp
         BindingList<OrderPart> orderPartsBindingList;
         BindingSource orderPartsSource;
 
+        List<PartSummary> partSummaries = new List<PartSummary>();
+        BindingList<PartSummary> partSummariesBindingList;
+        BindingSource partSummariesSource;
+
+        Order currentOrder;
+        
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +44,7 @@ namespace merchandapp
             // Panels / Pages
             listPanel.Add(panel1);
             listPanel.Add(panel2);
+            listPanel.Add(panel3);
             listPanel[index].BringToFront();
 
             // Bindings
@@ -49,14 +56,22 @@ namespace merchandapp
             orderPartsSource = new BindingSource(orderPartsBindingList, null);
             this.PartListDataGridView.DataSource = orderPartsSource;
 
-            network = new Network("172.17.35.22", 80);
-            Debug.WriteLine(network.getOrders().ToString());
+            partSummariesBindingList = new BindingList<PartSummary>(partSummaries);
+            partSummariesSource = new BindingSource(partSummariesBindingList, null);
+            this.stockDataGridView.DataSource = partSummariesSource;
+
+
+
+            network = new Network("hctel.net", 0xe621);
+            network.debugCommand("STOCKCHK");
 
             foreach (OrderSummary order in network.getOrders())
             { orderSummariesSource.Add(order); }
 
-            //orderSummariesSource.Add(new OrderSummary { orderID = 9, orderName = "hell6o" });
-            //orderSummariesSource.Add(new OrderSummary("1", "after", "pas ok", "25/04", "nope"));
+            /*PartListDataGridView.ReadOnly = false;
+            for (int i = 0; i < PartListDataGridView.ColumnCount; i++)
+            { PartListDataGridView.Columns[i].ReadOnly = true; }
+            PartListDataGridView.Columns[4].ReadOnly = true;*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -102,14 +117,16 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                foreach (OrderPart item in network.getOrderDetails(e.RowIndex).parts)
+                currentOrder = network.getOrderDetails(e.RowIndex + 1);
+                Debug.WriteLine(currentOrder);
+                if (currentOrder != null)
                 {
-                    orderPartsSource.Add(item);
-
+                    foreach (OrderPart item in currentOrder.parts)
+                    {
+                        orderPartsSource.Add(item);
+                    }
+                    listPanel[1].BringToFront();
                 }
-                listPanel[1].BringToFront();
-                Debug.WriteLine(network.getOrderDetails(e.RowIndex));
-                
             }
         }
 
@@ -121,7 +138,11 @@ namespace merchandapp
         private void backButton_Click(object sender, EventArgs e)
         {
             index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
             listPanel[index].BringToFront();
+            orderPartsSource.Clear();
             //((Button)sender).Text = index.ToString();
         }
 
@@ -131,6 +152,39 @@ namespace merchandapp
         }
 
         private void completeButton_Click(object sender, EventArgs e)
+        {
+            network.updateStatus(currentOrder.orderID);
+            Debug.WriteLine(currentOrder.orderID);
+
+            index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
+            listPanel[index].BringToFront();
+            orderPartsSource.Clear();
+            //((Button)sender).Text = index.ToString();
+        }
+
+        private void stock_button_Click(object sender, EventArgs e)
+        {
+            listPanel[2].BringToFront();
+        }
+
+        private void dataGridView1_CellContentClick_4(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void back_stock_button_Click(object sender, EventArgs e)
+        {
+            index = 0;
+            orderSummariesSource.Clear();
+            foreach (OrderSummary order in network.getOrders())
+            { orderSummariesSource.Add(order); }
+            listPanel[index].BringToFront();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

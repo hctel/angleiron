@@ -10,6 +10,19 @@ namespace backend
         {
         }
 
+        public List<int> getAllIDs()
+        {
+            using (MySqlDataReader reader = read("SELECT id_category FROM table_categories;"))
+            {
+                List<int> ids = new List<int>();
+                while (reader.Read())
+                {
+                    ids.Add(reader.GetInt32("id_category"));
+                }
+                return ids;
+            }
+        }
+           
         public MySqlDataReader getIdcategory(int idcategory)
         {
           return read(String.Format("SELECT * FROM table_categories WHERE id_category={0};", idcategory));
@@ -20,5 +33,6 @@ namespace backend
             execute(String.Format("INSERT INTO table_categories (Dimension, Colors_available, Options_available) VALUES ('{0}', '{1}', '{2}');", 
             dimension, colors_available, options_available));
         }
+
     }
 }

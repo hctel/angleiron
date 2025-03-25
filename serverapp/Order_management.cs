@@ -1,8 +1,11 @@
 using MySql.Data.MySqlClient;
 using Mysqlx.Resultset;
 using MySqlX.XDevAPI.Common;
+using MySqlX.XDevAPI.Relational;
 using Org.BouncyCastle.Asn1.Misc;
 using System;
+using System.Data;
+using System.Diagnostics;
 
 namespace backend
 {
@@ -13,18 +16,23 @@ namespace backend
         private Stock_calculation stock_calculation;
         private MaterialDB materialDB;
         private KIT_to_component kIT_To_Component;
-        public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component, Stock_calculation stock_calculation)
+        private UserDB userDB;
+        private UserAuth userAuth;
+        public Order_management(Order_DB order_DB, Stock_DB stock_DB, KitDB kitDB, MaterialDB materialDB, KIT_to_component kIT_To_Component, Stock_calculation stock_calculation, UserDB userDB, UserAuth userAuth)
         {
             this.order_DB = order_DB;
             this.stock_DB = stock_DB;
             this.kIT_To_Component = kIT_To_Component;
             this.materialDB = materialDB;
             this.stock_calculation = stock_calculation;
+            this.userDB = userDB;
+            this.userAuth = userAuth;
         }
-        public void management(int idorder)
+        public void management()
         {
+            int idorder= order_DB.getLastId();
             try
-            {
+            {   
                 using (MySqlDataReader resultOrder = order_DB.getIdOrder(idorder))
                 {
                     if (resultOrder.HasRows && resultOrder.Read())
@@ -63,9 +71,9 @@ namespace backend
             }
         }
 
-        public void add_order(int idcategory, int id_client, string already_paid, string status, double price)
+        public void add_order(int idcategory, int id_client, string already_paid, string status, double price, string date)
         {
-            order_DB.addOrder(idcategory, id_client, already_paid, status, price);
+            order_DB.addOrder(idcategory, id_client, already_paid, status, price, date);
         }
         public string get_status(int idorder)
         {
@@ -91,6 +99,7 @@ namespace backend
         {
 
             List<List<string>> result = new List<List<string>>();
+            List<int> ids = new List<int>();
 
             try
             {
@@ -101,13 +110,19 @@ namespace backend
                         while (row.Read())
                         {
                             List<string> row_result = new List<string>();
-
-                            row_result.Add(row.GetInt32("idorder") + "");
-                            row_result.Add(row.GetInt32("id_client") + "");
-                            row_result.Add(row.GetInt32("id_category") + "");
-                            row_result.Add(row.GetDouble("Price") + "");
-                            row_result.Add(row.GetString("Already_paid"));
+                            int id_client = row.GetInt32("id_client");
+                            using (MySqlDataReader resultUser = userDB.getUserFromId(id_client))
+                            {
+                                if(resultUser.Read()){
+                                    string name = resultUser.GetString("Name");
+                                    row_result.Add(name);
+                                }
+                            }
+                            row_result.Add(row.GetInt32("idorder") + "");;
                             row_result.Add(row.GetString("Status"));
+                            row_result.Add(row.GetDateTime("date").ToString());
+                            int id_order = row.GetInt32("idorder");
+                            ids.Add(id_order);
                             result.Add(row_result);
                         }
                     }
@@ -116,10 +131,30 @@ namespace backend
                         Console.WriteLine("Aucune commande trouvée.");
                     }
                 }
+                for(int i = 0; i < ids.Count; i++)
+                {
+                    int id_order = ids[i];
+                    List<List<string>> detailorder = detail_order(id_order);
+                    string res = "0";
+                    foreach (List<string> detail in detailorder)
+                    {
+                        if (Int32.Parse(detail[2]) - Int32.Parse(detail[1]) > 0)
+                        {
+                            res = "1";
+                        }
+                        else
+                        {
+                            res = "0";
+                        }
+                    }
+                    result[i].Add(res);
+                    
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erreur lors de la récupération des commandes : {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
             }
 
             return result;
@@ -131,37 +166,33 @@ namespace backend
             List<List<string>> result = new List<List<string>>();
             using (MySqlDataReader row = order_DB.getIdOrder(idorder))
             {
-                row.Read();
-                int id_category = row.GetInt32("id_category");
-                using (MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category))
+                if(row.Read())
                 {
-                    while (resultcomponent_type.Read())
+                    int id_category = row.GetInt32("id_category");
+                    using (MySqlDataReader resultcomponent_type = kIT_To_Component.getIdcategory(id_category))
                     {
-                        List<string> row_result = new List<string>();
-                        int id_component = resultcomponent_type.GetInt32("id_component");
-                        row_result.Add(id_component + "");
-                        using (MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component))
+                        while (resultcomponent_type.Read())
                         {
-                            resultStock.Read();
-                            row_result.Add(resultStock.GetInt32("Quantity_client") + "");
-                            int not_in_stock = stock_calculation.get_not_in_stock();
-                            if (not_in_stock > 0)
+                            List<string> row_result = new List<string>();
+                            int id_component = resultcomponent_type.GetInt32("id_component");
+                            row_result.Add(id_component + "");
+                            using (MySqlDataReader resultStock = stock_DB.getIdcomponent(id_component))
                             {
-                                row_result.Add("1");
+                                resultStock.Read();
+                                row_result.Add(resultStock.GetInt32("Quantity_client") + "");
+                                row_result.Add(resultStock.GetInt32("Quantity") + "");
                             }
-                            else
+                            using (MySqlDataReader material = materialDB.getIdcomponent(id_component))
                             {
-                                row_result.Add("0");
+                                if (material.Read())
+                                {
+                                    row_result.Add(material.GetString("Description"));
+                                    result.Add(row_result);
+                                }
                             }
-                        }
-                        using (MySqlDataReader material = materialDB.getIdcomponent(id_component))
-                        {
-                            material.Read();
-                            row_result.Add(material.GetString("Description"));
-                            result.Add(row_result);
                         }
                     }
-                }
+                } 
             }
 
 
