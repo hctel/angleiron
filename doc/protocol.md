@@ -39,15 +39,19 @@ Use to show the details of an order<br>
 Example request: `DETAILORDER&orderID`<br>  
 Example response: `ORDERDETAIL&orderID&elemnt1/quantity1/inStock1/Description1(Name);elemnt2/quantity2/inStock/Description2(Name);elemnt3/quantity3/InStock3/Description3(Name); (etc.)`<br>  
 ### ORDERSTOCK
-Use to order new stock<br>  
+Use to order new stock<br>
 Request must give the component ID and the quantity <br>
+exemple request : 'ORDERSTOCK&componentID&quantity'<br>
+response : 'ok'<br>
 ### STOCKCHK
 Use to fetch the stock status<br>  
 Example response:<br>  
 `STOCKSTS&idComponent1/quantityInStock1/quantityForClients1/quantityOrdered1;idComponent2/quantityInStock2/quantityForClients2/quantityOrdered2;...`
 ### STOCKDEDELIVERED
-Use to let known the database when new component arrives<br>  
-Request must give the component ID and the quantity<br>  
+Use to let known the database when new component arrives<br>
+Request must give the component ID and the quantity<br> 
+exemple request : 'STOCKDEDELIVERED&componentID&quantity'<br>
+response : 'ok'<br>
 ### STOCKTOORDER
 Use to let known the marchand what he must order<br>  
 Request must give the component ID he wants to check<br> 
