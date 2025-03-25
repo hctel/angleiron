@@ -93,6 +93,11 @@ namespace merchandapp
             //client = new TcpClient();
         }
 
+        public void debugCommand(string command)
+        {
+            Debug.WriteLine(get(command));
+        }
+
         public List<OrderSummary> getOrders()
         {
             List<OrderSummary> summaries = new List<OrderSummary>();
