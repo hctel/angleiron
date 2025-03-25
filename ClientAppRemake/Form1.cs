@@ -1,10 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using clientapp;
+
+
 namespace ClientAppRemake
 {
     public partial class Form1 : Form
     {
+        private bool adding = false;
+        private List<int> Articles = new List<int>();
+        private List<int> Basket = new List<int>();
+        private Color colorPanel = Color.FromArgb(0, 0, 0);
+        private Color baseColor = Color.FromArgb(0, 0, 0);
+        private Color firstColor = Color.FromArgb(187, 153, 112);
+        private Color secondColor = Color.FromArgb(88, 76, 69);
+        private Color thirdColor = Color.FromArgb(191, 180, 157);
+        private Color fourthColor = Color.FromArgb(166, 167, 171);
+        private Bitmap image; // Variable de classe pour le Bitmap
+        private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
+
+        private Network network;
+
         public Form1()
         {
-            InitializeComponent();
+
+
+        InitializeComponent();
             this.Size = new Size(1600, 900);
             this.MinimumSize = new Size(1600, 900);
             this.MaximumSize = new Size(1600, 900);
@@ -22,7 +53,7 @@ namespace ClientAppRemake
         {
             //Header Panel
             Panel headerPanel = new Panel();
-            headerPanel.Size = new Size(1600, 160);
+            headerPanel.Size = new Size(1600, 100);
             headerPanel.BackColor = Color.FromArgb(0, 168, 232);
             headerPanel.Location = new Point(0, 0);
             this.Controls.Add(headerPanel);
@@ -30,15 +61,15 @@ namespace ClientAppRemake
             headerPanel.Controls.Add(new Label
             {
                 Text = "AngleIron V2",
-                Font = new Font("Comic sans MS", 24, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
                 ForeColor = Color.White,
-                Location = new Point(10, 35),
+                Location = new Point(10, 20),
                 AutoSize = true
             });
 
             //Footer Panel
             Panel footerPanel = new Panel();
-            footerPanel.Size = new Size(1600, 160);
+            footerPanel.Size = new Size(1600, 100);
             footerPanel.BackColor = Color.FromArgb(0, 168, 232);
             footerPanel.Location = new Point(0, this.ClientSize.Height - footerPanel.Height);
             this.Controls.Add(footerPanel);
@@ -52,14 +83,14 @@ namespace ClientAppRemake
 
             //Selection Panel
             Panel selectionPanel = new Panel();
-            selectionPanel.Size = new Size(450, mainPanel.Height);
+            selectionPanel.Size = new Size(350, mainPanel.Height);
             selectionPanel.BackColor = Color.FromArgb(200, 200, 200);
             selectionPanel.Dock = DockStyle.Left;
             mainPanel.Controls.Add(selectionPanel);
             selectionPanel.Controls.Add(new Label
             {
                 Text = "Lockers",
-                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 14, FontStyle.Bold),
                 ForeColor = Color.Black,
                 Location = new Point(125, 10),
                 AutoSize = true
@@ -67,14 +98,14 @@ namespace ClientAppRemake
 
             //Summary Panel
             Panel summaryPanel = new Panel();
-            summaryPanel.Size = new Size(450, mainPanel.Height);
+            summaryPanel.Size = new Size(350, mainPanel.Height);
             summaryPanel.BackColor = Color.FromArgb(0, 232, 0);
             summaryPanel.Location = new Point(mainPanel.Width - summaryPanel.Width - 25, 0);
             mainPanel.Controls.Add(summaryPanel);
             summaryPanel.Controls.Add(new Label
             {
                 Text = "Summary",
-                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 14, FontStyle.Bold),
                 ForeColor = Color.Black,
                 Location = new Point(110, 10),
                 AutoSize = true
@@ -88,43 +119,50 @@ namespace ClientAppRemake
             previewPanel.Controls.Add(new Label
             {
                 Text = "Preview",
-                Font = new Font("Comic sans MS", 18, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 14, FontStyle.Bold),
                 ForeColor = Color.Black,
                 Location = new Point(850, 10),
                 AutoSize = true
             });
 
             //Color button
+            Button choiceZeroButton = new Button();
+            choiceZeroButton.Size = new Size(50, 50);
+            choiceZeroButton.Location = new Point(0, 0);
+            choiceZeroButton.FlatStyle = FlatStyle.Flat;
+            choiceZeroButton.FlatAppearance.BorderSize = 0;
+            choiceZeroButton.BackColor = baseColor;
             Button choiceOneButton = new Button();
-            choiceOneButton.Size = new Size(90, 75);
-            choiceOneButton.Location = new Point(0, 0);
+            choiceOneButton.Size = new Size(50, 50);
+            choiceOneButton.Location = new Point(50, 0);
             choiceOneButton.FlatStyle = FlatStyle.Flat;
             choiceOneButton.FlatAppearance.BorderSize = 0;
-            choiceOneButton.BackColor = Color.FromArgb(187, 153, 112);
+            choiceOneButton.BackColor = firstColor;
             Button choiceTwoButton = new Button();
-            choiceTwoButton.Size = new Size(90, 75);
-            choiceTwoButton.Location = new Point(90, 0);
+            choiceTwoButton.Size = new Size(50, 50);
+            choiceTwoButton.Location = new Point(100, 0);
             choiceTwoButton.FlatStyle = FlatStyle.Flat;
             choiceTwoButton.FlatAppearance.BorderSize = 0;
-            choiceTwoButton.BackColor = Color.FromArgb(88, 76, 69);
+            choiceTwoButton.BackColor = secondColor;
             Button choiceThreeButton = new Button();
-            choiceThreeButton.Size = new Size(90, 75);
-            choiceThreeButton.Location = new Point(180, 0);
+            choiceThreeButton.Size = new Size(50, 50);
+            choiceThreeButton.Location = new Point(150, 0);
             choiceThreeButton.FlatStyle = FlatStyle.Flat;
             choiceThreeButton.FlatAppearance.BorderSize = 0;
-            choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
+            choiceThreeButton.BackColor = thirdColor;
             Button choiceFourButton = new Button();
-            choiceFourButton.Size = new Size(90, 75);
-            choiceFourButton.Location = new Point(270, 0);
+            choiceFourButton.Size = new Size(50, 50);
+            choiceFourButton.Location = new Point(200, 0);
             choiceFourButton.FlatStyle = FlatStyle.Flat;
             choiceFourButton.FlatAppearance.BorderSize = 0;
-            choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
+            choiceFourButton.BackColor = fourthColor;
 
             //Color Group
             GroupBox colorGroup = new GroupBox();
             colorGroup.BackColor = Color.FromArgb(200, 200, 200);
             colorGroup.FlatStyle = FlatStyle.Flat;
-            colorGroup.Size = new Size(360,75);
+            colorGroup.Size = new Size(250,50);
+            colorGroup.Controls.Add(choiceZeroButton);
             colorGroup.Controls.Add(choiceOneButton);
             colorGroup.Controls.Add(choiceTwoButton);
             colorGroup.Controls.Add(choiceThreeButton);

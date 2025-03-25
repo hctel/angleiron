@@ -242,8 +242,8 @@ string networkReceiveFunction(string[] data, string ipAddress)
             string already_paid = data[3];
             string status = data[4];
             double price = Double.Parse(data[5]);
-            string date = data[6];
-            order_manager.add_order(idcategory, idclient, already_paid, status, price, date);
+            string color = data[6];
+            order_manager.add_order(idcategory, idclient, already_paid, status, price, color);
             order_manager.management();
             return "OK";
         }

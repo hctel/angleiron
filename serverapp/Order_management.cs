@@ -71,9 +71,9 @@ namespace backend
             }
         }
 
-        public void add_order(int idcategory, int id_client, string already_paid, string status, double price, string date)
+        public void add_order(int idcategory, int id_client, string already_paid, string status, double price, string color)
         {
-            order_DB.addOrder(idcategory, id_client, already_paid, status, price, date);
+            order_DB.addOrder(idcategory, id_client, already_paid, status, price, color);
         }
         public string get_status(int idorder)
         {
@@ -120,7 +120,7 @@ namespace backend
                             }
                             row_result.Add(row.GetInt32("idorder") + "");;
                             row_result.Add(row.GetString("Status"));
-                            row_result.Add(row.GetDateTime("date").ToString());
+                            row_result.Add(row.GetDateTime("date").ToString("dd-MM-yyy"));
                             int id_order = row.GetInt32("idorder");
                             ids.Add(id_order);
                             result.Add(row_result);

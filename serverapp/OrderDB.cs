@@ -28,10 +28,10 @@ namespace backend
             }
         }
 
-        public void addOrder(int idcategory, int id_client, string already_paid, string status, double price, string date)
+        public void addOrder(int idcategory, int id_client, string already_paid, string status, double price, string color)
         {
-            execute(String.Format("INSERT INTO orders (id_client, id_category, Price, Already_paid, Status) VALUES ({0}, {1}, {2}, '{3}', '{4}', '{5}');", 
-            id_client, idcategory, price, already_paid,status, date));
+            execute(String.Format("INSERT INTO orders (id_client, id_category, Price, Already_paid, Status, color) VALUES ({0}, {1}, {2}, '{3}', '{4}', '{5}');", 
+            id_client, idcategory, price, already_paid,status, color));
         }
         public void updateSTR(string name_collum, string new_value, int id){
             execute(String.Format("UPDATE orders SET {0}='{1}' WHERE idorder={2};",name_collum, new_value, id));
