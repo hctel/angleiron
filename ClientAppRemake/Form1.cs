@@ -12,7 +12,7 @@ namespace ClientAppRemake
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "AngleIron V2";
             this.MaximizeBox = false;
-
+            this.AutoScaleMode = AutoScaleMode.None;
             this.Load += new EventHandler(Form1_Load);
 
         }
