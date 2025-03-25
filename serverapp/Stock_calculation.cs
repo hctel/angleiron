@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Math.EC;
 using System;
 
 namespace backend {
@@ -18,7 +19,13 @@ namespace backend {
                     int delta_stock_need=0;
                     delta_stock_need = result.GetInt32("Quantity")-result.GetInt32("Quantity_client");
                     delta_stock_need += result.GetInt32("Quantity_order");
-                    to_order = delta_stock_need;
+                    if(delta_stock_need>0){
+                        to_order=0;
+                    }
+                    else {
+                        
+                        to_order =  Math.Abs(delta_stock_need);
+                    }
                 }
             }
         }
