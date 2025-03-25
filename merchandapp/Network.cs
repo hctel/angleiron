@@ -156,7 +156,7 @@ namespace merchandapp
         }
         public int getStockToOrder(int partID)
         {
-            return Int32.Parse(get("STOCKTOORDER" + "&" + partID.ToString())[0]);
+            return Int32.Parse(get("STOCKTOORDER" + "&" + partID.ToString())[1]);
         }
         public string orderStock(int partID, int quantity)
         {

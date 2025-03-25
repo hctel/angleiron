@@ -200,7 +200,8 @@ namespace merchandapp
             {
                 int quantity = network.getStockToOrder(part.ID);
                 Debug.WriteLine("ordered ID=" + part.ID.ToString() + " quantity=" + quantity.ToString());
-                network.orderStock(part.ID, quantity);
+                if (quantity > 0)
+                { network.orderStock(part.ID, quantity); }
             }
         }
     }
