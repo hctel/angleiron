@@ -56,12 +56,7 @@ namespace merchandapp
             this.panel3 = new System.Windows.Forms.Panel();
             this.back_stock_button = new System.Windows.Forms.Button();
             this.stockDataGridView = new System.Windows.Forms.DataGridView();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buyButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderSummaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource)).BeginInit();
@@ -71,7 +66,6 @@ namespace merchandapp
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderSummaryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // OrdersDataGridView
@@ -213,6 +207,7 @@ namespace merchandapp
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.buyButton);
             this.panel3.Controls.Add(this.back_stock_button);
             this.panel3.Controls.Add(this.stockDataGridView);
             this.panel3.Location = new System.Drawing.Point(12, 12);
@@ -242,44 +237,15 @@ namespace merchandapp
             this.stockDataGridView.TabIndex = 0;
             this.stockDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_4);
             // 
-            // orderIDDataGridViewTextBoxColumn
+            // buyButton
             // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "orderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "orderID";
-            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            // 
-            // orderNameDataGridViewTextBoxColumn
-            // 
-            this.orderNameDataGridViewTextBoxColumn.DataPropertyName = "orderName";
-            this.orderNameDataGridViewTextBoxColumn.HeaderText = "orderName";
-            this.orderNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderNameDataGridViewTextBoxColumn.Name = "orderNameDataGridViewTextBoxColumn";
-            // 
-            // orderStatusDataGridViewTextBoxColumn
-            // 
-            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "orderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "orderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
-            // 
-            // orderDateDataGridViewTextBoxColumn
-            // 
-            this.orderDateDataGridViewTextBoxColumn.DataPropertyName = "orderDate";
-            this.orderDateDataGridViewTextBoxColumn.HeaderText = "orderDate";
-            this.orderDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderDateDataGridViewTextBoxColumn.Name = "orderDateDataGridViewTextBoxColumn";
-            // 
-            // orderStockDataGridViewTextBoxColumn
-            // 
-            this.orderStockDataGridViewTextBoxColumn.DataPropertyName = "orderStock";
-            this.orderStockDataGridViewTextBoxColumn.HeaderText = "orderStock";
-            this.orderStockDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderStockDataGridViewTextBoxColumn.Name = "orderStockDataGridViewTextBoxColumn";
-            // 
-            // orderSummaryBindingSource
-            // 
-            this.orderSummaryBindingSource.DataSource = typeof(merchandapp.OrderSummary);
+            this.buyButton.Location = new System.Drawing.Point(677, 3);
+            this.buyButton.Name = "buyButton";
+            this.buyButton.Size = new System.Drawing.Size(96, 42);
+            this.buyButton.TabIndex = 2;
+            this.buyButton.Text = "Buy";
+            this.buyButton.UseVisualStyleBackColor = true;
+            this.buyButton.Click += new System.EventHandler(this.buyButton_Click);
             // 
             // Form1
             // 
@@ -301,7 +267,6 @@ namespace merchandapp
             ((System.ComponentModel.ISupportInitialize)(this.commandeBindingSource1)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stockDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderSummaryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -332,6 +297,7 @@ namespace merchandapp
         private Panel panel3;
         private DataGridView stockDataGridView;
         private Button back_stock_button;
+        private Button buyButton;
     }
 }
 

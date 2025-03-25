@@ -188,5 +188,15 @@ namespace merchandapp
         {
 
         }
+
+        private void buyButton_Click(object sender, EventArgs e)
+        {
+            foreach (PartSummary part in partSummariesSource.List)
+            {
+                int quantity = network.getStockToOrder(part.ID);
+                Debug.WriteLine("ordered ID=" + part.ID.ToString() + " quantity=" + quantity.ToString());
+                network.orderStock(part.ID, quantity);
+            }
+        }
     }
 }

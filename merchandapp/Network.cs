@@ -136,6 +136,14 @@ namespace merchandapp
         {
             return get("UPDATESTATUS" + "&" + orderID.ToString() + "&" + "COMPLETED")[0];
         }
+        public int getStockToOrder(int partID)
+        {
+            return Int32.Parse(get("STOCKTOORDER" + "&" + partID.ToString())[0]);
+        }
+        public string orderStock(int partID, int quantity)
+        {
+            return get("ORDERSTOCK" + "&" + partID.ToString() + "&" + quantity.ToString())[0];
+        }
         private List<string> get(string request)
         {
             Debug.WriteLine($"Sent to server: {request}");
