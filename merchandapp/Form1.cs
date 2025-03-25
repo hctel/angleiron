@@ -62,7 +62,7 @@ namespace merchandapp
 
 
 
-            network = new Network("172.17.33.231", 80);
+            network = new Network("hctel.net", 58913);
             Debug.WriteLine(network.getOrders().ToString());
 
             foreach (OrderSummary order in network.getOrders())
@@ -167,6 +167,11 @@ namespace merchandapp
 
         private void stock_button_Click(object sender, EventArgs e)
         {
+            List<PartSummary> partSummaries = network.stockStatus();
+            foreach(PartSummary summary in partSummaries)
+            {
+                partSummariesSource.Add(summary);
+            }
             listPanel[2].BringToFront();
         }
 
@@ -186,7 +191,7 @@ namespace merchandapp
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
     }
 }
