@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="backend.DatabaseConnector" Collapsed="true">
+    <Position X="12.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAFAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>DatabaseConnector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Kit">
+    <Position X="16.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEQAAAAABAEAAEAAgAAAAAAAAAAgA=</HashCode>
+      <FileName>Kit_manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Kit_manager" Collapsed="true">
+    <Position X="22.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Kit_manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.KIT_to_component" Collapsed="true">
+    <Position X="16.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAIAA=</HashCode>
+      <FileName>KIT_to_component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Kit_to_component_manager" Collapsed="true">
+    <Position X="24.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Kit_to_component_manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.KitDB" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAgAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>KitDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Material_manager" Collapsed="true">
+    <Position X="26.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAA=</HashCode>
+      <FileName>Material_manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.MaterialDB" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABAAAAA=</HashCode>
+      <FileName>MaterialDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Network" Collapsed="true">
+    <Position X="21" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAANAAEAAAAAAAIAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Network.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Order_management">
+    <Position X="19" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBEAAAAAIAAACAAAEQAABAAAgAAAAEAAAIAABAAQAA=</HashCode>
+      <FileName>Order_management.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Order_DB" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAgAQAAAAAE=</HashCode>
+      <FileName>OrderDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Session" Collapsed="true">
+    <Position X="24.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAgIAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Stock" Collapsed="true">
+    <Position X="26.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAiAAAAAAQBAAAAAACAAAAACAAAAA=</HashCode>
+      <FileName>Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Stock_calculation" Collapsed="true">
+    <Position X="21" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAkAAAIAABgAAAAAAAAAAAAAAAACAAAIAAAAAA=</HashCode>
+      <FileName>Stock_calculation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.Stock_DB" Collapsed="true">
+    <Position X="18.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEACAAIAAAAAAAABAAAAAAAABAAAAE=</HashCode>
+      <FileName>Stock_DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.UserAuth" Collapsed="true">
+    <Position X="22.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAABABAAAAQ=</HashCode>
+      <FileName>UserAuth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="backend.UserDB" Collapsed="true">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIQAAAAA=</HashCode>
+      <FileName>UserDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
