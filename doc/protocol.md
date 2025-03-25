@@ -50,7 +50,9 @@ Use to let known the database when new component arrives<br>
 Request must give the component ID and the quantity<br>  
 ### STOCKTOORDER
 Use to let known the marchand what he must order<br>  
-Request must give the component ID he wants to check<br>  
+Request must give the component ID he wants to check<br> 
+exemple request : 'STOCKTOORDER&idcomponent'<br>
+reponse : 'TOORDER&get_to_order'
 ### UPDATESTATUS
 Use to update the status of an order<br>  
 Example request: `UPDATESTATUS&orderID&status`<br>  
