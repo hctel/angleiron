@@ -132,9 +132,35 @@ namespace merchandapp
             }
             return null;
         }
+        public List<PartSummary> stockStatus()
+        {
+            List<PartSummary> partSummaries = new List<PartSummary>();
+            List<string> list = get("STOCKCHK");
+            if (list[0].Equals("STOCKSTS"))
+            {
+                string[] parts = list[1].Split(';');
+                foreach (string obj in parts)
+                {
+                    string[] part = obj.Split('/');
+                    PartSummary summary = new PartSummary(Int32.Parse(part[0]), part[3].ToString(), Int32.Parse(part[2]), Int32.Parse(part[1]));
+                    partSummaries.Add(summary);
+                }
+
+                return partSummaries;
+            }
+            return null;
+        }
         public string updateStatus(int orderID)
         {
             return get("UPDATESTATUS" + "&" + orderID.ToString() + "&" + "COMPLETED")[0];
+        }
+        public int getStockToOrder(int partID)
+        {
+            return Int32.Parse(get("STOCKTOORDER" + "&" + partID.ToString())[1]);
+        }
+        public string orderStock(int partID, int quantity)
+        {
+            return get("ORDERSTOCK" + "&" + partID.ToString() + "&" + quantity.ToString())[0];
         }
         private List<string> get(string request)
         {

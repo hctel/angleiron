@@ -62,8 +62,8 @@ namespace merchandapp
 
 
 
-            network = new Network("hctel.net", 0xe621);
-            network.debugCommand("STOCKCHK");
+            network = new Network("hctel.net", 58913);
+            Debug.WriteLine(network.getOrders().ToString());
 
             foreach (OrderSummary order in network.getOrders())
             { orderSummariesSource.Add(order); }
@@ -167,6 +167,11 @@ namespace merchandapp
 
         private void stock_button_Click(object sender, EventArgs e)
         {
+            List<PartSummary> partSummaries = network.stockStatus();
+            foreach(PartSummary summary in partSummaries)
+            {
+                partSummariesSource.Add(summary);
+            }
             listPanel[2].BringToFront();
         }
 
@@ -186,7 +191,18 @@ namespace merchandapp
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
+            
+        }
 
+        private void buyButton_Click(object sender, EventArgs e)
+        {
+            foreach (PartSummary part in partSummariesSource.List)
+            {
+                int quantity = network.getStockToOrder(part.ID);
+                Debug.WriteLine("ordered ID=" + part.ID.ToString() + " quantity=" + quantity.ToString());
+                if (quantity > 0)
+                { network.orderStock(part.ID, quantity); }
+            }
         }
     }
 }

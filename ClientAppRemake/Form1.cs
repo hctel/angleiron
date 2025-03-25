@@ -167,13 +167,13 @@ namespace ClientAppRemake
             colorGroup.Controls.Add(choiceTwoButton);
             colorGroup.Controls.Add(choiceThreeButton);
             colorGroup.Controls.Add(choiceFourButton);
-            colorGroup.Location = new Point((selectionPanel.Width - colorGroup.Width) / 2, selectionPanel.Height - 180);
+            colorGroup.Location = new Point((selectionPanel.Width - colorGroup.Width) / 2, selectionPanel.Height - 150);
             selectionPanel.Controls.Add(colorGroup);
 
             //Lockers list panel
             Panel lockersListPanel = new Panel();
             lockersListPanel.Size = new Size(selectionPanel.Width, 450);
-            lockersListPanel.Location = new Point(0, 90);
+            lockersListPanel.Location = new Point(0, 70);
             lockersListPanel.BackColor = Color.FromArgb(250, 250, 250);
             selectionPanel.Controls.Add(lockersListPanel);
             lockersListPanel.AutoScroll = true;
@@ -181,7 +181,7 @@ namespace ClientAppRemake
             //Command buttons
             Button addButton = new Button();
             addButton.Size = new Size(120, 80);
-            addButton.Location = new Point(780, previewPanel.Height - 180);
+            addButton.Location = new Point(780, previewPanel.Height - 150);
             addButton.FlatStyle = FlatStyle.Flat;
             addButton.FlatAppearance.BorderSize = 0;
             addButton.BackColor = Color.FromArgb(94, 176, 87);
@@ -192,7 +192,7 @@ namespace ClientAppRemake
 
             Button previewButton = new Button();
             previewButton.Size = new Size(180, 80);
-            previewButton.Location = new Point(942, previewPanel.Height - 180);
+            previewButton.Location = new Point(942, previewPanel.Height - 150);
             previewButton.FlatStyle = FlatStyle.Flat;
             previewButton.FlatAppearance.BorderSize = 0;
             previewButton.BackColor = Color.FromArgb(168, 168, 168);
@@ -215,40 +215,40 @@ namespace ClientAppRemake
             //For each item
             //Item panel starts here
             Panel itemPanel = new Panel();
-            itemPanel.Size = new Size(375, 400);
+            itemPanel.Size = new Size(290, 400);
             itemPanel.Location = new Point(25, 25);
             itemPanel.BackColor = Color.FromArgb(200, 200, 200);
             lockersListPanel.Controls.Add(itemPanel);
             itemPanel.Controls.Add(new Label
             {
                 Text = "690 x 690 x 690",
-                Font = new Font("Comic sans MS", 12, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 10, FontStyle.Bold),
                 ForeColor = Color.Black,
                 BackColor = Color.FromArgb(255, 255, 255),
-                Location = new Point(0, 20),
+                Location = new Point(0, 15),
                 AutoSize = true
             });
             itemPanel.Controls.Add(new Label
             {
                 Text = "14.99€",
-                Font = new Font("Comic sans MS", 14, FontStyle.Bold),
+                Font = new Font("Comic sans MS", 10, FontStyle.Bold),
                 ForeColor = Color.Black,
-                Location = new Point(30, itemPanel.Height - 85),
+                Location = new Point(30, itemPanel.Height - 55),
                 AutoSize = true
             });
             Button selectButton = new Button();
-            selectButton.Size = new Size(160, 70);
-            selectButton.Location = new Point(200, itemPanel.Height - 90);
+            selectButton.Size = new Size(110, 50);
+            selectButton.Location = new Point(150, itemPanel.Height - 60);
             selectButton.FlatStyle = FlatStyle.Flat;
             selectButton.FlatAppearance.BorderSize = 0;
             selectButton.BackColor = Color.FromArgb(243, 187, 78);
             selectButton.ForeColor = Color.White;
             selectButton.Text = "Select";
-            selectButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
+            selectButton.Font = new Font("Comic sans MS", 10, FontStyle.Bold);
             itemPanel.Controls.Add(selectButton);
             PictureBox itemImage = new PictureBox();
-            itemImage.Size = new Size(375, 300);
-            itemImage.Location = new Point(35, 150);
+            itemImage.Size = new Size(290, 200);
+            itemImage.Location = new Point(10, 150);
             itemImage.Image = Image.FromFile("Images/image2.png");
             itemPanel.Controls.Add(itemImage);
             //Item panel ends here
