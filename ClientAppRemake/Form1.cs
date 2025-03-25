@@ -1,10 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using clientapp;
+
+
 namespace ClientAppRemake
 {
     public partial class Form1 : Form
     {
+        private bool adding = false;
+        private List<int> Articles = new List<int>();
+        private List<int> Basket = new List<int>();
+        private Color colorPanel = Color.FromArgb(0, 0, 0);
+        private Color baseColor = Color.FromArgb(0, 0, 0);
+        private Color firstColor = Color.FromArgb(187, 153, 112);
+        private Color secondColor = Color.FromArgb(88, 76, 69);
+        private Color thirdColor = Color.FromArgb(191, 180, 157);
+        private Color fourthColor = Color.FromArgb(166, 167, 171);
+        private Bitmap image; // Variable de classe pour le Bitmap
+        private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
+
+        private Network network;
+
         public Form1()
         {
-            InitializeComponent();
+
+
+        InitializeComponent();
             this.Size = new Size(1600, 900);
             this.MinimumSize = new Size(1600, 900);
             this.MaximumSize = new Size(1600, 900);
@@ -95,30 +126,36 @@ namespace ClientAppRemake
             });
 
             //Color button
+            Button choiceZeroButton = new Button();
+            choiceZeroButton.Size = new Size(90, 75);
+            choiceZeroButton.Location = new Point(0, 0);
+            choiceZeroButton.FlatStyle = FlatStyle.Flat;
+            choiceZeroButton.FlatAppearance.BorderSize = 0;
+            choiceZeroButton.BackColor = baseColor;
             Button choiceOneButton = new Button();
             choiceOneButton.Size = new Size(90, 75);
             choiceOneButton.Location = new Point(0, 0);
             choiceOneButton.FlatStyle = FlatStyle.Flat;
             choiceOneButton.FlatAppearance.BorderSize = 0;
-            choiceOneButton.BackColor = Color.FromArgb(187, 153, 112);
+            choiceOneButton.BackColor = firstColor;
             Button choiceTwoButton = new Button();
             choiceTwoButton.Size = new Size(90, 75);
             choiceTwoButton.Location = new Point(90, 0);
             choiceTwoButton.FlatStyle = FlatStyle.Flat;
             choiceTwoButton.FlatAppearance.BorderSize = 0;
-            choiceTwoButton.BackColor = Color.FromArgb(88, 76, 69);
+            choiceTwoButton.BackColor = secondColor;
             Button choiceThreeButton = new Button();
             choiceThreeButton.Size = new Size(90, 75);
             choiceThreeButton.Location = new Point(180, 0);
             choiceThreeButton.FlatStyle = FlatStyle.Flat;
             choiceThreeButton.FlatAppearance.BorderSize = 0;
-            choiceThreeButton.BackColor = Color.FromArgb(191, 180, 157);
+            choiceThreeButton.BackColor = thirdColor;
             Button choiceFourButton = new Button();
             choiceFourButton.Size = new Size(90, 75);
             choiceFourButton.Location = new Point(270, 0);
             choiceFourButton.FlatStyle = FlatStyle.Flat;
             choiceFourButton.FlatAppearance.BorderSize = 0;
-            choiceFourButton.BackColor = Color.FromArgb(166, 167, 171);
+            choiceFourButton.BackColor = fourthColor;
 
             //Color Group
             GroupBox colorGroup = new GroupBox();
