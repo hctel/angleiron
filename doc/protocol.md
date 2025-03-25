@@ -29,7 +29,7 @@ Example : <br>
 - B-F: if succesful `OK`
 ### NEWORDER
 Use to make an new order <br>  
-Example request : `NEWORDER&IDcategory&IDclient&Statuspayed&Status&price`<br>  
+Example request : `NEWORDER&IDcategory&IDclient&Statuspayed&Status&price&color`<br>  
 ## Merchand frontend requests<br>  
 ### SHOWORDERS
 Use to list all orders<br>  
