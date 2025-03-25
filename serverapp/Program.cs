@@ -207,23 +207,30 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("STOCKDEDELIVERED"))
     {
-        int componentId = Int32.Parse(data[1]);
-        int quantity = Int32.Parse(data[2]);
-        using (MySqlDataReader result = stockDB.getIdcomponent(componentId))
+        if (data.Length != 3) return "STXERR";
+        else
         {
-            result.Read();
-            int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
-            int new_quantity = result.GetInt32("Quantity") + quantity;
-            stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-            stockCalculation.updateInt("Quantity", new_quantity, componentId);
-            return "OK";
+            int componentId = Int32.Parse(data[1]);
+            int quantity = Int32.Parse(data[2]);
+            using (MySqlDataReader result = stockDB.getIdcomponent(componentId))
+            {
+                result.Read();
+                int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
+                int new_quantity = result.GetInt32("Quantity") + quantity;
+                stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
+                stockCalculation.updateInt("Quantity", new_quantity, componentId);
+                return "OK";
+            }
         }
     }
     else if (data[0].Equals("STOCKTOORDER"))
     {
-        int componentId = Int32.Parse(data[1]);
-        stockCalculation.check(componentId);
-        return "TOORDER&" + stockCalculation.get_to_order();
+        if (data.Length != 2) return "STXERR";
+        else {
+            int componentId = Int32.Parse(data[1]);
+            stockCalculation.check(componentId);
+            return "TOORDER&" + stockCalculation.get_to_order(); 
+        }
     }
     else if (data[0].Equals("NEWORDER"))
     {
@@ -235,8 +242,8 @@ string networkReceiveFunction(string[] data, string ipAddress)
             string already_paid = data[3];
             string status = data[4];
             double price = Double.Parse(data[5]);
-            string date = data[6];
-            order_manager.add_order(idcategory, idclient, already_paid, status, price, date);
+            string color = data[6];
+            order_manager.add_order(idcategory, idclient, already_paid, status, price, color);
             order_manager.management();
             return "OK";
         }

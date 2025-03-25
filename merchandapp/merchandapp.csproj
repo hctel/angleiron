@@ -68,6 +68,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram_marchandapp.cd" />
     <None Include="Properties\DataSources\Commande.datasource" />
     <None Include="Properties\DataSources\Form1.Commande.datasource" />
     <None Include="Properties\DataSources\OrderSummary.datasource" />
