@@ -306,7 +306,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int id = Int32.Parse(data[1]);
             int price = Int32.Parse(data[2]);
-            stockCalculation.updateInt("Price",id, price);
+            stockCalculation.updateInt("Price", price, id);
             return "OK";
         }
     }
