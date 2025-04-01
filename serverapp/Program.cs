@@ -229,7 +229,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         else {
             int componentId = Int32.Parse(data[1]);
             stockCalculation.check(componentId);
-            return "TOORDER&" + stockCalculation.get_to_order(); 
+            return "TOORDER&" + stockCalculation.get_to_order().ToString(); 
         }
     }
     else if (data[0].Equals("NEWORDER"))
