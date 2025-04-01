@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg;
 using Org.BouncyCastle.Math.EC;
 using System;
 
@@ -40,6 +41,23 @@ namespace backend {
         }
         public void updateDouble(string name_collum, double new_value, int id){
             database.updateDouble(name_collum, new_value, id);
+        }
+        public int getlowestprice(int id_component){
+            int id_stock = 0;
+            using(MySqlDataReader result = database.getIdcomponent(id_component)){
+                int lowestprice = 0;
+                while(result.Read()){
+                    if(lowestprice==0){
+                        lowestprice = result.GetInt32("Price");
+                        id_stock = result.GetInt32("id_stock");
+                    }
+                    else if(result.GetInt32("Price")<lowestprice)
+                    {
+                        id_stock = result.GetInt32("id_stock");
+                        }
+                }
+            }
+            return id_stock;
         }
 
     }
