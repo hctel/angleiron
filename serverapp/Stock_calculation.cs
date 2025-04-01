@@ -38,5 +38,9 @@ namespace backend {
         public void updateInt(string name_collum, int new_value, int id){
             database.updateINT(name_collum, new_value, id);
         }
+        public void updateDouble(string name_collum, double new_value, int id){
+            database.updateDouble(name_collum, new_value, id);
+        }
+
     }
 }

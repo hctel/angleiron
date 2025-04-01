@@ -29,6 +29,10 @@ namespace backend
         {
             execute(String.Format("UPDATE Stock SET '{0}'={1} WHERE id_component={2};", name_collum, new_value, id));
         }
+        public void updateDouble(string name_collum, double new_value, int id)
+        {
+            execute(String.Format("UPDATE Stock SET '{0}'={1} WHERE id_component={2};", name_collum, new_value, id));
+        }
 
         public List<int> getAllComponents()
         {
