@@ -131,7 +131,7 @@ namespace clientapp
                 contentPanel.Size = new Size(260, 300);
                 contentPanel.Location = new Point(12, 10 + a * 310);
                 contentPanel.Size = new Size(250, 300);
-                contentPanel.Location = new Point(30, 10 + a * 310);
+                contentPanel.Location = new Point(30, 10 +  a * 310);
                 contentPanel.BackColor = Color.FromArgb(0, 200, 0);
 
                 Button addButton = new Button();
