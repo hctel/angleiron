@@ -20,7 +20,6 @@ namespace ClientAppRemake
         private bool adding = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
-        private Color colorPanel = Color.FromArgb(0, 0, 0);
         private Color baseColor = Color.FromArgb(0, 0, 0);
         private Color firstColor = Color.FromArgb(187, 153, 112);
         private Color secondColor = Color.FromArgb(88, 76, 69);
@@ -51,6 +50,12 @@ namespace ClientAppRemake
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            network = new Network("hctel.net", 58913);
+            foreach (Kit k in network.getItems())
+            {
+                Debug.WriteLine(k);
+            }
+
             //Header Panel
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(1600, 100);
@@ -113,6 +118,7 @@ namespace ClientAppRemake
 
             //Preview Panel
             Panel previewPanel = new Panel();
+            previewPanel.Size = new Size(mainPanel.Width - selectionPanel.Width - summaryPanel.Width, mainPanel.Height);
             previewPanel.BackColor = Color.FromArgb(255, 0, 255);
             previewPanel.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(previewPanel);
@@ -214,43 +220,57 @@ namespace ClientAppRemake
 
             //For each item
             //Item panel starts here
-            Panel itemPanel = new Panel();
-            itemPanel.Size = new Size(290, 400);
-            itemPanel.Location = new Point(25, 25);
-            itemPanel.BackColor = Color.FromArgb(200, 200, 200);
-            lockersListPanel.Controls.Add(itemPanel);
-            itemPanel.Controls.Add(new Label
+            foreach (Kit k in network.getItems())
             {
-                Text = "690 x 690 x 690",
-                Font = new Font("Comic sans MS", 10, FontStyle.Bold),
-                ForeColor = Color.Black,
-                BackColor = Color.FromArgb(255, 255, 255),
-                Location = new Point(0, 15),
-                AutoSize = true
-            });
-            itemPanel.Controls.Add(new Label
-            {
-                Text = "14.99€",
-                Font = new Font("Comic sans MS", 10, FontStyle.Bold),
-                ForeColor = Color.Black,
-                Location = new Point(30, itemPanel.Height - 55),
-                AutoSize = true
-            });
-            Button selectButton = new Button();
-            selectButton.Size = new Size(110, 50);
-            selectButton.Location = new Point(150, itemPanel.Height - 60);
-            selectButton.FlatStyle = FlatStyle.Flat;
-            selectButton.FlatAppearance.BorderSize = 0;
-            selectButton.BackColor = Color.FromArgb(243, 187, 78);
-            selectButton.ForeColor = Color.White;
-            selectButton.Text = "Select";
-            selectButton.Font = new Font("Comic sans MS", 10, FontStyle.Bold);
-            itemPanel.Controls.Add(selectButton);
-            PictureBox itemImage = new PictureBox();
-            itemImage.Size = new Size(290, 200);
-            itemImage.Location = new Point(10, 150);
-            itemImage.Image = Image.FromFile("Images/image2.png");
-            itemPanel.Controls.Add(itemImage);
+                int id = k.id;
+                Panel itemPanel = new Panel();
+                itemPanel.Size = new Size(290, 400);
+                itemPanel.Location = new Point(25, 25);
+                itemPanel.BackColor = Color.FromArgb(200, 200, 200);
+                lockersListPanel.Controls.Add(itemPanel);
+
+                itemPanel.Controls.Add(new Label
+                {
+                    Text = k.dimension + " " + id,
+                    Font = new Font("Comic sans MS", 10, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    BackColor = Color.FromArgb(255, 255, 255),
+                    Location = new Point(0, 15),
+                    AutoSize = true
+                });
+
+                itemPanel.Controls.Add(new Label
+                {
+                    Text = k.price.ToString(),
+                    Font = new Font("Comic sans MS", 10, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    Location = new Point(30, itemPanel.Height - 55),
+                    AutoSize = true
+                });
+
+                Button selectButton = new Button();
+                selectButton.Size = new Size(110, 50);
+                selectButton.Location = new Point(150, itemPanel.Height - 60);
+                selectButton.FlatStyle = FlatStyle.Flat;
+                selectButton.FlatAppearance.BorderSize = 0;
+                selectButton.BackColor = Color.FromArgb(243, 187, 78);
+                selectButton.ForeColor = Color.White;
+                selectButton.Text = "Select";
+                selectButton.Font = new Font("Comic sans MS", 10, FontStyle.Bold);
+                itemPanel.Controls.Add(selectButton);
+
+                PictureBox itemImage = new PictureBox();
+                itemImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                itemImage.Size = new Size(300, 50);
+                itemImage.Location = new Point(10, 150);
+                itemImage.Image = Image.FromFile("Images/image" + id + ".png");
+                itemPanel.Controls.Add(itemImage);
+
+                if (adding)
+                {
+                    Add(id);
+                }
+            }
             //Item panel ends here
 
             //Preview image
@@ -286,6 +306,16 @@ namespace ClientAppRemake
                 AutoSize = true
             });
 
+
+        }
+
+        private void Remove(int obj)
+        {
+            Basket.Remove(obj);
+        }
+        private void Add(int obj)
+        {
+            Basket.Add(Articles[obj]);
 
         }
     }
