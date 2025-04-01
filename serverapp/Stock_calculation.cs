@@ -17,8 +17,7 @@ namespace backend {
         public void check(int id_component){
             using(MySqlDataReader result = database.getIdcomponent(id_component)){
                 if(result.Read()){
-                    int delta_stock_need=0;
-                    delta_stock_need = result.GetInt32("Quantity")-result.GetInt32("Quantity_client");
+                    int delta_stock_need = result.GetInt32("Quantity")-result.GetInt32("Quantity_client");
                     delta_stock_need += result.GetInt32("Quantity_order");
                     if(delta_stock_need>0){
                         to_order=0;
