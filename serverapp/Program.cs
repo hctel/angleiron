@@ -299,7 +299,17 @@ string networkReceiveFunction(string[] data, string ipAddress)
             dbcon.deleteuser(id);
             return "OK";
         }
-
     }
+    else if (data[0].Equals("UPDATEPRICE")){
+        if (data.Length != 3) return "STXERR";
+        else
+        {
+            int id = Int32.Parse(data[1]);
+            double price = Double.Parse(data[2]);
+            stockCalculation.updateDouble("Price", price, id);
+            return "OK";
+        }
+    }
+
     return "NOFUNC";
 }
