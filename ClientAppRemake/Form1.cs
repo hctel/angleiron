@@ -20,6 +20,7 @@ namespace ClientAppRemake
         private bool adding = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
+        private Color colorPanel = Color.FromArgb(0, 0, 0);
         private Color baseColor = Color.FromArgb(0, 0, 0);
         private Color firstColor = Color.FromArgb(187, 153, 112);
         private Color secondColor = Color.FromArgb(88, 76, 69);
@@ -27,6 +28,9 @@ namespace ClientAppRemake
         private Color fourthColor = Color.FromArgb(166, 167, 171);
         private Bitmap image; // Variable de classe pour le Bitmap
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
+        private PictureBox itemImage = new PictureBox();
+        private PictureBox previewImage = new PictureBox();
+        private Panel previewPanel = new Panel();
 
         private Network network;
 
@@ -50,11 +54,15 @@ namespace ClientAppRemake
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            network = new Network("hctel.net", 58913);
+            network = new Network("hctel.net",22);
             foreach (Kit k in network.getItems())
             {
                 Debug.WriteLine(k);
             }
+
+            // Load base image
+            currentImagePath = "./Images/image.png";
+            image = new Bitmap(currentImagePath);
 
             //Header Panel
             Panel headerPanel = new Panel();
@@ -117,7 +125,7 @@ namespace ClientAppRemake
             });
 
             //Preview Panel
-            Panel previewPanel = new Panel();
+            
             previewPanel.Size = new Size(mainPanel.Width - selectionPanel.Width - summaryPanel.Width, mainPanel.Height);
             previewPanel.BackColor = Color.FromArgb(255, 0, 255);
             previewPanel.Dock = DockStyle.Fill;
@@ -162,6 +170,12 @@ namespace ClientAppRemake
             choiceFourButton.FlatStyle = FlatStyle.Flat;
             choiceFourButton.FlatAppearance.BorderSize = 0;
             choiceFourButton.BackColor = fourthColor;
+
+            choiceZeroButton.Click += (s, ev) => changeColor(baseColor);
+            choiceOneButton.Click += (s, ev) => changeColor(firstColor);
+            choiceTwoButton.Click += (s, ev) => changeColor(secondColor);
+            choiceThreeButton.Click += (s, ev) => changeColor(thirdColor);
+            choiceFourButton.Click += (s, ev) => changeColor(fourthColor);
 
             //Color Group
             GroupBox colorGroup = new GroupBox();
@@ -258,13 +272,13 @@ namespace ClientAppRemake
                 selectButton.Text = "Select";
                 selectButton.Font = new Font("Comic sans MS", 10, FontStyle.Bold);
                 itemPanel.Controls.Add(selectButton);
-
-                PictureBox itemImage = new PictureBox();
-                itemImage.SizeMode = PictureBoxSizeMode.StretchImage;
-                itemImage.Size = new Size(300, 50);
-                itemImage.Location = new Point(10, 150);
-                itemImage.Image = Image.FromFile("Images/image" + id + ".png");
-                itemPanel.Controls.Add(itemImage);
+                selectButton.Click += (s, ev) => SelectImage(id + 1);
+                
+                this.itemImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.itemImage.Size = new Size(300, 50);
+                this.itemImage.Location = new Point(10, 150);
+                this.itemImage.Image = Image.FromFile("Images/image" + id + ".png");
+                itemPanel.Controls.Add(this.itemImage);
 
                 if (adding)
                 {
@@ -274,10 +288,10 @@ namespace ClientAppRemake
             //Item panel ends here
 
             //Preview image
-            PictureBox previewImage = new PictureBox();
-            previewImage.Size = new Size(600, 600);
-            previewImage.Location = new Point(800, 300);
-            previewImage.Image = Image.FromFile("Images/image1.png");
+            
+            this.previewImage.Size = new Size(600, 600);
+            this.previewImage.Location = new Point(800, 300);
+            this.previewImage.Image = Image.FromFile("Images/image1.png");
             previewPanel.Controls.Add(previewImage);
 
             //Summary list panel
@@ -307,6 +321,64 @@ namespace ClientAppRemake
             });
 
 
+        }
+
+        private void SelectImage(int articleIndex)
+        {
+            adding = true;
+            Debug.WriteLine("Button clicked for article" + articleIndex);
+            switch (articleIndex)
+            {
+                default:
+                    currentImagePath = "./Images/image.png";
+                    break;
+                case 1:
+                    currentImagePath = "./Images/image1.png";
+                    break;
+                case 2:
+                    currentImagePath = "./Images/image2.png";
+                    break;
+                case 3:
+                    currentImagePath = "./Images/image3.png";
+                    break;
+            }
+
+            colorPanel = baseColor;
+            image = new Bitmap(currentImagePath);
+            this.Invalidate();
+        }
+
+        private void changeColor(Color newcolor)
+        {
+            colorPanel = newcolor;
+            this.Refresh();
+
+        }
+
+        private void ImagePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+            this.previewImage.Size = new Size(680, 490);
+            this.previewImage.Location = new Point(300, 70);
+
+            this.previewPanel.BackColor = Color.FromArgb(255, 255, 255);
+
+
+            // Changer la couleur de l'image
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color pixelColor = image.GetPixel(x, y);
+                    if (pixelColor.A > 0) // Si le pixel n'est pas transparent
+                    {
+                        image.SetPixel(x, y, colorPanel);
+                    }
+                }
+            }
+
+            // Dessiner l'image sur le panneau
+            e.Graphics.DrawImage(image, new Point(200, 200));
         }
 
         private void Remove(int obj)
