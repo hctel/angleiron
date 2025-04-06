@@ -17,7 +17,7 @@ namespace ClientAppRemake
         [STAThread]
         static void Main()
         {
-            network = new Network("hctel.net",22);
+            network = new Network("hctel.net",58931);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

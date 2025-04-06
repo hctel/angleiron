@@ -40,7 +40,7 @@ namespace clientapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            network = new Network("hctel.net", 58913);
+            network = new Network("hctel.net", 58931);
             foreach(Kit k in network.getItems()) {
                 Debug.WriteLine(k);
             }
