@@ -85,6 +85,7 @@ namespace ClientAppRemake
             footerPanel.Size = new Size(1920, 150);
             footerPanel.BackColor = Color.FromArgb(0, 168, 232);
             footerPanel.Location = new Point(0, this.ClientSize.Height - footerPanel.Height);
+            Debug.WriteLine(this.ClientSize.Height);
             this.Controls.Add(footerPanel);
 
             //Main Panel
@@ -113,7 +114,8 @@ namespace ClientAppRemake
             Panel summaryPanel = new Panel();
             summaryPanel.Size = new Size(450, mainPanel.Height);
             summaryPanel.BackColor = Color.FromArgb(0, 232, 0);
-            summaryPanel.Location = new Point(mainPanel.Width - summaryPanel.Width - 25, 0);
+            //summaryPanel.Location = new Point(mainPanel.Width - summaryPanel.Width - 25, 0);
+            summaryPanel.Dock = DockStyle.Right;
             mainPanel.Controls.Add(summaryPanel);
             summaryPanel.Controls.Add(new Label
             {
@@ -192,7 +194,7 @@ namespace ClientAppRemake
 
             //Lockers list panel
             Panel lockersListPanel = new Panel();
-            lockersListPanel.Size = new Size(selectionPanel.Width, 450);
+            lockersListPanel.Size = new Size(selectionPanel.Width, 550);
             lockersListPanel.Location = new Point(0, 70);
             lockersListPanel.BackColor = Color.FromArgb(250, 250, 250);
             selectionPanel.Controls.Add(lockersListPanel);
@@ -238,7 +240,7 @@ namespace ClientAppRemake
             {
                 int id = k.id;
                 Panel itemPanel = new Panel();
-                itemPanel.Size = new Size(290, 400);
+                itemPanel.Size = new Size(390, 490);
                 itemPanel.Location = new Point(25, 25);
                 itemPanel.BackColor = Color.FromArgb(200, 200, 200);
                 lockersListPanel.Controls.Add(itemPanel);
