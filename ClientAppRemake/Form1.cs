@@ -114,7 +114,6 @@ namespace ClientAppRemake
             Panel summaryPanel = new Panel();
             summaryPanel.Size = new Size(450, mainPanel.Height);
             summaryPanel.BackColor = Color.FromArgb(0, 232, 0);
-            //summaryPanel.Location = new Point(mainPanel.Width - summaryPanel.Width - 25, 0);
             summaryPanel.Dock = DockStyle.Right;
             mainPanel.Controls.Add(summaryPanel);
             summaryPanel.Controls.Add(new Label
@@ -137,7 +136,7 @@ namespace ClientAppRemake
                 Text = "Preview",
                 Font = new Font("Comic sans MS", 14, FontStyle.Bold),
                 ForeColor = Color.Black,
-                Location = new Point(850, 10),
+                Location = new Point(900, 10),
                 AutoSize = true
             });
 
@@ -203,7 +202,7 @@ namespace ClientAppRemake
             //Command buttons
             Button addButton = new Button();
             addButton.Size = new Size(120, 80);
-            addButton.Location = new Point(780, previewPanel.Height - 150);
+            addButton.Location = new Point(780, previewPanel.Height - 170);
             addButton.FlatStyle = FlatStyle.Flat;
             addButton.FlatAppearance.BorderSize = 0;
             addButton.BackColor = Color.FromArgb(94, 176, 87);
@@ -214,7 +213,7 @@ namespace ClientAppRemake
 
             Button previewButton = new Button();
             previewButton.Size = new Size(180, 80);
-            previewButton.Location = new Point(942, previewPanel.Height - 150);
+            previewButton.Location = new Point(942, previewPanel.Height - 170);
             previewButton.FlatStyle = FlatStyle.Flat;
             previewButton.FlatAppearance.BorderSize = 0;
             previewButton.BackColor = Color.FromArgb(168, 168, 168);
@@ -248,31 +247,31 @@ namespace ClientAppRemake
                 itemPanel.Controls.Add(new Label
                 {
                     Text = k.dimension + " " + id,
-                    Font = new Font("Comic sans MS", 10, FontStyle.Bold),
+                    Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     BackColor = Color.FromArgb(255, 255, 255),
-                    Location = new Point(0, 15),
+                    Location = new Point(0, 20),
                     AutoSize = true
                 });
 
                 itemPanel.Controls.Add(new Label
                 {
-                    Text = k.price.ToString(),
-                    Font = new Font("Comic sans MS", 10, FontStyle.Bold),
+                    Text = k.price.ToString() + " €",
+                    Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
-                    Location = new Point(30, itemPanel.Height - 55),
+                    Location = new Point(30, itemPanel.Height - 60),
                     AutoSize = true
                 });
 
                 Button selectButton = new Button();
-                selectButton.Size = new Size(110, 50);
-                selectButton.Location = new Point(150, itemPanel.Height - 60);
+                selectButton.Size = new Size(140, 60);
+                selectButton.Location = new Point(210, itemPanel.Height - 70);
                 selectButton.FlatStyle = FlatStyle.Flat;
                 selectButton.FlatAppearance.BorderSize = 0;
                 selectButton.BackColor = Color.FromArgb(243, 187, 78);
                 selectButton.ForeColor = Color.White;
                 selectButton.Text = "Select";
-                selectButton.Font = new Font("Comic sans MS", 10, FontStyle.Bold);
+                selectButton.Font = new Font("Comic sans MS", 12, FontStyle.Bold);
                 itemPanel.Controls.Add(selectButton);
                 selectButton.Click += (s, ev) => SelectImage(id + 1);
                 
@@ -298,12 +297,12 @@ namespace ClientAppRemake
 
             //Summary list panel
             Panel itemSummaryPanel = new Panel();
-            itemSummaryPanel.Size = new Size(400, 70);
+            itemSummaryPanel.Size = new Size(370, 60);
             itemSummaryPanel.Location = new Point(25, 100);
             itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             summaryPanel.Controls.Add(itemSummaryPanel);
             Button removeButton = new Button();
-            removeButton.Size = new Size(70, 70);
+            removeButton.Size = new Size(60, 60);
             removeButton.Location = new Point(0, 0);
             removeButton.FlatStyle = FlatStyle.Flat;
             removeButton.FlatAppearance.BorderSize = 0;
@@ -318,7 +317,7 @@ namespace ClientAppRemake
                 Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                 ForeColor = Color.Black,
                 BackColor = Color.FromArgb(255, 255, 255),
-                Location = new Point(80, 12),
+                Location = new Point(60, 8),
                 AutoSize = true
             });
 
