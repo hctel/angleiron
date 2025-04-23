@@ -28,7 +28,6 @@ namespace ClientAppRemake
         private Color fourthColor = Color.FromArgb(166, 167, 171);
         private Bitmap image; // Variable de classe pour le Bitmap
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
-        //private PictureBox itemImage = new PictureBox();
         private PictureBox previewImage = new PictureBox();
         private Panel previewPanel = new Panel();
 
@@ -61,8 +60,8 @@ namespace ClientAppRemake
             }
 
             // Load base image
-            currentImagePath = "Images/image.png";
-            image = new Bitmap(currentImagePath);
+            //currentImagePath = "Images/image.png";
+            //image = new Bitmap(currentImagePath);
 
             //Header Panel
             Panel headerPanel = new Panel();
@@ -282,6 +281,7 @@ namespace ClientAppRemake
                 itemImage.SizeMode = PictureBoxSizeMode.StretchImage;
                 itemImage.Size = new Size(300, 50);
                 itemImage.Location = new Point(45, 200);
+
                 itemImage.Image = Image.FromFile("Images/image" + id + ".png");
                 itemPanel.Controls.Add(itemImage);
 
