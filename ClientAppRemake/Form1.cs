@@ -60,7 +60,7 @@ namespace ClientAppRemake
             }
 
             // Load base image
-            //currentImagePath = "Images/image.png";
+            //currentImagePath = Path.Combine(Application.StartupPath, "Images", "image.png");
             //image = new Bitmap(currentImagePath);
 
             //Header Panel
