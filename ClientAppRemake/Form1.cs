@@ -28,7 +28,7 @@ namespace ClientAppRemake
         private Color fourthColor = Color.FromArgb(166, 167, 171);
         private Bitmap image; // Variable de classe pour le Bitmap
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
-        private PictureBox itemImage = new PictureBox();
+        //private PictureBox itemImage = new PictureBox();
         private PictureBox previewImage = new PictureBox();
         private Panel previewPanel = new Panel();
 
@@ -61,7 +61,7 @@ namespace ClientAppRemake
             }
 
             // Load base image
-            currentImagePath = "./Images/image.png";
+            currentImagePath = "Images/image.png";
             image = new Bitmap(currentImagePath);
 
             //Header Panel
@@ -239,6 +239,7 @@ namespace ClientAppRemake
             {
                 int id = k.id;
                 int posX = id - 1;
+                Debug.WriteLine("ID: " + id);
                 Panel itemPanel = new Panel();
                 itemPanel.Size = new Size(390, 490);
                 itemPanel.Location = new Point(15, 25 + posX * 515);
@@ -247,7 +248,7 @@ namespace ClientAppRemake
 
                 itemPanel.Controls.Add(new Label
                 {
-                    Text = k.dimension,
+                    Text = k.dimension + " " + k.id,
                     Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     BackColor = Color.FromArgb(255, 255, 255),
@@ -276,11 +277,13 @@ namespace ClientAppRemake
                 itemPanel.Controls.Add(selectButton);
                 selectButton.Click += (s, ev) => SelectImage(id + 1);
                 
-                this.itemImage.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.itemImage.Size = new Size(300, 50);
-                this.itemImage.Location = new Point(10, 150);
-                this.itemImage.Image = Image.FromFile("Images/image" + id + ".png");
-                itemPanel.Controls.Add(this.itemImage);
+                PictureBox itemImage = new PictureBox();
+
+                itemImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                itemImage.Size = new Size(300, 50);
+                itemImage.Location = new Point(45, 200);
+                itemImage.Image = Image.FromFile("Images/image" + id + ".png");
+                itemPanel.Controls.Add(itemImage);
 
                 Panel spacerPanel = new Panel();
                 spacerPanel.Size = new Size(390, 20);
@@ -339,16 +342,16 @@ namespace ClientAppRemake
             switch (articleIndex)
             {
                 default:
-                    currentImagePath = "./Images/image.png";
+                    currentImagePath = "Images/image.png";
                     break;
                 case 1:
-                    currentImagePath = "./Images/image1.png";
+                    currentImagePath = "Images/image1.png";
                     break;
                 case 2:
-                    currentImagePath = "./Images/image2.png";
+                    currentImagePath = "Images/image2.png";
                     break;
                 case 3:
-                    currentImagePath = "./Images/image3.png";
+                    currentImagePath = "Images/image3.png";
                     break;
             }
 
