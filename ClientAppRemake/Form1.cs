@@ -238,15 +238,16 @@ namespace ClientAppRemake
             foreach (Kit k in network.getItems())
             {
                 int id = k.id;
+                int posX = id - 1;
                 Panel itemPanel = new Panel();
                 itemPanel.Size = new Size(390, 490);
-                itemPanel.Location = new Point(25, 25);
+                itemPanel.Location = new Point(15, 25 + posX * 515);
                 itemPanel.BackColor = Color.FromArgb(200, 200, 200);
                 lockersListPanel.Controls.Add(itemPanel);
 
                 itemPanel.Controls.Add(new Label
                 {
-                    Text = k.dimension + " " + id,
+                    Text = k.dimension,
                     Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     BackColor = Color.FromArgb(255, 255, 255),
