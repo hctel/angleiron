@@ -282,6 +282,13 @@ namespace ClientAppRemake
                 this.itemImage.Image = Image.FromFile("Images/image" + id + ".png");
                 itemPanel.Controls.Add(this.itemImage);
 
+                Panel spacerPanel = new Panel();
+                spacerPanel.Size = new Size(390, 20);
+                spacerPanel.Location = new Point(15, lockersListPanel.Controls[lockersListPanel.Controls.Count - 1].Bottom + 10);
+                spacerPanel.BackColor = Color.Transparent;
+                lockersListPanel.Controls.Add(spacerPanel);
+
+
                 if (adding)
                 {
                     Add(id);
