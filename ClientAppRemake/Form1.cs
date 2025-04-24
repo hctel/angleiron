@@ -17,7 +17,7 @@ namespace ClientAppRemake
 {
     public partial class Form1 : Form
     {
-        private bool adding = false;
+        private bool selecting = false;
         private List<int> Articles = new List<int>();
         private List<int> Basket = new List<int>();
         private Color colorPanel = Color.FromArgb(0, 0, 0);
@@ -28,9 +28,8 @@ namespace ClientAppRemake
         private Color fourthColor = Color.FromArgb(166, 167, 171);
         private Bitmap image; // Variable de classe pour le Bitmap
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
-        private PictureBox previewImage = new PictureBox();
         private Panel previewPanel = new Panel();
-
+        private PictureBox previewImage = new PictureBox();
         private Network network;
 
         public Form1()
@@ -274,7 +273,7 @@ namespace ClientAppRemake
                 selectButton.Text = "Select";
                 selectButton.Font = new Font("Comic sans MS", 12, FontStyle.Bold);
                 itemPanel.Controls.Add(selectButton);
-                selectButton.Click += (s, ev) => SelectImage(id + 1);
+                selectButton.Click += (s, ev) => SelectImage(id);
                 
                 PictureBox itemImage = new PictureBox();
 
@@ -292,7 +291,7 @@ namespace ClientAppRemake
                 lockersListPanel.Controls.Add(spacerPanel);
 
 
-                if (adding)
+                if (selecting)
                 {
                     Add(id);
                 }
@@ -303,8 +302,17 @@ namespace ClientAppRemake
             
             this.previewImage.Size = new Size(600, 600);
             this.previewImage.Location = new Point(800, 300);
-            this.previewImage.Image = Image.FromFile("Images/image1.png");
-            previewPanel.Controls.Add(previewImage);
+            
+            if (!selecting)
+            {
+                this.previewImage.Image = Image.FromFile("Images/image2.png");
+                Debug.WriteLine(selecting);
+            }
+            else
+            {
+                this.previewImage.Image = Image.FromFile("Images/image1.png");
+            }
+            this.previewPanel.Controls.Add(previewImage);
 
             //Summary list panel
             Panel itemSummaryPanel = new Panel();
@@ -337,8 +345,7 @@ namespace ClientAppRemake
 
         private void SelectImage(int articleIndex)
         {
-            adding = true;
-            Debug.WriteLine("Button clicked for article" + articleIndex);
+            selecting = true;
             switch (articleIndex)
             {
                 default:
@@ -354,10 +361,10 @@ namespace ClientAppRemake
                     currentImagePath = "Images/image3.png";
                     break;
             }
-
-            colorPanel = baseColor;
-            image = new Bitmap(currentImagePath);
-            this.Invalidate();
+            this.previewImage.Image = Image.FromFile("Images/image"+ articleIndex + ".png");
+            //colorPanel = baseColor;
+            //image = new Bitmap(currentImagePath);
+            //this.Invalidate();
         }
 
         private void changeColor(Color newcolor)
@@ -367,31 +374,31 @@ namespace ClientAppRemake
 
         }
 
-        private void ImagePanel_Paint(object sender, PaintEventArgs e)
-        {
+        //private void ImagePanel_Paint(object sender, PaintEventArgs e)
+        //{
 
-            this.previewImage.Size = new Size(680, 490);
-            this.previewImage.Location = new Point(300, 70);
+        //    this.previewImage.Size = new Size(680, 490);
+        //    this.previewImage.Location = new Point(300, 70);
 
-            this.previewPanel.BackColor = Color.FromArgb(255, 255, 255);
+        //    this.previewPanel.BackColor = Color.FromArgb(255, 255, 255);
 
 
-            // Changer la couleur de l'image
-            for (int y = 0; y < image.Height; y++)
-            {
-                for (int x = 0; x < image.Width; x++)
-                {
-                    Color pixelColor = image.GetPixel(x, y);
-                    if (pixelColor.A > 0) // Si le pixel n'est pas transparent
-                    {
-                        image.SetPixel(x, y, colorPanel);
-                    }
-                }
-            }
+        //    // Changer la couleur de l'image
+        //    for (int y = 0; y < image.Height; y++)
+        //    {
+        //        for (int x = 0; x < image.Width; x++)
+        //        {
+        //            Color pixelColor = image.GetPixel(x, y);
+        //            if (pixelColor.A > 0) // Si le pixel n'est pas transparent
+        //            {
+        //                image.SetPixel(x, y, colorPanel);
+        //            }
+        //        }
+        //    }
 
-            // Dessiner l'image sur le panneau
-            e.Graphics.DrawImage(image, new Point(200, 200));
-        }
+        //    // Dessiner l'image sur le panneau
+        //    e.Graphics.DrawImage(image, new Point(200, 200));
+        //}
 
         private void Remove(int obj)
         {
