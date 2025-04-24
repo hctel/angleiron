@@ -59,8 +59,8 @@ namespace ClientAppRemake
             }
 
             // Load base image
-            //currentImagePath = Path.Combine(Application.StartupPath, "Images", "image.png");
-            //image = new Bitmap(currentImagePath);
+            currentImagePath = Path.Combine(Application.StartupPath, "Images", "image.png");
+            image = new Bitmap(currentImagePath);
 
             //Header Panel
             Panel headerPanel = new Panel();
@@ -237,7 +237,6 @@ namespace ClientAppRemake
             {
                 int id = k.id;
                 int posX = id - 1;
-                Debug.WriteLine("ID: " + id);
                 Panel itemPanel = new Panel();
                 itemPanel.Size = new Size(390, 490);
                 itemPanel.Location = new Point(15, 25 + posX * 515);
@@ -246,7 +245,7 @@ namespace ClientAppRemake
 
                 itemPanel.Controls.Add(new Label
                 {
-                    Text = k.dimension + " " + k.id,
+                    Text = k.dimension,
                     Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     BackColor = Color.FromArgb(255, 255, 255),
@@ -306,7 +305,6 @@ namespace ClientAppRemake
             if (!selecting)
             {
                 this.previewImage.Image = Image.FromFile("Images/image2.png");
-                Debug.WriteLine(selecting);
             }
             else
             {
@@ -346,59 +344,43 @@ namespace ClientAppRemake
         private void SelectImage(int articleIndex)
         {
             selecting = true;
-            switch (articleIndex)
-            {
-                default:
-                    currentImagePath = "Images/image.png";
-                    break;
-                case 1:
-                    currentImagePath = "Images/image1.png";
-                    break;
-                case 2:
-                    currentImagePath = "Images/image2.png";
-                    break;
-                case 3:
-                    currentImagePath = "Images/image3.png";
-                    break;
-            }
             this.previewImage.Image = Image.FromFile("Images/image"+ articleIndex + ".png");
-            //colorPanel = baseColor;
-            //image = new Bitmap(currentImagePath);
-            //this.Invalidate();
+            colorPanel = baseColor;
+            image = new Bitmap(currentImagePath);
+            this.Invalidate();
         }
 
         private void changeColor(Color newcolor)
         {
             colorPanel = newcolor;
             this.Refresh();
-
         }
 
-        //private void ImagePanel_Paint(object sender, PaintEventArgs e)
-        //{
+        private void ImagePanel_Paint(object sender, PaintEventArgs e)
+        {
 
-        //    this.previewImage.Size = new Size(680, 490);
-        //    this.previewImage.Location = new Point(300, 70);
+            this.previewImage.Size = new Size(680, 490);
+            this.previewImage.Location = new Point(300, 70);
 
-        //    this.previewPanel.BackColor = Color.FromArgb(255, 255, 255);
+            this.previewPanel.BackColor = Color.FromArgb(255, 255, 255);
 
 
-        //    // Changer la couleur de l'image
-        //    for (int y = 0; y < image.Height; y++)
-        //    {
-        //        for (int x = 0; x < image.Width; x++)
-        //        {
-        //            Color pixelColor = image.GetPixel(x, y);
-        //            if (pixelColor.A > 0) // Si le pixel n'est pas transparent
-        //            {
-        //                image.SetPixel(x, y, colorPanel);
-        //            }
-        //        }
-        //    }
+            // Changer la couleur de l'image
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color pixelColor = image.GetPixel(x, y);
+                    if (pixelColor.A > 0) // Si le pixel n'est pas transparent
+                    {
+                        image.SetPixel(x, y, colorPanel);
+                    }
+                }
+            }
 
-        //    // Dessiner l'image sur le panneau
-        //    e.Graphics.DrawImage(image, new Point(200, 200));
-        //}
+            // Dessiner l'image sur le panneau
+            e.Graphics.DrawImage(image, new Point(200, 200));
+        }
 
         private void Remove(int obj)
         {
