@@ -345,35 +345,36 @@ namespace ClientAppRemake
             this.image = new Bitmap(path);
         }
 
-        private void changeColor(Color currentColor, Color newcolor)
+        private void changeColor(Color newcolor)
         {
-            baseColor = currentColor;
             colorPanel = newcolor;
-            this.previewImage.Image = setColor(image, baseColor, colorPanel);
+            this.previewImage.Image = setColor(image, colorPanel);
             this.Refresh();
         }
 
-        private static Bitmap setColor(Bitmap image, Color targetColor, Color newColor)
+        private static Bitmap setColor(Bitmap originalImage, Color newColor)
         {
-            Bitmap result = new Bitmap(image.Width, image.Height);
+            Bitmap result = new Bitmap(originalImage.Width, originalImage.Height);
 
-            for (int y = 0; y < image.Height; y++)
+            for (int y = 0; y < originalImage.Height; y++)
             {
-                for (int x = 0; x < image.Width; x++)
+                for (int x = 0; x < originalImage.Width; x++)
                 {
-                    Color pixelColor = image.GetPixel(x, y);
-                    if (pixelColor.ToArgb() == targetColor.ToArgb())
+                    Color pixel = originalImage.GetPixel(x, y);
+                    if (pixel.A == 0)
                     {
-                        result.SetPixel(x, y, newColor);
+                        result.SetPixel(x, y, Color.Transparent);
                     }
                     else
                     {
-                        result.SetPixel(x, y, pixelColor);
+                        result.SetPixel(x, y, Color.FromArgb(pixel.A, newColor));
                     }
                 }
             }
+
             return result;
         }
+
 
         private void Remove(int obj)
         {
