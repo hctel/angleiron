@@ -58,10 +58,6 @@ namespace ClientAppRemake
                 Debug.WriteLine(k);
             }
 
-            //// Load base image
-            //currentImagePath = Path.Combine(Application.StartupPath, "Images", "image.png");
-            //image = new Bitmap(currentImagePath);
-
             //Header Panel
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(1920, 120);
@@ -111,7 +107,7 @@ namespace ClientAppRemake
             //Summary Panel
             Panel summaryPanel = new Panel();
             summaryPanel.Size = new Size(450, mainPanel.Height);
-            summaryPanel.BackColor = Color.FromArgb(0, 232, 0);
+            summaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             summaryPanel.Dock = DockStyle.Right;
             mainPanel.Controls.Add(summaryPanel);
             summaryPanel.Controls.Add(new Label
@@ -126,7 +122,7 @@ namespace ClientAppRemake
             //Preview Panel
             
             previewPanel.Size = new Size(mainPanel.Width - selectionPanel.Width - summaryPanel.Width, mainPanel.Height);
-            previewPanel.BackColor = Color.FromArgb(255, 0, 255);
+            previewPanel.BackColor = Color.FromArgb(220, 240, 250);
             previewPanel.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(previewPanel);
             previewPanel.Controls.Add(new Label
