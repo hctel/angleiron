@@ -58,9 +58,9 @@ namespace ClientAppRemake
                 Debug.WriteLine(k);
             }
 
-            // Load base image
-            currentImagePath = Path.Combine(Application.StartupPath, "Images", "image.png");
-            image = new Bitmap(currentImagePath);
+            //// Load base image
+            //currentImagePath = Path.Combine(Application.StartupPath, "Images", "image.png");
+            //image = new Bitmap(currentImagePath);
 
             //Header Panel
             Panel headerPanel = new Panel();
@@ -304,11 +304,9 @@ namespace ClientAppRemake
             
             if (!selecting)
             {
-                this.previewImage.Image = Image.FromFile("Images/image2.png");
-            }
-            else
-            {
-                this.previewImage.Image = Image.FromFile("Images/image1.png");
+                string path = "Images/image.png";
+                this.previewImage.Image = Image.FromFile(path);
+                this.image = new Bitmap(path);
             }
             this.previewPanel.Controls.Add(previewImage);
 
@@ -337,49 +335,44 @@ namespace ClientAppRemake
                 Location = new Point(60, 8),
                 AutoSize = true
             });
-
-
         }
 
         private void SelectImage(int articleIndex)
         {
             selecting = true;
-            this.previewImage.Image = Image.FromFile("Images/image"+ articleIndex + ".png");
-            colorPanel = baseColor;
-            image = new Bitmap(currentImagePath);
-            this.Invalidate();
+            string path = "Images/image" + articleIndex + ".png";
+            this.previewImage.Image = Image.FromFile(path);
+            this.image = new Bitmap(path);
         }
 
-        private void changeColor(Color newcolor)
+        private void changeColor(Color currentColor, Color newcolor)
         {
+            baseColor = currentColor;
             colorPanel = newcolor;
+            this.previewImage.Image = setColor(image, baseColor, colorPanel);
             this.Refresh();
         }
 
-        private void ImagePanel_Paint(object sender, PaintEventArgs e)
+        private static Bitmap setColor(Bitmap image, Color targetColor, Color newColor)
         {
+            Bitmap result = new Bitmap(image.Width, image.Height);
 
-            this.previewImage.Size = new Size(680, 490);
-            this.previewImage.Location = new Point(300, 70);
-
-            this.previewPanel.BackColor = Color.FromArgb(255, 255, 255);
-
-
-            // Changer la couleur de l'image
             for (int y = 0; y < image.Height; y++)
             {
                 for (int x = 0; x < image.Width; x++)
                 {
                     Color pixelColor = image.GetPixel(x, y);
-                    if (pixelColor.A > 0) // Si le pixel n'est pas transparent
+                    if (pixelColor.ToArgb() == targetColor.ToArgb())
                     {
-                        image.SetPixel(x, y, colorPanel);
+                        result.SetPixel(x, y, newColor);
+                    }
+                    else
+                    {
+                        result.SetPixel(x, y, pixelColor);
                     }
                 }
             }
-
-            // Dessiner l'image sur le panneau
-            e.Graphics.DrawImage(image, new Point(200, 200));
+            return result;
         }
 
         private void Remove(int obj)
