@@ -19,13 +19,15 @@ namespace ClientAppRemake
     {
         private bool selecting = false;
         private List<int> Articles = new List<int>();
-        private List<int> Basket = new List<int>();
+        private List<Tuple<int, Color>> Basket = new List<Tuple<int, Color>>();
+        private int selectedId;
         private Color colorPanel = Color.FromArgb(0, 0, 0);
         private Color baseColor = Color.FromArgb(0, 0, 0);
         private Color firstColor = Color.FromArgb(187, 153, 112);
         private Color secondColor = Color.FromArgb(88, 76, 69);
         private Color thirdColor = Color.FromArgb(191, 180, 157);
         private Color fourthColor = Color.FromArgb(166, 167, 171);
+        private Color selectedColor = Color.FromArgb(255, 255, 255);
         private Bitmap image; // Variable de classe pour le Bitmap
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
         private Panel previewPanel = new Panel();
@@ -79,7 +81,6 @@ namespace ClientAppRemake
             footerPanel.Size = new Size(1920, 150);
             footerPanel.BackColor = Color.FromArgb(0, 168, 232);
             footerPanel.Location = new Point(0, this.ClientSize.Height - footerPanel.Height);
-            Debug.WriteLine(this.ClientSize.Height);
             this.Controls.Add(footerPanel);
 
             //Main Panel
@@ -204,6 +205,7 @@ namespace ClientAppRemake
             addButton.Text = "Add";
             addButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             previewPanel.Controls.Add(addButton);
+            addButton.Click += (s, ev) => Add(selectedId, selectedColor);
 
             Button previewButton = new Button();
             previewButton.Size = new Size(180, 80);
@@ -286,10 +288,7 @@ namespace ClientAppRemake
                 lockersListPanel.Controls.Add(spacerPanel);
 
 
-                if (selecting)
-                {
-                    Add(id);
-                }
+                
             }
             //Item panel ends here
             
@@ -335,16 +334,20 @@ namespace ClientAppRemake
 
         private void SelectImage(int articleIndex)
         {
+            this.selectedId = articleIndex;
             selecting = true;
             string path = "Images/image" + articleIndex + ".png";
             this.previewImage.Image = Image.FromFile(path);
             this.image = new Bitmap(path);
+            Debug.WriteLine("Selected image: " + selectedId);
         }
 
         private void changeColor(Color newcolor)
         {
             colorPanel = newcolor;
             this.previewImage.Image = setColor(image, colorPanel);
+            this.selectedColor = newcolor;
+            Debug.WriteLine("Selected color: " + selectedColor);
             this.Refresh();
         }
 
@@ -367,18 +370,32 @@ namespace ClientAppRemake
                     }
                 }
             }
-
             return result;
         }
-
-
         private void Remove(int obj)
         {
-            Basket.Remove(obj);
+            
         }
-        private void Add(int obj)
+        private void Add(int selectedId, Color selectedColor)
         {
-            Basket.Add(Articles[obj]);
+            Basket.Add(new Tuple<int, Color>(selectedId, selectedColor));
+            foreach(Tuple<int, Color> item in Basket)
+            {
+                Debug.WriteLine("Item in basket: " + item.Item1 + " with color: " + item.Item2);
+            }
+            /*
+             Fonction add :
+            - Ajouter le locker sélectionné dans summaryPanel (ajouter dans la liste Basket)
+            - Maximum 7 lockers
+            - Ajouter la couleur
+            - Ajouter le locker dans une liste
+            - Calculer le prix final
+            - Afficher le prix final 
+            - Afficher le nombre de lockers
+
+            ## Forme Add
+            - liste de liste [{id, color}]
+             */
 
         }
     }
