@@ -32,6 +32,7 @@ namespace ClientAppRemake
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
         private Panel previewPanel = new Panel();
         private PictureBox previewImage = new PictureBox();
+        private Panel itemSummaryPanel = new Panel();
         private Network network;
 
         public Form1()
@@ -306,30 +307,36 @@ namespace ClientAppRemake
             this.previewPanel.Controls.Add(previewImage);
 
             //Summary list panel
-            Panel itemSummaryPanel = new Panel();
             itemSummaryPanel.Size = new Size(370, 60);
             itemSummaryPanel.Location = new Point(25, 100);
             itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             summaryPanel.Controls.Add(itemSummaryPanel);
-            Button removeButton = new Button();
-            removeButton.Size = new Size(60, 60);
-            removeButton.Location = new Point(0, 0);
-            removeButton.FlatStyle = FlatStyle.Flat;
-            removeButton.FlatAppearance.BorderSize = 0;
-            removeButton.BackColor = Color.FromArgb(255, 0, 0);
-            removeButton.ForeColor = Color.White;
-            removeButton.Text = "X";
-            removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
-            itemSummaryPanel.Controls.Add(removeButton);
-            itemSummaryPanel.Controls.Add(new Label
+           
+
+            foreach (Tuple<int, Color> item in Basket)
             {
-                Text = "690 x 690 x 690",
-                Font = new Font("Comic sans MS", 12, FontStyle.Bold),
-                ForeColor = Color.Black,
-                BackColor = Color.FromArgb(255, 255, 255),
-                Location = new Point(60, 8),
-                AutoSize = true
-            });
+                Button removeButton = new Button();
+                removeButton.Size = new Size(60, 60);
+                removeButton.Location = new Point(0, 25 * item.Item1);
+                removeButton.FlatStyle = FlatStyle.Flat;
+                removeButton.FlatAppearance.BorderSize = 0;
+                removeButton.BackColor = Color.FromArgb(255, 0, 0);
+                removeButton.ForeColor = Color.White;
+                removeButton.Text = "X";
+                removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
+                itemSummaryPanel.Controls.Add(removeButton);
+
+                itemSummaryPanel.Controls.Add(new Label
+                {
+                    Text = item.Item1.ToString(),
+                    Font = new Font("Comic sans MS", 12, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    BackColor = Color.FromArgb(255, 255, 255),
+                    Location = new Point(60, 8 + 25 * item.Item1),
+                    AutoSize = true
+                });
+            }
+           
         }
 
         private void SelectImage(int articleIndex)
@@ -382,6 +389,28 @@ namespace ClientAppRemake
             foreach(Tuple<int, Color> item in Basket)
             {
                 Debug.WriteLine("Item in basket: " + item.Item1 + " with color: " + item.Item2);
+
+                Button removeButton = new Button();
+                removeButton.Size = new Size(60, 60);
+                removeButton.Location = new Point(0, 25 * item.Item1);
+                removeButton.FlatStyle = FlatStyle.Flat;
+                removeButton.FlatAppearance.BorderSize = 0;
+                removeButton.BackColor = Color.FromArgb(255, 0, 0);
+                removeButton.ForeColor = Color.White;
+                removeButton.Text = "X";
+                removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
+                itemSummaryPanel.Controls.Add(removeButton);
+
+                itemSummaryPanel.Controls.Add(new Label
+                {
+                    Text = item.Item1.ToString(),
+                    Font = new Font("Comic sans MS", 12, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    BackColor = Color.FromArgb(255, 255, 255),
+                    Location = new Point(60, 8 + 25 * item.Item1),
+                    AutoSize = true
+                });
+
             }
             /*
              Fonction add :
