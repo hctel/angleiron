@@ -309,6 +309,7 @@ namespace ClientAppRemake
 
         private void SelectImage(int articleIndex)
         {
+            this.selectedColor = Color.FromArgb(255, 255, 255);
             this.selectedId = articleIndex;
             selecting = true;
             string path = "Images/image" + articleIndex + ".png";
