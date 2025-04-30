@@ -356,6 +356,14 @@ namespace ClientAppRemake
             var item = new Tuple<int, Color>(selectedId, selectedColor);
             Basket.Add(item);
 
+            Kit kit = network.getItems().FirstOrDefault(k => k.id == selectedId);
+            if (kit == null)
+            {
+                MessageBox.Show("Kit not found.");
+                return;
+            }
+
+
             Panel itemSummaryPanel = new Panel();
             itemSummaryPanel.Size = new Size(370, 60);
             itemSummaryPanel.Location = new Point(25, 100 + 70 * (Basket.Count - 1));
@@ -375,7 +383,7 @@ namespace ClientAppRemake
 
             itemSummaryPanel.Controls.Add(new Label
             {
-                Text = selectedId.ToString(),
+                Text = kit.dimension,
                 Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                 ForeColor = Color.Black,
                 BackColor = Color.White,
