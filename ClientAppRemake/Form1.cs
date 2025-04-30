@@ -353,40 +353,36 @@ namespace ClientAppRemake
         }
         private void Add(int selectedId, Color selectedColor)
         {
-            Basket.Add(new Tuple<int, Color>(selectedId, selectedColor));
-            foreach(Tuple<int, Color> item in Basket)
+            var item = new Tuple<int, Color>(selectedId, selectedColor);
+            Basket.Add(item);
+
+            Panel itemSummaryPanel = new Panel();
+            itemSummaryPanel.Size = new Size(370, 60);
+            itemSummaryPanel.Location = new Point(25, 100 + 70 * (Basket.Count - 1));
+            itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
+            this.summaryPanel.Controls.Add(itemSummaryPanel);
+
+            Button removeButton = new Button();
+            removeButton.Size = new Size(60, 60);
+            removeButton.Location = new Point(0, 0);
+            removeButton.FlatStyle = FlatStyle.Flat;
+            removeButton.FlatAppearance.BorderSize = 0;
+            removeButton.BackColor = Color.FromArgb(255, 0, 0);
+            removeButton.ForeColor = Color.White;
+            removeButton.Text = "X";
+            removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
+            itemSummaryPanel.Controls.Add(removeButton);
+
+            itemSummaryPanel.Controls.Add(new Label
             {
-                Debug.WriteLine("Item in basket: " + item.Item1 + " with color: " + item.Item2);
-
-                Panel itemSummaryPanel = new Panel();
-
-                itemSummaryPanel.Size = new Size(370, 60);
-                itemSummaryPanel.Location = new Point(25, 100 + 70 * (summaryPanel.Controls.Count - 1)); 
-                itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
-                this.summaryPanel.Controls.Add(itemSummaryPanel);
-
-                Button removeButton = new Button();
-                removeButton.Size = new Size(60, 60);
-                removeButton.Location = new Point(0, 25);
-                removeButton.FlatStyle = FlatStyle.Flat;
-                removeButton.FlatAppearance.BorderSize = 0;
-                removeButton.BackColor = Color.FromArgb(255, 0, 0);
-                removeButton.ForeColor = Color.White;
-                removeButton.Text = "X";
-                removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
-                itemSummaryPanel.Controls.Add(removeButton);
-
-                itemSummaryPanel.Controls.Add(new Label
-                {
-                    Text = item.Item1.ToString(),
-                    Font = new Font("Comic sans MS", 12, FontStyle.Bold),
-                    ForeColor = Color.Black,
-                    BackColor = Color.FromArgb(255, 255, 255),
-                    Location = new Point(60, 8),
-                    AutoSize = true
-                });
-
-            }
+                Text = selectedId.ToString(),
+                Font = new Font("Comic sans MS", 12, FontStyle.Bold),
+                ForeColor = Color.Black,
+                BackColor = Color.White,
+                Location = new Point(70, 18),
+                AutoSize = true
+            });
+           
             /*
              Fonction add :
             - Ajouter le locker sélectionné dans summaryPanel (ajouter dans la liste Basket)
