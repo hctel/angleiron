@@ -32,7 +32,7 @@ namespace ClientAppRemake
         private string currentImagePath; // Variable de classe pour le chemin de l'image actuelle
         private Panel previewPanel = new Panel();
         private PictureBox previewImage = new PictureBox();
-        private Panel itemSummaryPanel = new Panel();
+        private Panel summaryPanel = new Panel();
         private Network network;
 
         public Form1()
@@ -107,7 +107,6 @@ namespace ClientAppRemake
             });
 
             //Summary Panel
-            Panel summaryPanel = new Panel();
             summaryPanel.Size = new Size(450, mainPanel.Height);
             summaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             summaryPanel.Dock = DockStyle.Right;
@@ -305,37 +304,6 @@ namespace ClientAppRemake
                 this.image = new Bitmap(path);
             }
             this.previewPanel.Controls.Add(previewImage);
-
-            //Summary list panel
-            itemSummaryPanel.Size = new Size(370, 60);
-            itemSummaryPanel.Location = new Point(25, 100);
-            itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
-            summaryPanel.Controls.Add(itemSummaryPanel);
-           
-
-            foreach (Tuple<int, Color> item in Basket)
-            {
-                Button removeButton = new Button();
-                removeButton.Size = new Size(60, 60);
-                removeButton.Location = new Point(0, 25 * item.Item1);
-                removeButton.FlatStyle = FlatStyle.Flat;
-                removeButton.FlatAppearance.BorderSize = 0;
-                removeButton.BackColor = Color.FromArgb(255, 0, 0);
-                removeButton.ForeColor = Color.White;
-                removeButton.Text = "X";
-                removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
-                itemSummaryPanel.Controls.Add(removeButton);
-
-                itemSummaryPanel.Controls.Add(new Label
-                {
-                    Text = item.Item1.ToString(),
-                    Font = new Font("Comic sans MS", 12, FontStyle.Bold),
-                    ForeColor = Color.Black,
-                    BackColor = Color.FromArgb(255, 255, 255),
-                    Location = new Point(60, 8 + 25 * item.Item1),
-                    AutoSize = true
-                });
-            }
            
         }
 
@@ -390,9 +358,16 @@ namespace ClientAppRemake
             {
                 Debug.WriteLine("Item in basket: " + item.Item1 + " with color: " + item.Item2);
 
+                Panel itemSummaryPanel = new Panel();
+
+                itemSummaryPanel.Size = new Size(370, 60);
+                itemSummaryPanel.Location = new Point(25, 100 + 70 * (summaryPanel.Controls.Count - 1)); 
+                itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
+                this.summaryPanel.Controls.Add(itemSummaryPanel);
+
                 Button removeButton = new Button();
                 removeButton.Size = new Size(60, 60);
-                removeButton.Location = new Point(0, 25 * item.Item1);
+                removeButton.Location = new Point(0, 25);
                 removeButton.FlatStyle = FlatStyle.Flat;
                 removeButton.FlatAppearance.BorderSize = 0;
                 removeButton.BackColor = Color.FromArgb(255, 0, 0);
@@ -407,7 +382,7 @@ namespace ClientAppRemake
                     Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     BackColor = Color.FromArgb(255, 255, 255),
-                    Location = new Point(60, 8 + 25 * item.Item1),
+                    Location = new Point(60, 8),
                     AutoSize = true
                 });
 
