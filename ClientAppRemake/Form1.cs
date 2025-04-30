@@ -376,6 +376,12 @@ namespace ClientAppRemake
                 return;
             }
 
+            if(Basket.Count > 7)
+            {
+                MessageBox.Show("Maximum 7 lockers allowed.");
+                return;
+            }
+
 
             Panel itemSummaryPanel = new Panel();
             itemSummaryPanel.Size = new Size(370, 60);
@@ -411,21 +417,6 @@ namespace ClientAppRemake
             });
             this.finalPrice += kit.price;
             finalPriceLabel.Text = "Total : " + finalPrice.ToString("0.00") + " €";
-
-            /*
-             Fonction add :
-            - Ajouter le locker sélectionné dans summaryPanel (ajouter dans la liste Basket)
-            - Maximum 7 lockers
-            - Ajouter la couleur
-            - Ajouter le locker dans une liste
-            - Calculer le prix final
-            - Afficher le prix final 
-            - Afficher le nombre de lockers
-
-            ## Forme Add
-            - liste de liste [{id, color}]
-             */
-
         }
     }
 }
