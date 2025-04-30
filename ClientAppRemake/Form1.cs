@@ -370,6 +370,13 @@ namespace ClientAppRemake
             itemSummaryPanel.BackColor = Color.FromArgb(200, 200, 200);
             this.summaryPanel.Controls.Add(itemSummaryPanel);
 
+            Panel colorPanel = new Panel();
+            colorPanel.Size = new Size(60, 60);
+            colorPanel.Location = new Point(70, 0);
+            colorPanel.BackColor = selectedColor;
+            itemSummaryPanel.Controls.Add(colorPanel);
+            colorPanel.BringToFront();
+
             Button removeButton = new Button();
             removeButton.Size = new Size(60, 60);
             removeButton.Location = new Point(0, 0);
@@ -386,8 +393,7 @@ namespace ClientAppRemake
                 Text = kit.dimension,
                 Font = new Font("Comic sans MS", 12, FontStyle.Bold),
                 ForeColor = Color.Black,
-                BackColor = Color.White,
-                Location = new Point(70, 18),
+                Location = new Point(140, 10),
                 AutoSize = true
             });
            
