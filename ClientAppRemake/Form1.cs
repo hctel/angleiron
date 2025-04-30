@@ -34,6 +34,9 @@ namespace ClientAppRemake
         private PictureBox previewImage = new PictureBox();
         private Panel summaryPanel = new Panel();
         private Network network;
+        private double finalPrice = 0;
+        private Label finalPriceLabel = new Label();
+
 
         public Form1()
         {
@@ -120,8 +123,17 @@ namespace ClientAppRemake
                 AutoSize = true
             });
 
+            finalPriceLabel.Text = "Total : 0 €";
+            finalPriceLabel.Font = new Font("Comic sans MS", 12, FontStyle.Bold);
+            finalPriceLabel.ForeColor = Color.Black;
+            finalPriceLabel.Location = new Point(25, summaryPanel.Height - 130);
+            finalPriceLabel.AutoSize = true;
+
+            summaryPanel.Controls.Add(finalPriceLabel);
+
+
             //Preview Panel
-            
+
             previewPanel.Size = new Size(mainPanel.Width - selectionPanel.Width - summaryPanel.Width, mainPanel.Height);
             previewPanel.BackColor = Color.FromArgb(220, 240, 250);
             previewPanel.Dock = DockStyle.Fill;
@@ -397,7 +409,9 @@ namespace ClientAppRemake
                 Location = new Point(140, 10),
                 AutoSize = true
             });
-           
+            this.finalPrice += kit.price;
+            finalPriceLabel.Text = "Total : " + finalPrice.ToString("0.00") + " €";
+
             /*
              Fonction add :
             - Ajouter le locker sélectionné dans summaryPanel (ajouter dans la liste Basket)
