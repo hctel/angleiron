@@ -14,22 +14,56 @@ namespace ClientAppRemake
         public LoginForm()
         {
             this.Text = "Login";
-            this.Size = new System.Drawing.Size(500, 300);
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.Size = new System.Drawing.Size(600, 350);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterParent;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            Label userLabel = new Label() { Text = "Username:", Location = new System.Drawing.Point(30, 30), AutoSize = true };
-            usernameTextBox = new TextBox() { Location = new System.Drawing.Point(120, 30), Width = 200 };
+            int labelX = 50;
+            int inputX = 180;
+            int labelWidth = 120;
+            int textboxWidth = 300;
 
-            Label passLabel = new Label() { Text = "Password:", Location = new System.Drawing.Point(30, 80), AutoSize = true };
-            passwordTextBox = new TextBox() { Location = new System.Drawing.Point(120, 80), Width = 200, PasswordChar = '*' };
+            int row1Y = 60;
+            int row2Y = 120;
+
+            Label userLabel = new Label()
+            {
+                Text = "Username:",
+                Location = new System.Drawing.Point(labelX, row1Y),
+                Size = new System.Drawing.Size(labelWidth + 8, 30),
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+            };
+
+            usernameTextBox = new TextBox()
+            {
+                Location = new System.Drawing.Point(inputX, row1Y),
+                Width = textboxWidth,
+                Height = 30
+            };
+
+            Label passLabel = new Label()
+            {
+                Text = "Password:",
+                Location = new System.Drawing.Point(labelX, row2Y),
+                Size = new System.Drawing.Size(labelWidth + 8, 30),
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+            };
+
+            passwordTextBox = new TextBox()
+            {
+                Location = new System.Drawing.Point(inputX, row2Y),
+                Width = textboxWidth,
+                Height = 30,
+                PasswordChar = '*'
+            };
 
             Button loginButton = new Button()
             {
                 Text = "Login",
-                Location = new System.Drawing.Point(150, 140),
+                Location = new System.Drawing.Point((this.ClientSize.Width - 100) / 2, 200),
+                Size = new System.Drawing.Size(100, 40),
                 DialogResult = DialogResult.OK
             };
 
@@ -39,7 +73,7 @@ namespace ClientAppRemake
             this.Controls.Add(passwordTextBox);
             this.Controls.Add(loginButton);
 
-            this.AcceptButton = loginButton; // permet d'appuyer sur "Entrée"
+            this.AcceptButton = loginButton;
         }
     }
 }
