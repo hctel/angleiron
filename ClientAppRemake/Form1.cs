@@ -261,6 +261,7 @@ namespace ClientAppRemake
             orderButton.Text = "Order";
             orderButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             footerPanel.Controls.Add(orderButton);
+            orderButton.Click += (s, ev) => Order();
 
             //For each item
             //Item panel starts here
@@ -466,6 +467,24 @@ namespace ClientAppRemake
             });
             this.finalPrice += kit.price;
             finalPriceLabel.Text = "Total : " + finalPrice.ToString("0.00") + " €";
+        }
+        private void Order()
+        {
+            if (Basket.Count == 0)
+            {
+                MessageBox.Show("No items in basket.");
+                return;
+            }
+
+            string orderSummary = "Order Summary:\n";
+            foreach (var item in Basket)
+            {
+                Kit kit = network.getItems().FirstOrDefault(k => k.id == item.Item1);
+                orderSummary += $"{kit.dimension} - {item.Item2}\n";
+            }
+            orderSummary += $"Total: {finalPrice.ToString("0.00")} €";
+
+            MessageBox.Show(orderSummary, "Order Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
