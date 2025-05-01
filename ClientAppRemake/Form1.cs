@@ -362,6 +362,7 @@ namespace ClientAppRemake
         }
         private void Remove(int selectedId, Color selectedColor, Panel sum)
         {
+            Kit kit = network.getItems().FirstOrDefault(k => k.id == selectedId);
             var item = new Tuple<int, Color>(selectedId, selectedColor);
             if (!Basket.Contains(item))
             {
@@ -372,6 +373,8 @@ namespace ClientAppRemake
             {
                 Basket.Remove(item);
                 summaryPanel.Controls.Remove(sum);
+                this.finalPrice -= kit.price;
+                finalPriceLabel.Text = "Total : " + finalPrice.ToString("0.00") + " €";
                 ReorderSummaryItems();
                 Debug.WriteLine("Item removed from basket: " + selectedId + " " + selectedColor);
             }
