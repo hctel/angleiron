@@ -372,17 +372,24 @@ namespace ClientAppRemake
             {
                 Basket.Remove(item);
                 summaryPanel.Controls.Remove(sum);
+                ReorderSummaryItems();
                 Debug.WriteLine("Item removed from basket: " + selectedId + " " + selectedColor);
             }
-
-            /*
-                - Remove the item from the basket
-                - Remove the item from the summary panel
-                - Update the total price
-                - Update the summary panel
-                - Update the preview image
-             */
+            // Missing update preview image
         }
+        private void ReorderSummaryItems()
+        {
+            int y = 100;
+            foreach (Control ctrl in summaryPanel.Controls)
+            {
+                if (ctrl is Panel itemPanel)
+                {
+                    itemPanel.Location = new Point(25, y);
+                    y += 70;
+                }
+            }
+        }
+
         private void Add(int selectedId, Color selectedColor)
         {
             var item = new Tuple<int, Color>(selectedId, selectedColor);
