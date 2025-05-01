@@ -59,10 +59,10 @@ namespace ClientAppRemake
         private void Form1_Load(object sender, EventArgs e)
         {
             network = new Network("hctel.net",58931);
-            foreach (Kit k in network.getItems())
-            {
-                Debug.WriteLine(k);
-            }
+            //foreach (Kit k in network.getItems())
+            //{
+            //    Debug.WriteLine(k);
+            //}
 
             //Header Panel
             Panel headerPanel = new Panel();
@@ -360,9 +360,28 @@ namespace ClientAppRemake
             }
             return result;
         }
-        private void Remove(int obj)
+        private void Remove(int selectedId, Color selectedColor, Panel sum)
         {
-            
+            var item = new Tuple<int, Color>(selectedId, selectedColor);
+            if (!Basket.Contains(item))
+            {
+                MessageBox.Show("Item not found in basket.");
+                return;
+            }
+            else
+            {
+                Basket.Remove(item);
+                summaryPanel.Controls.Remove(sum);
+                Debug.WriteLine("Item removed from basket: " + selectedId + " " + selectedColor);
+            }
+
+            /*
+                - Remove the item from the basket
+                - Remove the item from the summary panel
+                - Update the total price
+                - Update the summary panel
+                - Update the preview image
+             */
         }
         private void Add(int selectedId, Color selectedColor)
         {
@@ -406,6 +425,7 @@ namespace ClientAppRemake
             removeButton.Text = "X";
             removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             itemSummaryPanel.Controls.Add(removeButton);
+            removeButton.Click += (s, ev) => Remove(selectedId, selectedColor, itemSummaryPanel);
 
             itemSummaryPanel.Controls.Add(new Label
             {
