@@ -59,11 +59,7 @@ namespace ClientAppRemake
         private void Form1_Load(object sender, EventArgs e)
         {
             network = new Network("hctel.net",58931);
-            //foreach (Kit k in network.getItems())
-            //{
-            //    Debug.WriteLine(k);
-            //}
-
+            
             //Header Panel
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(1920, 120);
@@ -79,6 +75,31 @@ namespace ClientAppRemake
                 Location = new Point(10, 20),
                 AutoSize = true
             });
+            Button loginButton = new Button();
+            loginButton.Size = new Size(120, 60);
+            loginButton.Location = new Point(headerPanel.Width - 250, 30);
+            loginButton.FlatStyle = FlatStyle.Flat;
+            loginButton.FlatAppearance.BorderSize = 0;
+            loginButton.BackColor = Color.FromArgb(0, 168, 232);
+            loginButton.ForeColor = Color.White;
+            loginButton.FlatAppearance.BorderSize = 2;
+            loginButton.FlatAppearance.BorderColor = Color.White;
+            loginButton.Text = "Login";
+            loginButton.Font = new Font("Comic sans MS", 12, FontStyle.Bold);
+            loginButton.TextAlign = ContentAlignment.MiddleCenter;
+            loginButton.Click += (s, ev) =>
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.ShowDialog();
+                if (loginForm.DialogResult == DialogResult.OK)
+                {
+                    string username = loginForm.Username;
+                    string password = loginForm.Password;
+                    // Handle login logic here
+                }
+            };
+            headerPanel.Controls.Add(loginButton);
+
 
             //Footer Panel
             Panel footerPanel = new Panel();
@@ -327,7 +348,6 @@ namespace ClientAppRemake
             string path = "Images/image" + articleIndex + ".png";
             this.previewImage.Image = Image.FromFile(path);
             this.image = new Bitmap(path);
-            Debug.WriteLine("Selected image: " + selectedId);
         }
 
         private void changeColor(Color newcolor)
@@ -335,7 +355,6 @@ namespace ClientAppRemake
             colorPanel = newcolor;
             this.previewImage.Image = setColor(image, colorPanel);
             this.selectedColor = newcolor;
-            Debug.WriteLine("Selected color: " + selectedColor);
             this.Refresh();
         }
 
@@ -376,7 +395,6 @@ namespace ClientAppRemake
                 this.finalPrice -= kit.price;
                 finalPriceLabel.Text = "Total : " + finalPrice.ToString("0.00") + " €";
                 ReorderSummaryItems();
-                Debug.WriteLine("Item removed from basket: " + selectedId + " " + selectedColor);
             }
             // Missing update preview image
         }
@@ -433,6 +451,7 @@ namespace ClientAppRemake
             removeButton.BackColor = Color.FromArgb(255, 0, 0);
             removeButton.ForeColor = Color.White;
             removeButton.Text = "X";
+            removeButton.TextAlign = ContentAlignment.MiddleCenter;
             removeButton.Font = new Font("Comic sans MS", 14, FontStyle.Bold);
             itemSummaryPanel.Controls.Add(removeButton);
             removeButton.Click += (s, ev) => Remove(selectedId, selectedColor, itemSummaryPanel);
