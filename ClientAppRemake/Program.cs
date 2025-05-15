@@ -23,7 +23,7 @@ namespace ClientAppRemake
             if (Environment.OSVersion.Version.Major >= 6)
                 SetProcessDPIAware();
 
-            network = new Network("hctel.net",58931);
+            network = new Network("hctel.net",58913);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
