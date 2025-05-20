@@ -20,16 +20,12 @@ Console.WriteLine("Starting server...");
 
 UserDB dbcon = new UserDB(hostname, dataName, username, password); //CHANGE CREDENTIALS HERE
 Order_DB orderDB = new Order_DB(hostname, dataName, username, password);
-Stock_DB stockDB = new Stock_DB(hostname, dataName, username, password);
+StockDB stockDB = new StockDB(hostname, dataName, username, password);
 KitDB kitDB = new KitDB(hostname, dataName, username, password);
 MaterialDB materialDB = new MaterialDB(hostname, dataName, username, password);
-KIT_to_component kitToComponentDB = new KIT_to_component(hostname, dataName, username, password);
 
 UserAuth userAuthenticator = new UserAuth( dbcon);
-Stock_calculation stockCalculation = new Stock_calculation(stockDB);
-Order_management order_manager = new Order_management(orderDB, stockDB, kitDB, materialDB, kitToComponentDB, stockCalculation, dbcon, userAuthenticator);
-Kit_manager kitM = new Kit_manager(kitDB);
-Stock stockManager = new Stock(stockDB);
+
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine($"Server started on port {port}");
