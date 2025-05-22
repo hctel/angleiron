@@ -20,7 +20,7 @@ namespace backend
 					Console.WriteLine($"password for {email}: {result.GetString("password")}");
 					if (password.Equals(result.GetString("password")))
 					{
-						Console.WriteLine($"{remoteIP} logged in as {result.GetString("Name")}:{email}");
+						Console.WriteLine($"{remoteIP} logged in as {result.GetString("name")}:{email}");
                     	return new Session(result.GetString("Name"), result.GetInt32("idClient"), remoteIP);
 					} else throw new Exception("Invalid password");
 
@@ -40,7 +40,7 @@ namespace backend
 		public string getUserName(int id) {
 			using(MySqlDataReader result = database.getUserFromId(id)){
 				if(result.Read()){
-					return result.GetString("Name");
+					return result.GetString("name");
 				} else throw new KeyNotFoundException("User not found");
 			}
 		}

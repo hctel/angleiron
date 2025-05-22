@@ -12,12 +12,12 @@ namespace backend
 
         public MySqlDataReader getIdcomponent(int idcomponent)
         {
-          return read(String.Format("SELECT * FROM component WHERE id_component={0};", idcomponent));
+          return read(String.Format("SELECT * FROM component WHERE idComponent={0};", idcomponent));
         }
 
         public void addMaterial(int idcomponent, string description)
         {
-            execute(String.Format("INSERT INTO component ( id_component, Description) VALUES ({0}, '{1}');", 
+            execute(String.Format("INSERT INTO component ( idComponent, description) VALUES ({0}, '{1}');", 
             idcomponent, description));
         }
     }
