@@ -50,7 +50,7 @@ Example response:<br>
 ### STOCKDEDELIVERED
 Use to let known the database when new component arrives<br>
 Request must give the component ID and the quantity<br> 
-exemple request : 'STOCKDEDELIVERED&componentID&quantity'<br>
+exemple request : 'STOCKDEDELIVERED&stockId&quantity'<br>
 response : 'ok'<br>
 ### STOCKTOORDER
 Use to let known the marchand what he must order<br>  
