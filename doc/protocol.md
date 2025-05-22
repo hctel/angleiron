@@ -46,7 +46,7 @@ response : 'ok'<br>
 ### STOCKCHK
 Use to fetch the stock status<br>  
 Example response:<br>  
-`STOCKSTS&idComponent1/quantityInStock1/quantityForClients1/quantityOrdered1;idComponent2/quantityInStock2/quantityForClients2/quantityOrdered2;...`
+`STOCKSTS&idStock1/idComponent1/quantityInStock1/quantityForClients1/quantityOrdered1/desc1;idStocn2/idComponent2/quantityInStock2/quantityForClients2/quantityOrdered2/desc2;...`
 ### STOCKDEDELIVERED
 Use to let known the database when new component arrives<br>
 Request must give the component ID and the quantity<br> 
