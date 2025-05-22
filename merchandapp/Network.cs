@@ -49,13 +49,16 @@ namespace merchandapp
         public int ID { get; }
         public string Name { get; }
         public int QuantityNeeded { get; }
+        public int QuantityOrdered { get; }
         public int QuantityInStock { get; }
-        public PartSummary(int ID, string Name, int QuantityNeeded, int QuantityInStock)
+
+        public PartSummary(int ID,  int QuantityInStock, int QuantityNeeded, int QuantityOrdered, string Name)
         {
             this.ID = ID;
             this.Name = Name;
             this.QuantityNeeded = QuantityNeeded;
             this.QuantityInStock = QuantityInStock;
+            this.QuantityOrdered = QuantityOrdered;
         }
     }
 
@@ -142,7 +145,7 @@ namespace merchandapp
                 foreach (string obj in parts)
                 {
                     string[] part = obj.Split('/');
-                    PartSummary summary = new PartSummary(Int32.Parse(part[0]), part[3].ToString(), Int32.Parse(part[2]), Int32.Parse(part[1]));
+                    PartSummary summary = new PartSummary(Int32.Parse(part[1]), Int32.Parse(part[2]), Int32.Parse(part[3]), Int32.Parse(part[4]), part[5]);
                     partSummaries.Add(summary);
                 }
 
@@ -162,6 +165,10 @@ namespace merchandapp
         {
             return get("ORDERSTOCK" + "&" + partID.ToString() + "&" + quantity.ToString())[0];
         }
+        public string stockDelivered(int stockID, int quantity)
+        {
+            return get("STOCKDEDELIVERED" + "&" + stockID.ToString() + "&" + quantity.ToString())[0];
+        }
         private List<string> get(string request)
         {
             Debug.WriteLine($"Sent to server: {request}");
@@ -172,7 +179,7 @@ namespace merchandapp
             stream.Write(bytesOut, 0, bytesOut.Length);
             byte[] dataIn = new byte[client.ReceiveBufferSize];
             int length = stream.Read(dataIn, 0, dataIn.Length);
-            string message = Encoding.ASCII.GetString(dataIn, 0, length);
+            string message = Encoding.UTF8.GetString(dataIn, 0, length);
             Debug.WriteLine($"Received from server: {message}");
             client.Close();
 

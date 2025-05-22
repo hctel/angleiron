@@ -33,6 +33,9 @@ namespace merchandapp
         BindingSource partSummariesSource;
 
         Order currentOrder;
+
+        int QuantityReceived = 0;
+        int StockID = 0;
         
         public Form1()
         {
@@ -117,7 +120,8 @@ namespace merchandapp
         {
             if (e.ColumnIndex == VIEW_BUTTON_COLUMN_INDEX)
             {
-                currentOrder = network.getOrderDetails(e.RowIndex + 1);
+                OrderSummary order = (OrderSummary)orderSummariesSource.List[e.RowIndex];
+                currentOrder = network.getOrderDetails(order.orderID);
                 Debug.WriteLine(currentOrder);
                 if (currentOrder != null)
                 {
@@ -168,7 +172,8 @@ namespace merchandapp
         private void stock_button_Click(object sender, EventArgs e)
         {
             List<PartSummary> partSummaries = network.stockStatus();
-            foreach(PartSummary summary in partSummaries)
+            partSummariesSource.Clear();
+            foreach (PartSummary summary in partSummaries)
             {
                 partSummariesSource.Add(summary);
             }
@@ -207,6 +212,53 @@ namespace merchandapp
                     Debug.WriteLine("ordered ID=" + part.ID.ToString() + " quantity=" + quantity.ToString() + " returned=" + debug);
                 }
                 //System.Threading.Thread.Sleep(1000);
+            }
+
+            // Refresh from DB
+            List<PartSummary> partSummaries = network.stockStatus();
+            partSummariesSource.Clear();
+            foreach (PartSummary summary in partSummaries)
+            {
+                partSummariesSource.Add(summary);
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QuantityReceivedBox_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(QuantityReceivedBox.Text, out int value))
+            {
+                if (value > 0)
+                { QuantityReceived = value; }
+            }
+            else
+            {
+                QuantityReceived = 0;
+            }
+        }
+
+        private void stockIDBox_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(stockIDBox.Text, out int value))
+            {
+                if(value > 0)
+                { StockID = value; }
+            }
+            else
+            {
+                StockID = 0;
+            }
+        }
+
+        private void stockReceivedButton_Click(object sender, EventArgs e)
+        {
+            if (StockID != 0 && QuantityReceived != 0)
+            {
+                network.stockDelivered(StockID, QuantityReceived);
             }
         }
     }
