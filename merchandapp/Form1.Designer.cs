@@ -136,10 +136,10 @@ namespace merchandapp
             // 
             // completeButton
             // 
-            this.completeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.completeButton.Location = new System.Drawing.Point(746, 3);
+            this.completeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.completeButton.Location = new System.Drawing.Point(789, 3);
             this.completeButton.Name = "completeButton";
-            this.completeButton.Size = new System.Drawing.Size(195, 76);
+            this.completeButton.Size = new System.Drawing.Size(152, 42);
             this.completeButton.TabIndex = 2;
             this.completeButton.Text = "Complete";
             this.completeButton.UseVisualStyleBackColor = true;
@@ -147,21 +147,22 @@ namespace merchandapp
             // 
             // PartListDataGridView
             // 
+            this.PartListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.PartListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartListDataGridView.Location = new System.Drawing.Point(272, 85);
+            this.PartListDataGridView.Location = new System.Drawing.Point(256, 51);
             this.PartListDataGridView.Name = "PartListDataGridView";
             this.PartListDataGridView.RowHeadersWidth = 51;
             this.PartListDataGridView.RowTemplate.Height = 24;
-            this.PartListDataGridView.Size = new System.Drawing.Size(669, 379);
+            this.PartListDataGridView.Size = new System.Drawing.Size(685, 413);
             this.PartListDataGridView.TabIndex = 1;
             this.PartListDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PartListDataGridView_CellContentClick);
             // 
             // backButton
             // 
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Location = new System.Drawing.Point(3, 3);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(196, 76);
+            this.backButton.Size = new System.Drawing.Size(134, 42);
             this.backButton.TabIndex = 0;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
@@ -307,9 +308,9 @@ namespace merchandapp
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 491);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel3);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
