@@ -199,9 +199,14 @@ namespace merchandapp
             foreach (PartSummary part in partSummariesSource.List)
             {
                 int quantity = network.getStockToOrder(part.ID);
-                Debug.WriteLine("ordered ID=" + part.ID.ToString() + " quantity=" + quantity.ToString());
+                Debug.WriteLine("requested quantity needed for ID=" + part.ID.ToString() + "returned=" + quantity.ToString());
+                //System.Threading.Thread.Sleep(1000);
                 if (quantity > 0)
-                { network.orderStock(part.ID, quantity); }
+                { 
+                    string debug = network.orderStock(part.ID, quantity);
+                    Debug.WriteLine("ordered ID=" + part.ID.ToString() + " quantity=" + quantity.ToString() + " returned=" + debug);
+                }
+                //System.Threading.Thread.Sleep(1000);
             }
         }
     }
