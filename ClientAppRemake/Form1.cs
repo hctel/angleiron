@@ -58,7 +58,7 @@ namespace ClientAppRemake
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            network = new Network("hctel.net",58931);
+            network = new Network("hctel.net",58913);
             
             //Header Panel
             Panel headerPanel = new Panel();
