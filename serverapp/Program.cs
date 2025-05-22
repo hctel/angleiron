@@ -5,9 +5,11 @@ using Mysqlx.Crud;
 using System;
 using System.Diagnostics.Metrics;
 
-string version = "0.0.1b";
+string version = "0.2.0";
 int port = 0xe621;
 
+
+//CHANGE CREDENTIALS HERE
 string hostname = "127.0.0.1";
 string dataName = "angleiron";
 string username = "root";
@@ -18,18 +20,22 @@ List<Session> sessions = new List<Session>();
 Console.WriteLine($"AngleIron server v{version}");
 Console.WriteLine("Starting server...");
 
-UserDB dbcon = new UserDB(hostname, dataName, username, password); //CHANGE CREDENTIALS HERE
-Order_DB orderDB = new Order_DB(hostname, dataName, username, password);
+UserDB dbcon = new UserDB(hostname, dataName, username, password);
+OrderDB orderDB = new OrderDB(hostname, dataName, username, password);
 StockDB stockDB = new StockDB(hostname, dataName, username, password);
 KitDB kitDB = new KitDB(hostname, dataName, username, password);
 MaterialDB materialDB = new MaterialDB(hostname, dataName, username, password);
 
-UserAuth userAuthenticator = new UserAuth( dbcon);
+UserAuth userAuthenticator = new UserAuth(dbcon);
+
+OrderManager orderManager = new OrderManager(orderDB, kitDB, stockDB);
+StockManager stockManager = new StockManager(stockDB);
 
 
 Network networkManager = new Network(port, networkReceiveFunction); //TO DO LASTLY!!
 Console.WriteLine($"Server started on port {port}");
 Console.WriteLine("Press Q to stop the server");
+
 
 for (; ; )
 {
@@ -116,7 +122,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     if (data[0].Equals("SHOWTYPES"))
     {
-        List<Kit> kits = kitM.getKits();
+        List<Kit> kits = kitDB.getAllKits();
         string response = "TYPELIST&";
         foreach (Kit kit in kits)
         {
@@ -127,11 +133,11 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("SHOWORDERS"))
     {
-        List<List<string>> orders = order_manager.get_orders();
+        List<List<string>> orders = orderManager.getOrders();
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
         {
-            response += order[1] + "/" + order[0] + "/" + order[2] + "/" + order[3] + "/" + order[4] + ";";
+            response += order[0] + "/" + order[1] + "/" + order[2] + "/" + order[3] + "/" + order[4] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
     }
@@ -139,7 +145,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
 
     else if (data[0].Equals("DETAILORDER"))
     {
-        List<List<string>> orderDetails = order_manager.detail_order(Int32.Parse(data[1]));
+        List<List<string>> orderDetails = orderManager.detailOrder(Int32.Parse(data[1]));
         if (orderDetails.Count == 0) return "NOORDER";
         string response = "ORDERDETAIL&" + data[1] + "&";
         foreach (List<string> detail in orderDetails)
@@ -155,7 +161,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         else
         {
             int orderId = Int32.Parse(data[1]);
-            order_manager.change_satus(data[2], orderId);
+            orderManager.changeStatus(data[2], orderId);
             return "OK";
         }
     }
@@ -166,7 +172,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         else
         {
             int orderId = Int32.Parse(data[1]);
-            order_manager.delete_row(orderId);
+            orderManager.deleteRow(orderId);
             return "OK";
         }
     }
@@ -182,7 +188,6 @@ string networkReceiveFunction(string[] data, string ipAddress)
             {
                 result.Read();
                 int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
-                stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
                 return "OK";
             }
         }
@@ -213,8 +218,8 @@ string networkReceiveFunction(string[] data, string ipAddress)
                 result.Read();
                 int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
                 int new_quantity = result.GetInt32("Quantity") + quantity;
-                stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-                stockCalculation.updateInt("Quantity", new_quantity, componentId);
+                //stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
+                //stockCalculation.updateInt("Quantity", new_quantity, componentId);
                 return "OK";
             }
         }
@@ -224,8 +229,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         if (data.Length != 2) return "STXERR";
         else {
             int componentId = Int32.Parse(data[1]);
-            stockCalculation.check(componentId);
-            return "TOORDER&" + stockCalculation.get_to_order().ToString(); 
+            return "TOORDER&" + stockManager.getStockDiff(componentId);
         }
     }
     else if (data[0].Equals("NEWORDER"))
@@ -239,8 +243,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
             string status = data[4];
             double price = Double.Parse(data[5]);
             string color = data[6];
-            order_manager.add_order(idcategory, idclient, already_paid, status, price, color);
-            order_manager.management();
+            orderManager.addOrder(idcategory, idclient, already_paid, status, price, color);
             return "OK";
         }
     }
@@ -300,10 +303,11 @@ string networkReceiveFunction(string[] data, string ipAddress)
         if (data.Length != 3) return "STXERR";
         else
         {
-            int id = Int32.Parse(data[1]);
-            double price = Double.Parse(data[2]);
-            stockCalculation.updateDouble("Price", price, id);
-            return "OK";
+            //int id = Int32.Parse(data[1]);
+            //double price = Double.Parse(data[2]);
+            //stockCalculation.updateDouble("Price", price, id);
+            //return "OK";
+            return "NOTIMPL";
         }
     }
 

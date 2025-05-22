@@ -10,9 +10,23 @@ namespace backend
         {
         }
 
+        public MySqlDataReader getAllStock()
+        {
+            return read("SELECT * FROM stock;");
+        }
+
         public MySqlDataReader getIdcomponent(int idcomponent)
         {
             return read(String.Format("SELECT * FROM stock WHERE idComponent={0};", idcomponent));
+        }
+
+        public MySqlDataReader getComponentInStock(int idcomponent, int quantity)
+        {
+            return read(String.Format("SELECT * FROM stock WHERE idComponent={0} AND Quantity > quantity ORDER BY price DESC;", idcomponent));
+        }
+
+        public MySqlDataReader getComponents(int idcomponent) {
+            return read(String.Format("SELECT * FROM stock WHERE idComponent={0} ORDER BY price DESC;", idcomponent));
         }
 
         public MySqlDataReader getStock(int id)

@@ -22,10 +22,24 @@ namespace backend
                 return ids;
             }
         }
-           
-        public MySqlDataReader getIdcategory(int idcategory)
+
+        public List<Kit> getAllKits()
         {
-          return read(String.Format("SELECT * FROM categories WHERE idCategory={0};", idcategory));
+            List<Kit> kits = new List<Kit>();
+            using (MySqlDataReader reader = read("SELECT * FROM categories;"))
+            {
+                while (reader.Read())
+                {
+                    Kit kit = new Kit(reader.GetInt32("idCategory"), reader.GetString("name"), reader.GetString("dimension"), reader.GetDouble("price"), reader.GetString("colorsAvail"), reader.GetString("optionsAvail"), reader.GetString("imageName"));
+                    kits.Add(kit);
+                }
+            }
+            return kits;
+        }
+
+        public MySqlDataReader getKit(int idcategory)
+        {
+          return read(String.Format("SELECT * FROM categories JOIN componentCategory ON categories.idCategory = componentCategory.idCategory WHERE categories.idCategory={0};", idcategory));
         }
 
         public void addKit(string dimension, string colors_available, string options_available)
