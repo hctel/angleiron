@@ -65,7 +65,7 @@ namespace merchandapp
 
 
 
-            network = new Network("hctel.net", 58913);
+            network = new Network("127.0.0.1", 58913);
             Debug.WriteLine(network.getOrders().ToString());
 
             foreach (OrderSummary order in network.getOrders())

@@ -12,25 +12,39 @@ namespace backend
 
         public List<int> getAllIDs()
         {
-            using (MySqlDataReader reader = read("SELECT id_category FROM table_categories;"))
+            using (MySqlDataReader reader = read("SELECT idCategory FROM categories;"))
             {
                 List<int> ids = new List<int>();
                 while (reader.Read())
                 {
-                    ids.Add(reader.GetInt32("id_category"));
+                    ids.Add(reader.GetInt32("idCategory"));
                 }
                 return ids;
             }
         }
-           
-        public MySqlDataReader getIdcategory(int idcategory)
+
+        public List<Kit> getAllKits()
         {
-          return read(String.Format("SELECT * FROM table_categories WHERE id_category={0};", idcategory));
+            List<Kit> kits = new List<Kit>();
+            using (MySqlDataReader reader = read("SELECT * FROM categories;"))
+            {
+                while (reader.Read())
+                {
+                    Kit kit = new Kit(reader.GetInt32("idCategory"), reader.GetString("name"), reader.GetString("dimension"), reader.GetDouble("price"), reader.GetString("colorsAvail"), reader.GetString("optionsAvail"), reader.GetString("imageName"));
+                    kits.Add(kit);
+                }
+            }
+            return kits;
+        }
+
+        public MySqlDataReader getKit(int idcategory)
+        {
+          return read(String.Format("SELECT * FROM categories JOIN componentCategory ON categories.idCategory = componentCategory.idCategory WHERE categories.idCategory={0};", idcategory));
         }
 
         public void addKit(string dimension, string colors_available, string options_available)
         {
-            execute(String.Format("INSERT INTO table_categories (Dimension, Colors_available, Options_available) VALUES ('{0}', '{1}', '{2}');", 
+            execute(String.Format("INSERT INTO categories (dimension, colorsAvail, optionsAvail) VALUES ('{0}', '{1}', '{2}');", 
             dimension, colors_available, options_available));
         }
 
