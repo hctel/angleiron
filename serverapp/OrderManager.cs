@@ -35,7 +35,7 @@ namespace backend
                         order.Add(reader.GetDateTime("date").ToString("yyyy-MM-dd HH:mm:ss"));
                         do
                         {
-                            if (reader.GetInt16("perCategory") > reader.GetInt16("inStock")) inStock = false;
+                            if (reader.GetInt16("perCategory") > reader.GetInt32("inStock")) inStock = false;
                         } while (reader.Read());
                         order.Add(inStock.ToString());
                     }
@@ -60,10 +60,10 @@ namespace backend
                     do
                     {
                         List<string> orderDetail = new List<string>();
-                        orderDetail.Add(reader.GetString("idComponent"));
-                        orderDetail.Add(reader.GetString("perCategory"));
-                        orderDetail.Add(reader.GetInt16("inStock").ToString());
-                        orderDetail.Add(reader.GetInt16("description").ToString());
+                        orderDetail.Add(reader.GetInt16("idComponent").ToString());
+                        orderDetail.Add(reader.GetInt16("perCategory").ToString());
+                        orderDetail.Add(reader.GetInt32("inStock").ToString());
+                        orderDetail.Add(reader.GetString("description"));
                         orderDetails.Add(orderDetail);
                     } while (reader.Read());
                 }
@@ -82,7 +82,7 @@ namespace backend
                         int category = reader.GetInt16("idCategory");
                         using (MySqlDataReader reader2 = kitDB.getKit(category))
                         {
-                            while (reader.Read())
+                            while (reader2.Read())
                             {
                                 int componentId = reader2.GetInt16("idComponent");
                                 int count = reader2.GetInt32("perCategory");
@@ -90,8 +90,8 @@ namespace backend
                                 {
                                     if (stockReader.HasRows)
                                     {
-                                        reader.Read();
-                                        stockDB.updateINT("quantityInStock", stockReader.GetInt32("quantityInStock") - count, stockReader.GetInt32("componentId"));
+                                        stockReader.Read();
+                                        stockDB.updateINT("quantityInStock", stockReader.GetInt32("quantityInStock") - count, stockReader.GetInt32("idComponent"));
                                     }
                                 }
                             }
@@ -121,7 +121,7 @@ namespace backend
                         if(stockReader.HasRows)
                         {
                             reader.Read();
-                            stockDB.updateINT("quantityClient", stockReader.GetInt32("quantityClient") + count, stockReader.GetInt32("componentId"));
+                            stockDB.updateINT("quantityClient", stockReader.GetInt32("quantityClient") + count, stockReader.GetInt32("idComponent"));
                             continue;
                         }
                     }
@@ -130,7 +130,7 @@ namespace backend
                         if (stockReader.HasRows)
                         {
                             reader.Read();
-                            stockDB.updateINT("quantityClient", stockReader.GetInt32("quantityClient") + count, stockReader.GetInt32("componentId"));
+                            stockDB.updateINT("quantityClient", stockReader.GetInt32("quantityClient") + count, stockReader.GetInt32("idComponent"));
                             continue;
                         }
                     }

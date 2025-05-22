@@ -21,9 +21,16 @@ namespace backend
                 Dictionary<int, int> clientQuantities = new Dictionary<int, int>();
                 while (result.Read())
                 {
-                    int idComponent = result.GetInt32("idComponent");
+                    int idComponent = result.GetInt32("idStock");
                     int quantityClient = result.GetInt32("quantityClient");
-                    clientQuantities.Add(idComponent, quantityClient);
+                    if(clientQuantities.ContainsKey(idComponent))
+                    {
+                        clientQuantities[idComponent] += quantityClient;
+                    }
+                    else
+                    {
+                        clientQuantities.Add(idComponent, quantityClient);
+                    }
                 }
                 return clientQuantities;
             }
@@ -36,9 +43,16 @@ namespace backend
                 Dictionary<int, int> orderedQuantities = new Dictionary<int, int>();
                 while (result.Read())
                 {
-                    int idComponent = result.GetInt32("idComponent");
+                    int idComponent = result.GetInt32("idStock");
                     int quantityOrder = result.GetInt32("quantityOrder");
-                    orderedQuantities.Add(idComponent, quantityOrder);
+                    if(orderedQuantities.ContainsKey(idComponent))
+                    {
+                        orderedQuantities[idComponent] += quantityOrder;
+                    }
+                    else
+                    {
+                        orderedQuantities.Add(idComponent, quantityOrder);
+                    }
                 }
                 return orderedQuantities;
             }
@@ -52,9 +66,16 @@ namespace backend
                 Dictionary<int, int> stockQuantities = new Dictionary<int, int>();
                 while (result.Read())
                 {
-                    int idComponent = result.GetInt32("idComponent");
+                    int idComponent = result.GetInt32("idStock");
                     int quantity = result.GetInt32("quantityInStock");
-                    stockQuantities.Add(idComponent, quantity);
+                    if(stockQuantities.ContainsKey(idComponent))
+                    {
+                        stockQuantities[idComponent] += quantity;
+                    }
+                    else
+                    {
+                        stockQuantities.Add(idComponent, quantity);
+                    }
                 }
                 return stockQuantities;
             }

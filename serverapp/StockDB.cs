@@ -6,8 +6,10 @@ namespace backend
 {
     public class StockDB : DatabaseConnector
     {
+        private DatabaseConnector updater;
         public StockDB(string server, string databaseName, string username, string password) : base(server, databaseName, username, password)
         {
+            updater = new DatabaseConnector(server, databaseName, username, password); // Initialize the updater with the same connection parameters
         }
 
         public MySqlDataReader getAllStock()
@@ -22,7 +24,7 @@ namespace backend
 
         public MySqlDataReader getComponentInStock(int idcomponent, int quantity)
         {
-            return read(String.Format("SELECT * FROM stock WHERE idComponent={0} AND Quantity > quantity ORDER BY price DESC;", idcomponent));
+            return read(String.Format("SELECT * FROM stock WHERE idComponent={0} AND quantityInStock > {1} ORDER BY price DESC;", idcomponent, quantity));
         }
 
         public MySqlDataReader getComponents(int idcomponent) {
@@ -36,16 +38,46 @@ namespace backend
 
         public void addStock(string supplier, int idcomponent, int quantity, int quantityClient, int quantity_order, double price, int deliveryDuration)
         {
-            execute(String.Format("INSERT INTO stock (idComponent, Quantity, QuantityClient, Quantity_order, supplier, Price, delivery_duration) VALUES ({0}, {1}, {2}, {3}, '{4}', {5}, {6});",
+            updater.execute(String.Format("INSERT INTO stock (idComponent, quantityInStock, quantityClient, quantityOrder, supplier, price, deliveryDuration) VALUES ({0}, {1}, {2}, {3}, '{4}', {5}, {6});",
             idcomponent, quantity, quantityClient, quantity_order, supplier, price, deliveryDuration));
         }
         public void updateINT(string nameCollum, int new_value, int id)
         {
-            execute(String.Format("UPDATE stock SET '{0}'={1} WHERE idComponent={2};", nameCollum, new_value, id));
+            updater.execute(String.Format("UPDATE stock SET {0}={1} WHERE idComponent={2};", nameCollum, new_value, id));
+        }
+        public void addInt(string nameCollum, int new_value, int id)
+        {
+            int prevResult = 0;
+            using (MySqlDataReader result = read(String.Format("SELECT {0} FROM stock WHERE idComponent={1};", nameCollum, id)))
+            {
+                if (result.Read())
+                {
+                    prevResult = result.GetInt32(nameCollum);
+                }
+            }
+            updater.execute(String.Format("UPDATE stock SET {0}={1} WHERE idComponent={2};", nameCollum, new_value+prevResult, id));
         }
         public void updateDouble(string nameCollum, double new_value, int id)
         {
-            execute(String.Format("UPDATE stock SET '{0}'={1} WHERE idComponent={2};", nameCollum, new_value, id));
+            updater.execute(String.Format("UPDATE stock SET {0}={1} WHERE idComponent={2};", nameCollum, new_value, id));
+        }
+        public string getStockString()
+        {
+            string result = "STOCKSTS&";
+            using (MySqlDataReader reader = read("SELECT * FROM stock INNER JOIN component ON stock.idComponent = component.idComponent;")) {
+                while(reader.Read())
+                {
+                    int idStock = reader.GetInt32("idStock");
+                    int idComponent = reader.GetInt32("stock.idComponent");
+                    int quantityInStock = reader.GetInt32("quantityInStock");
+                    int quantityClient = reader.GetInt32("quantityClient");
+                    int quantityOrder = reader.GetInt32("quantityOrder");
+                    string desc = reader.GetString("description");
+
+                    result += $"{idStock}/{idComponent}/{quantityInStock}/{quantityClient}/{quantityOrder}/{desc};";
+                }
+            }
+            return result;
         }
 
         public List<int> getAllComponents()

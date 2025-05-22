@@ -10,9 +10,9 @@ int port = 0xe621;
 
 
 //CHANGE CREDENTIALS HERE
-string hostname = "127.0.0.1";
-string dataName = "angleiron";
-string username = "root";
+string hostname = "10.0.0.246";
+string dataName = "angle2";
+string username = "remote";
 string password = "1234";
 
 List<Session> sessions = new List<Session>();
@@ -184,26 +184,15 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int componentId = Int32.Parse(data[1]);
             int quantity = Int32.Parse(data[2]);
-            using (MySqlDataReader result = stockDB.getIdcomponent(componentId))
-            {
-                result.Read();
-                int new_quantity_to_order = result.GetInt32("Quantity_order") + quantity;
-                return "OK";
-            }
+            stockDB.addInt("quantityOrder", quantity, componentId);
+            return "OK";
         }
     }
 
     else if (data[0].Equals("STOCKCHK"))
     {
-        string response = "STOCKSTS&";
-        Dictionary<int, int> clientQuantities = stockManager.getClientQuantities();
-        Dictionary<int, int> stockQuantities = stockManager.getStockQuantities();
-        Dictionary<int, int> orderedQuantities = stockManager.getOrderedQuantities();
-        foreach (int key in clientQuantities.Keys)
-        {
-            response += $"{key}/{stockQuantities[key]}/{clientQuantities[key]}/{orderedQuantities[key]};";
-        }
-        return response.Remove(response.Length - 1, 1); ;
+        string response = stockDB.getStockString();
+        return response.Remove(response.Length - 1, 1);
     }
 
     else if (data[0].Equals("STOCKDEDELIVERED"))

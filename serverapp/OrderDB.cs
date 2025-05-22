@@ -20,7 +20,7 @@ namespace backend
           return read(String.Format("SELECT * FROM orders;"));
         }
         public int getLastId(){
-            using(MySqlDataReader reader = read("SELECT idOrder FROM ordrers ORDER BY idOrder DESC LIMIT 1;")){
+            using(MySqlDataReader reader = read("SELECT idOrder FROM orders ORDER BY idOrder DESC LIMIT 1;")){
                 if(reader.Read()){
                     return reader.GetInt32(0);
                 }
