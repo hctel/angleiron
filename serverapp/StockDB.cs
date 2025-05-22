@@ -17,9 +17,15 @@ namespace backend
             return read("SELECT * FROM stock;");
         }
 
+        public MySqlDataReader getId(int idcomponent)
+        {
+            return read(String.Format("SELECT * FROM stock WHERE idStock={0};", idcomponent));
+        }
+
+
         public MySqlDataReader getIdcomponent(int idcomponent)
         {
-            return read(String.Format("SELECT * FROM stock WHERE idComponent={0};", idcomponent));
+            return read(String.Format("SELECT * FROM component WHERE idComponent={0};", idcomponent));
         }
 
         public MySqlDataReader getComponentInStock(int idcomponent, int quantity)
@@ -68,7 +74,7 @@ namespace backend
                 while(reader.Read())
                 {
                     int idStock = reader.GetInt32("idStock");
-                    int idComponent = reader.GetInt32("stock.idComponent");
+                    int idComponent = reader.GetInt32(1);
                     int quantityInStock = reader.GetInt32("quantityInStock");
                     int quantityClient = reader.GetInt32("quantityClient");
                     int quantityOrder = reader.GetInt32("quantityOrder");

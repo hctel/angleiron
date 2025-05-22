@@ -10,10 +10,10 @@ int port = 0xe621;
 
 
 //CHANGE CREDENTIALS HERE
-string hostname = "10.0.0.246";
+string hostname = "127.0.0.1";
 string dataName = "angle2";
-string username = "remote";
-string password = "1234";
+string username = "root";
+string password = "*******";
 
 List<Session> sessions = new List<Session>();
 
@@ -202,13 +202,13 @@ string networkReceiveFunction(string[] data, string ipAddress)
         {
             int componentId = Int32.Parse(data[1]);
             int quantity = Int32.Parse(data[2]);
-            using (MySqlDataReader result = stockDB.getIdcomponent(componentId))
+            using (MySqlDataReader result = stockDB.getId(componentId))
             {
                 result.Read();
-                int new_quantity_to_order = result.GetInt32("Quantity_order") - quantity;
-                int new_quantity = result.GetInt32("Quantity") + quantity;
-                //stockCalculation.updateInt("Quantity_order", new_quantity_to_order, componentId);
-                //stockCalculation.updateInt("Quantity", new_quantity, componentId);
+                int new_quantity_to_order = result.GetInt32("quantityOrder") - quantity;
+                int new_quantity = result.GetInt32("quantityInStock") + quantity;
+                stockDB.updateINT("quantityOrdered", new_quantity_to_order, componentId);
+                stockDB.updateINT("quantityInStock", new_quantity, componentId);
                 return "OK";
             }
         }

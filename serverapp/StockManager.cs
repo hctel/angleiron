@@ -85,7 +85,7 @@ namespace backend
         {
             using (MySqlDataReader result = stockDB.getIdcomponent(idComponent))
             {
-                if (result.Read()) return result.GetInt32("quantityClient") - result.GetInt32("quantityInStock");
+                if (result.Read()) return result.GetInt32("inClient") - result.GetInt32("inStock");
             }
             return 0;
         }
