@@ -28,6 +28,18 @@ namespace backend
             }
         }
 
+        public int getFirstId()
+        {
+            using (MySqlDataReader reader = read("SELECT idOrder FROM orders ORDER BY idOrder ASC LIMIT 1;"))
+            {
+                if (reader.Read())
+                {
+                    return reader.GetInt32(0);
+                }
+                return 1;
+            }
+        }
+
         public void addOrder(int idcategory, int id_client, string already_paid, string status, double price, string color)
         {
             execute(String.Format("INSERT INTO orders (idClient, idCategory, price, alreadyPaid, status, color) VALUES ({0}, {1}, {2}, '{3}', '{4}', '{5}');", 

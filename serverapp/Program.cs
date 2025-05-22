@@ -13,7 +13,7 @@ int port = 0xe621;
 string hostname = "127.0.0.1";
 string dataName = "angle2";
 string username = "root";
-string password = "*******";
+string password = "tarragon";
 
 List<Session> sessions = new List<Session>();
 
@@ -134,6 +134,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
     else if (data[0].Equals("SHOWORDERS"))
     {
         List<List<string>> orders = orderManager.getOrders();
+        if(orders.Count == 0) return "NOORDERS";
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
         {
@@ -207,7 +208,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
                 result.Read();
                 int new_quantity_to_order = result.GetInt32("quantityOrder") - quantity;
                 int new_quantity = result.GetInt32("quantityInStock") + quantity;
-                stockDB.updateINT("quantityOrdered", new_quantity_to_order, componentId);
+                stockDB.updateINT("quantityOrder", new_quantity_to_order, componentId);
                 stockDB.updateINT("quantityInStock", new_quantity, componentId);
                 return "OK";
             }

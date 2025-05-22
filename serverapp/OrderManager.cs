@@ -20,8 +20,9 @@ namespace backend
         public List<List<string>> getOrders()
         {
             List<List<string>> orders = new List<List<string>>();
+            int firstOrderId = orderDB.getFirstId();
             int maxOrderId = orderDB.getLastId();
-            for(int i = 1; i <= maxOrderId; i++)
+            for(int i = firstOrderId; i <= maxOrderId; i++)
             {
                 using (MySqlDataReader reader = orderDB.getIdOrder(i))
                 {
@@ -120,7 +121,7 @@ namespace backend
                     {
                         if(stockReader.HasRows)
                         {
-                            reader.Read();
+                            stockReader.Read();
                             stockDB.updateINT("quantityClient", stockReader.GetInt32("quantityClient") + count, stockReader.GetInt32("idComponent"));
                             continue;
                         }
@@ -129,7 +130,7 @@ namespace backend
                     {
                         if (stockReader.HasRows)
                         {
-                            reader.Read();
+                            stockReader.Read();
                             stockDB.updateINT("quantityClient", stockReader.GetInt32("quantityClient") + count, stockReader.GetInt32("idComponent"));
                             continue;
                         }
