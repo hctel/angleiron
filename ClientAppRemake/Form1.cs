@@ -265,10 +265,12 @@ namespace ClientAppRemake
 
             //For each item
             //Item panel starts here
+            int index=-1;
             foreach (Kit k in network.getItems())
             {
                 int id = k.id;
-                int posX = id - 1;
+                if(index == -1) index = id;
+                int posX = index-1;
                 Panel itemPanel = new Panel();
                 itemPanel.Size = new Size(390, 490);
                 itemPanel.Location = new Point(15, 25 + posX * 515);
@@ -312,7 +314,7 @@ namespace ClientAppRemake
                 itemImage.Size = new Size(300, 50);
                 itemImage.Location = new Point(45, 200);
 
-                itemImage.Image = Image.FromFile("Images/image" + id + ".png");
+                itemImage.Image = Image.FromFile("Images/" + k.image);
                 itemPanel.Controls.Add(itemImage);
 
                 Panel spacerPanel = new Panel();
@@ -321,7 +323,7 @@ namespace ClientAppRemake
                 spacerPanel.BackColor = Color.Transparent;
                 lockersListPanel.Controls.Add(spacerPanel);
 
-
+                index++;
                 
             }
             //Item panel ends here
