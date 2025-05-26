@@ -101,5 +101,11 @@ First page : This is a summary of all pending orders.
  ![alt text](./merchandapp/Images/stockDetail.png)
  
 
+##User Stories :
+En tant que client d'un magasin d'armoires, j'aimerais pouvoir commander et personnaliser une armoire lors de la commande, recevoir une facture lors de la réception des pièces, afin de pouvoir commander l'armoire qui convient le mieux à mes attentes 
+
+En tant que gérant d'un magasin de meubles, j'aimerais voir l'ensemble des commandes en cours ainsi que les détails d'une commande et pouvoir commander les pièces manquantes afin de répondre le mieux possible aux attentes des clients 
+
+En tant que gérant d'un magasin de meuble, je voudrais voir l'ensemble des commandes en cours ainsi que les détails d'une commande et pouvoir commander les pièces manquantes via un catalogue de fournisseurs afin de répondre le mieux possible aux attentes des clients. 
 
 > 📌 **Note**: For contributions, issues, or suggestions, feel free to open a ticket or a pull request in the corresponding repository.
