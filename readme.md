@@ -72,6 +72,10 @@ Both clients consume services from the `serverapp` and provide user interfaces t
 3. Ensure the image assets exist in the `Images/` folder (e.g. `image1.png`, `image2.png`, etc.).
 4. Run the application.
 
+## Diagrams 
+
+Use case diagram and activity diagram for the client application can be found [here](.ClientAppRemake/Diagram).
+
 ---
 
 ## Merchant App
