@@ -10,7 +10,6 @@ The main goal of this solution is to maintain a clean, scalable, and maintainabl
 
 ## Diagram
 
-
 ---
 
 ## Server
@@ -22,6 +21,16 @@ The `serverapp` project contains the main backend API. It exposes REST (or gRPC,
 - User and Role Management
 - Request Handling
 - Database Communication
+
+---
+## Managing Database
+
+The `merchandapp` project manages the merchant side of the database. It handles creation, updates, and deletion of records related to products, transactions, or partners.
+
+It may also include:
+- Initialization scripts for the database
+- Tools for migrations or data integrity checks
+- Internal administration utilities
 
 ---
 
@@ -40,15 +49,5 @@ Both clients consume services from the `serverapp` and provide user interfaces t
 
 The `merchandapp` project is responsible for the merchant-facing application. It provides a user interface for merchants to manage their products, view transactions, and interact with customers.
 
-## Managing Database
-
-The `merchandapp` project manages the merchant side of the database. It handles creation, updates, and deletion of records related to products, transactions, or partners.
-
-It may also include:
-- Initialization scripts for the database
-- Tools for migrations or data integrity checks
-- Internal administration utilities
-
----
 
 > 📌 **Note**: For contributions, issues, or suggestions, feel free to open a ticket or a pull request in the corresponding repository.
