@@ -22,14 +22,33 @@ namespace backend
             List<List<string>> orders = new List<List<string>>();
             int firstOrderId = orderDB.getFirstId();
             int maxOrderId = orderDB.getLastId();
-            for(int i = firstOrderId; i <= maxOrderId; i++)
+            //using (MySqlDataReader reader = orderDB.getAllOrders())
+            //{
+            //    while(reader.Read())
+            //    {
+            //        List<string> order = new List<string>();
+            //        bool inStock = true;
+            //        order.Add(reader.GetInt16("idOrder").ToString());
+            //        order.Add(reader.GetString("name"));
+            //        order.Add(reader.GetString("status"));
+            //        order.Add(reader.GetDateTime("date").ToString("yyyy-MM-dd HH:mm:ss"));
+            //        do
+            //        {
+            //            if (reader.GetInt16("perCategory") > reader.GetInt32("inStock")) inStock = false;
+            //        } while (reader.Read());
+            //        order.Add(inStock.ToString());
+            //        orders.Add(order);
+            //    }
+            //}
+            for (int i = firstOrderId; i <= maxOrderId; i++)
             {
                 using (MySqlDataReader reader = orderDB.getIdOrder(i))
                 {
-                    List<string> order = new List<string>();
-                    bool inStock = true;
+                    
                     if (reader.Read())
                     {
+                        List<string> order = new List<string>();
+                        bool inStock = true;
                         order.Add(reader.GetInt16("idOrder").ToString());
                         order.Add(reader.GetString("name"));
                         order.Add(reader.GetString("status"));
@@ -39,10 +58,8 @@ namespace backend
                             if (reader.GetInt16("perCategory") > reader.GetInt32("inStock")) inStock = false;
                         } while (reader.Read());
                         order.Add(inStock.ToString());
+                        orders.Add(order);
                     }
-                    
-
-                    orders.Add(order);
                 }
 
             }

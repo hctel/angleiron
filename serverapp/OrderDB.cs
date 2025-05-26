@@ -15,6 +15,10 @@ namespace backend
         {
           return read(String.Format("SELECT * FROM orders INNER JOIN componentCategory ON orders.idCategory = componentCategory.idCategory INNER JOIN component ON componentCategory.idComponent = component.idComponent INNER JOIN clients ON orders.idClient = clients.idClient WHERE idOrder = {0};", idorder));
         }
+        public MySqlDataReader getAllOrders()
+        {
+            return read("SELECT * FROM orders INNER JOIN componentCategory ON orders.idCategory = componentCategory.idCategory INNER JOIN component ON componentCategory.idComponent = component.idComponent INNER JOIN clients ON orders.idClient = clients.idClient;");
+        }
         public MySqlDataReader getOrder()
         {
           return read(String.Format("SELECT * FROM orders;"));
