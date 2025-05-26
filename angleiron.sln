@@ -9,7 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "merchandapp", "merchandapp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "serverapp", "serverapp\serverapp.csproj", "{94B04BF6-F09A-46C3-B97A-E4151A87FC2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAppRemake", "ClientAppRemake\ClientAppRemake.csproj", "{2C116015-CCEA-4766-8A83-B7E39561266A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientAppRemake", "ClientAppRemake\ClientAppRemake.csproj", "{2C116015-CCEA-4766-8A83-B7E39561266A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{15720270-F02F-4A44-A154-90748D690FEC}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
