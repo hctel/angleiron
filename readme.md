@@ -36,6 +36,10 @@ Both clients consume services from the `serverapp` and provide user interfaces t
 
 ---
 
+## Merchand App
+
+The `merchandapp` project is responsible for the merchant-facing application. It provides a user interface for merchants to manage their products, view transactions, and interact with customers.
+
 ## Managing Database
 
 The `merchandapp` project manages the merchant side of the database. It handles creation, updates, and deletion of records related to products, transactions, or partners.
