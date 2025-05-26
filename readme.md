@@ -17,7 +17,7 @@ The main goal of this solution is to maintain a clean, scalable, and maintainabl
 #### Marchand APP
 ![alt text](./ClassDiagram_marchandapp.png)
 ### Relationship entity diagram
-![alt text](./Relationship entity diagram.png)
+![alt text](./Relationship_entity_diagram.png)
 
 ---
 
