@@ -505,6 +505,20 @@ namespace ClientAppRemake
                 {
                     network.addOrder(E.Item1, session.UserId, "N", "ORDERED", (int)finalPrice, getColorChar(E.Item2));
                 }
+
+                Basket.Clear();
+                finalPrice = 0;
+                finalPriceLabel.Text = "Total : 0.00 €";
+                List<Control> toRemove = new List<Control>();
+                foreach (Control ctrl in summaryPanel.Controls)
+                {
+                    if (ctrl is Panel)
+                        toRemove.Add(ctrl);
+                }
+                foreach (Control panel in toRemove)
+                {
+                    summaryPanel.Controls.Remove(panel);
+                }
             }
         }
 
