@@ -138,6 +138,7 @@ string networkReceiveFunction(string[] data, string ipAddress)
         string response = "ORDERLIST&";
         foreach (List<string> order in orders)
         {
+            writeListToConsole(order);
             response += order[0] + "/" + order[1] + "/" + order[2] + "/" + order[3] + "/" + order[4] + ";";
         }
         return response.Remove(response.Length - 1, 1); ;
@@ -302,4 +303,21 @@ string networkReceiveFunction(string[] data, string ipAddress)
     }
 
     return "NOFUNC";
+}
+
+void writeArrayToConsole(string[] a)
+{
+    foreach(string S in a) {
+        Console.Write(a + ",");
+    }
+    Console.Write("\n\r");
+}
+
+void writeListToConsole(List<string> a)
+{
+    foreach (string S in a)
+    {
+        Console.Write(S + ",");
+    }
+    Console.Write("\n\r");
 }
