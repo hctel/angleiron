@@ -74,7 +74,7 @@ Both clients consume services from the `serverapp` and provide user interfaces t
 
 ## Diagrams 
 
-Use case diagram and activity diagram for the client application can be found [here](.ClientAppRemake/Diagram).
+Use case diagram and activity diagram for the client application can be found [here](/tree/main/ClientAppRemake/Diagram).
 
 ---
 
