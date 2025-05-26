@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using clientapp;
+using System.Diagnostics.Eventing.Reader;
 
 
 namespace ClientAppRemake
@@ -20,6 +21,7 @@ namespace ClientAppRemake
         private bool selecting = false;
         private List<int> Articles = new List<int>();
         private List<Tuple<int, Color>> Basket = new List<Tuple<int, Color>>();
+        private Session session;
         private int selectedId;
         private Color colorPanel = Color.FromArgb(0, 0, 0);
         private Color baseColor = Color.FromArgb(0, 0, 0);
@@ -95,7 +97,13 @@ namespace ClientAppRemake
                 {
                     string username = loginForm.Username;
                     string password = loginForm.Password;
-                    // Handle login logic here
+                    string response = network.authUser(username, password);
+                    if (response == "NOPASSWD") MessageBox.Show("Incorrect password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else if (response == "NOUSER") MessageBox.Show("User unknown!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                    {
+                        session = new Session(response);
+                    }
                 }
             };
             headerPanel.Controls.Add(loginButton);
@@ -472,9 +480,14 @@ namespace ClientAppRemake
         }
         private void Order()
         {
+
             if (Basket.Count == 0)
             {
-                MessageBox.Show("No items in basket.");
+                MessageBox.Show("No items in basket.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            } else if(session == null)
+            {
+                MessageBox.Show("You must be logged in to place an order.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -486,7 +499,23 @@ namespace ClientAppRemake
             }
             orderSummary += $"Total: {finalPrice.ToString("0.00")} €";
 
-            MessageBox.Show(orderSummary, "Order Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(MessageBox.Show(orderSummary, "Order Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            {
+                foreach(Tuple<int, Color> E in Basket)
+                {
+                    network.addOrder(E.Item1, session.UserId, "N", "ORDERED", (int)finalPrice, getColorChar(E.Item2));
+                }
+            }
+        }
+
+        private string getColorChar(Color color)
+        {
+            if (color.Equals(baseColor)) return "B";
+            else if (color.Equals(firstColor)) return "M";
+            else if (color.Equals(secondColor)) return "T";
+            else if (color.Equals(thirdColor)) return "O";
+            else if (color.Equals(fourthColor)) return "G";
+            else return "B";
         }
     }
 }

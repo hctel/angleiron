@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Web;
 
 namespace clientapp
 {
@@ -88,13 +89,19 @@ namespace clientapp
             List<string> list = get($"AUTH&{mail}&{password}");
             if (list[0].Equals("AUTHOK"))
             {
-                return list[1];
+                return $"{list[1]}&{list[2]}&{list[3]}";
             }
-            else if(list[0].Equals("AUTHERR"))
+            else if(list[0].Equals("AUTHFAIL"))
             {
                 return list[1];
             }
             else return "UNKERR";
+        }
+
+        public void addOrder(int categoryId, int userId, string statusPayed, string status, int price, string color)
+        {
+            string req = $"NEWORDER&{categoryId}&{userId}&{statusPayed}&{status}&{price}&{color}";
+            get(req);
         }
 
             private List<string> get(string request)
@@ -106,7 +113,7 @@ namespace clientapp
             stream.Write(bytesOut, 0, bytesOut.Length);
             byte[] dataIn = new byte[client.ReceiveBufferSize];
             int length = stream.Read(dataIn, 0, dataIn.Length);
-            string message = Encoding.ASCII.GetString(dataIn, 0, length);
+            string message = Encoding.UTF8.GetString(dataIn, 0, length);
             Debug.WriteLine($"Received from server: {message}");
             client.Close();
             return message.Split('&').ToList();
