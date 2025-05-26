@@ -55,8 +55,12 @@ Two versions of the client are available on the github:
 
 Both clients consume services from the `serverapp` and provide user interfaces to interact with the system.
 
+--- 
+
 ### Preview
 ![Preview](./ClientAppRemake/Images/Preview.png)
+
+---
 
 ###  Key Features
 
