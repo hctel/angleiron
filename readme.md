@@ -38,16 +38,16 @@ It may also include:
 
 ## Client App
 
-Two versions of the client are available:
+Two versions of the client are available on the github:
 
-- `clientapp`: the current main client application.
+- `clientapp`: the oldest version coded with dotnet 4.8, which serves as a stable base for the application. Unfortunately, this version was not designed with modern UI/UX principles in mind, and it may not be suitable for new development.
 - `ClientAppRemake`: an alternative or redesigned version experimenting with new UI/UX concepts.
 
 Both clients consume services from the `serverapp` and provide user interfaces to interact with the system.
 
 ---
 
-## Merchand App
+## Merchant App
 
 The `merchandapp` project is responsible for the merchant-facing application. It provides a user interface for merchants to manage their products, view transactions, and interact with customers.
 
