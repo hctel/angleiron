@@ -20,7 +20,7 @@ namespace backend
 
         public override string ToString()
         {
-            return typeId + '/' + name + '/' + size + '/' + price + '/' + colorsAvailable + '/' + optionsAvailable + '/' + imageName;
+            return typeId.ToString() + '/' + name + '/' + size + '/' + price + '/' + colorsAvailable + '/' + optionsAvailable + '/' + imageName;
         }
     }
 }
