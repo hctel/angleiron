@@ -22,6 +22,8 @@ The `serverapp` project contains the main backend API. It exposes REST (or gRPC,
 - Request Handling
 - Database Communication
 
+The protocol for proper use of the server can be found at [serverapp/docs/protocol.md](serverapp/docs/protocol.md).
+
 ---
 ## Managing Database
 
