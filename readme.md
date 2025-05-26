@@ -54,6 +54,9 @@ Two versions of the client are available on the github:
 
 Both clients consume services from the `serverapp` and provide user interfaces to interact with the system.
 
+### Preview
+![Preview](./ClientAppRemake/Images/preview.png)
+
 ###  Key Features
 
 - Real-time color customization of locker images
