@@ -294,6 +294,7 @@ namespace merchandapp
             // 
             // stockDataGridView
             // 
+            this.stockDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.stockDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.stockDataGridView.Location = new System.Drawing.Point(3, 51);
             this.stockDataGridView.Name = "stockDataGridView";
