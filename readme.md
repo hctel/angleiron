@@ -9,6 +9,15 @@ The main goal of this solution is to maintain a clean, scalable, and maintainabl
 ---
 
 ## Diagram
+### Class Diagram
+#### ClientAPP
+![alt text](./ClassDiagram1.png)
+#### Server 
+![alt text](./Class_diagramme_Server.png)
+#### Marchand APP
+![alt text](./ClassDiagram_marchandapp.png)
+### Relationship entity diagram
+![alt text](./Relationship_entity_diagram.png)
 
 ---
 
@@ -49,7 +58,14 @@ Both clients consume services from the `serverapp` and provide user interfaces t
 
 ## Merchant App
 
-The `merchandapp` project is responsible for the merchant-facing application. It provides a user interface for merchants to manage their products, view transactions, and interact with customers.
+The `merchandapp` project is responsible for the front-end of the marchand application. It provides a user interface for merchants to manage pending orders, view transactions, and interact with customers.
+
+First page : This is a summary of all pending orders
+ You can view the order details by clicking the "view" button in the last column. You can also interact with the stock button to see all the different parts in stock.
+
+ Order Details : When you click on the view button, you will see the details of a specific order, with all the parts that compound it, how many do you need and if they're in stock. You can mark it as completed by clicking the "Complete" button or go back on the order summary by clicking the "Back" button
+ 
+ Stock Details : When you click on the "Stock" button, you access the stock details where you can see all the different parts in stock, how many parts you need to complete the orders and how many you ordered. By clicking the "Buy" button, you will command all the missing parts to complete the orders. When the different suppliers deliverd the ordered parts, you can add them to the stock by indicating the number and the ID of the parts and clcik on the "Stock Recieved" button.
 
 
 > 📌 **Note**: For contributions, issues, or suggestions, feel free to open a ticket or a pull request in the corresponding repository.
