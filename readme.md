@@ -54,6 +54,24 @@ Two versions of the client are available on the github:
 
 Both clients consume services from the `serverapp` and provide user interfaces to interact with the system.
 
+###  Key Features
+
+- Real-time color customization of locker images
+- Dynamic image preview with overlay color filtering
+- Basket management with live price updates
+- Authentication via a login popup
+- Order submission via TCP to a remote server
+- Fixed full-HD layout (1920×1080) for consistent UI
+
+---
+
+### How to Run
+
+1. Open the solution in Visual Studio.
+2. Set `ClientAppRemake` as the **Startup Project**.
+3. Ensure the image assets exist in the `Images/` folder (e.g. `image1.png`, `image2.png`, etc.).
+4. Run the application.
+
 ---
 
 ## Merchant App
