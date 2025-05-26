@@ -9,6 +9,15 @@ The main goal of this solution is to maintain a clean, scalable, and maintainabl
 ---
 
 ## Diagram
+### Class Diagram
+#### ClientAPP
+![alt text](./ClassDiagram1.png)
+#### Server 
+![alt text](./Class_diagramme_Server.png)
+#### Marchand APP
+![alt text](./ClassDiagram_marchandapp.png)
+### Relationship entity diagram
+![alt text](./Relationship entity diagram.png)
 
 ---
 
