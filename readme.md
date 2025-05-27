@@ -110,3 +110,9 @@ En tant que gérant d'un magasin de meubles, j'aimerais voir l'ensemble des comm
 En tant que gérant d'un magasin de meuble, je voudrais voir l'ensemble des commandes en cours ainsi que les détails d'une commande et pouvoir commander les pièces manquantes via un catalogue de fournisseurs afin de répondre le mieux possible aux attentes des clients. 
 
 > 📌 **Note**: For contributions, issues, or suggestions, feel free to open a ticket or a pull request in the corresponding repository.
+## Conclusion 
+At the end of the project, the next team should work on the following features:
+
+- Currently, no invoice is generated when an order is placed.
+- There is no smart stock management. We only order the stock needed at the moment, without taking into account the high demand for certain items. It would be more efficient to anticipate demand and order larger quantities accordingly.
+- The client application does not currently include a preview of the closet.
