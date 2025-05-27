@@ -18,7 +18,8 @@ The main goal of this solution is to maintain a clean, scalable, and maintainabl
 ![alt text](./ClassDiagram_marchandapp.png)
 ### Relationship entity diagram
 ![alt text](./Relationship_entity_diagram.png)
-You can find the entity-association in the github with this path [here](./EA2.png).
+
+You can find the entity-association in the github with this path [here](./EntitydiagrammeDatabase.png).
 
 ---
 
