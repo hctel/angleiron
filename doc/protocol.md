@@ -1,6 +1,6 @@
 # Frontend-backend protocol documentation
 ## Abstract
-Communication between the frontends and the backend are made through TCP. Standard port is 6210.<br>  
+Communication between the frontends and the backend are made through TCP. Standard port is 58913.<br>  
 Requests always contain a command (first word), arguments are separaded with an '&'.
 If an argument is a list, elements are separated with ';'. If this list contains more than one element, these sub-elements are separated with a '/'.<br>  
 ## Client frontend requests
