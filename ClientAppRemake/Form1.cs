@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Sockets;
 using clientapp;
 using System.Diagnostics.Eventing.Reader;
+using System.Collections.ObjectModel;
 
 
 namespace ClientAppRemake
@@ -21,6 +22,7 @@ namespace ClientAppRemake
         private bool selecting = false;
         private List<int> Articles = new List<int>();
         private List<Tuple<int, Color>> Basket = new List<Tuple<int, Color>>();
+        private Dictionary<int, Kit> kits = new Dictionary<int, Kit>();
         private Session session;
         private int selectedId;
         private Color colorPanel = Color.FromArgb(0, 0, 0);
@@ -276,6 +278,7 @@ namespace ClientAppRemake
             int index=-1;
             foreach (Kit k in network.getItems())
             {
+                kits.Add(k.id, k);
                 int id = k.id;
                 if(index == -1) index = id;
                 int posX = index-1;
@@ -356,7 +359,8 @@ namespace ClientAppRemake
             this.selectedColor = Color.FromArgb(255, 255, 255);
             this.selectedId = articleIndex;
             selecting = true;
-            string path = "Images/image" + articleIndex + ".png";
+            Kit k = kits[articleIndex];
+            string path = "Images/" + k.image;
             this.previewImage.Image = Image.FromFile(path);
             this.image = new Bitmap(path);
         }
