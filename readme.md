@@ -2,9 +2,9 @@
 
 ## Introduction
 
-**Angleiron** is a modular software solution composed of multiple independent yet complementary projects. It is designed to manage interactions between a client application, a server, database management tools, and merchant-related processes.
+**Angleiron** is our project name for ECAM Brussels Engineering School's software engineering project.
 
-The main goal of this solution is to maintain a clean, scalable, and maintainable architecture.
+The goal of the project was to create a complete solution for a woodworking workshop; two interfaces (one for the clients, another for the staff) and a central database. Our choice was to add an additionnal layer in the structure, a backend server. It's role will be explained further down.
 
 ---
 
@@ -25,12 +25,11 @@ You can find the entity-association in the github with this path [here](./Entity
 
 ## Server
 
-The `serverapp` project contains the main backend API. It exposes REST (or gRPC, if applicable) endpoints to handle data exchange between clients and the database.
+The `serverapp` project contains the main backend API. It handles requests from the different clients and interacts with de database accordingly.
 
 **Main features:**
-- Authentication & Security
-- User and Role Management
-- Request Handling
+- User Authentication
+- Request Handling (Orders, stock, ...)
 - Database Communication
 
 The protocol for proper use of the server can be found [here](doc/protocol.md).
@@ -38,12 +37,8 @@ The protocol for proper use of the server can be found [here](doc/protocol.md).
 ---
 ## Managing Database
 
-The `merchandapp` project manages the merchant side of the database. It handles creation, updates, and deletion of records related to products, transactions, or partners.
+The `merchandapp` project is all about an iterface for the shop's staff. It allows order and stock management
 
-It may also include:
-- Initialization scripts for the database
-- Tools for migrations or data integrity checks
-- Internal administration utilities
 
 ---
 
@@ -109,7 +104,6 @@ En tant que gérant d'un magasin de meubles, j'aimerais voir l'ensemble des comm
 
 En tant que gérant d'un magasin de meuble, je voudrais voir l'ensemble des commandes en cours ainsi que les détails d'une commande et pouvoir commander les pièces manquantes via un catalogue de fournisseurs afin de répondre le mieux possible aux attentes des clients. 
 
-> 📌 **Note**: For contributions, issues, or suggestions, feel free to open a ticket or a pull request in the corresponding repository.
 ## Conclusion 
 At the end of the project, the next team should work on the following features:
 
